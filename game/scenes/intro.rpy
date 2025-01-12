@@ -1,32 +1,87 @@
 ﻿label intro:
 
 scene black
+"Странное чувство"
+"Приятное, интригующее"
+"Как будто друзья любят и подарили подарок такой крутой, с душой"
 
+scene fromkfc with Dissolve(.5)
+"Ладно, закупил крылешек иду подхаваться"
 
-"Ахуй"
-
-"Странные ощущения, я думал этого никогда не произойдет"
-
-ruta "Миш, привет)"
+show max1
+maks "Здарова Мих"
 menu:
-    "Просто иди нахуй":
+    "Йоу Макс":
         pass
-    "Чего тебе":
+    "Смачный здарова Макс":
+        call dab_up
+        maks "..."
+        maks "уфф"
         pass
-    "Привет":
-        pass
-ruta "Миш, я тебе помочь хочу)"
+maks "Кароче некогда говорить, это пездец"
+maks "Нам срочно нужно спасать Игоряна"
+miha "..."
+maks "Скорее идем, здесь небезопасно"
+miha "Ладно, идем"
+hide max1
+
+scene alexandrovskaya with Dissolve(.5)
+show max1
+maks "Действуем быстро"
+maks "Нам нужно спасти Игоря"
+miha "Понял"
+play sound "audio/sobaka1.ogg"
+pause(2)
+maks "Бля собаки Гаряна"
+stop sound
+play sound "audio/sobaka2.ogg"
+pause(1)
+maks "Ноу вей пройти"
+stop sound
+miha "Погоди, есть идея"
 menu:
-    "Просто иди нахуй":
+    "Кинуть сосиску":
         pass
-ruta "Миш, я тебе помочь хочу)"
+    "Ниче не делать":
+        pause(4)
+        maks "Ну че?"
+        miha "Да бля"
+        miha "Не придумал"
+        maks "Нам надо как-то пройти мэн, иначе не успеем"
+        play sound "audio/sobaka2.ogg"
+        pause(1)
+        menu:
+            "Кинуть сосиску":
+                pass
 
-ruta """С помосью БАДа ты сразу станешь адептом плюса)
-Адепты пропускают стадию залипа и сразу выходят
-на новый уровень + имеют больший потенциал)"""
+play sound "audio/metanie-sosiski.mp3" fadein 1 volume 0.7
+pause(1)
+play sound "audio/sobaka_spasibo.ogg" fadeout 1 volume 0.2
+pause(1)
+miha "Изи"
+stop sound
+play sound "audio/sobaka3.ogg" volume 0.1
+maks "Ахуеть, откуда?"
+stop sound
+maks "А, понял)"
+maks "Быстро, идем"
+maks "Осталось мало времени"
+maks "Нужно спецназом залетать в туалет"
 
-ruta "Что скажешь?)"
-
-fakeLarkin "Я выступлю под твоим ником бро)"
-
-miha "Бля а ты кто"
+scene srat_komnata with Dissolve(.5)
+show igor_sret1
+igoryas "уф"
+igoryas "поехали"
+hide igor_sret1
+show igor_sret_s_telefonom
+igoryas "сегодня смотрим этот самый"
+igoryas "новую хуйню"
+maks "А ну-ка нахуй"
+play audio "audio/punch.opus"
+with vpunch
+hide igor_sret_s_telefonom
+show igor_sret1
+igoryas "йэ бляяять"
+igoryas "Максооон это че было"
+maks "Слава богу мы тебя спасли дружище"
+maks "Идем с нами скорее"
