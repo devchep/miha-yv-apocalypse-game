@@ -22,7 +22,18 @@ maks "Кароче некогда говорить, это пездец"
 maks "Нам срочно нужно спасать Игоряна"
 miha "..."
 maks "Скорее идем, здесь небезопасно"
-miha "Ладно, идем"
+miha "У меня есть время подготовиться?"
+maks "Только быстро"
+maks "Мы не хотим здесь задерживаться"
+maks "Что тебе нужно?"
+menu:
+    "Нужно в пятерочку за сосисками":
+        maks "..."
+        pass
+    "Да ниче, погнали":
+        maks "Го"
+        pass
+
 hide max1
 
 scene alexandrovskaya with Dissolve(.5)
@@ -79,9 +90,40 @@ igoryas "новую хуйню"
 maks "А ну-ка нахуй"
 play audio "audio/punch.opus"
 with vpunch
+play sound "audio/phone-drop.mp3"
 hide igor_sret_s_telefonom
 show igor_sret1
 igoryas "йэ бляяять"
 igoryas "Максооон это че было"
+show max1 at right
 maks "Слава богу мы тебя спасли дружище"
 maks "Идем с нами скорее"
+
+scene alexandrovskaya with Dissolve(.5)
+show max1 at right
+maks "Ладно, гайзы"
+maks "Нам следуе"
+play sound "audio/subway-surfers.mp3" volume 0.2
+pause 1
+stop sound
+maks "Блядь"
+play sound "audio/subway-surfers.mp3" volume 0.1
+maks "Гайзы"
+hide max1
+show creep at left
+creep "Че _?"
+
+show max1 at right
+maks "Ни в коем случае смотрите что он вам покажет"
+hide max1
+
+menu:
+    "Атаковать":
+        pass
+    "Че там у тебя":
+        pass
+
+maks "Надеюсь мы его не кокнули"
+maks "Нас же повяжут"
+maks "Мих, ты этим говном управлял"
+maks ""
