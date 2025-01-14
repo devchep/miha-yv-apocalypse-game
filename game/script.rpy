@@ -5,7 +5,8 @@ init python:
 
 # Игра начинается здесь:
 label start:
-
+    python:
+        inventory = Inventory()
 #     show screen inventory_display_toggle
     call intro
 

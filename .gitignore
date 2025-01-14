@@ -1,7 +1,11 @@
 log.txt
+game/cache
 game/*.rpyc
+game/*.rpymc
 game/*/*.rpyc
+game/*/*.rpymc
 game/*/*/*.rpyc
+game/*/*/*.rpymc
 game/*/*.rpyb
 game/saves/*
 errors.txt
