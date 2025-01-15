@@ -209,7 +209,14 @@ screen choice(items):
 
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            $ action = i.kwargs.get("action", 0)
+            if action:
+                textbutton i.caption:
+                    background "gui/button/action_idle_background.png"
+                    hover_background "gui/button/action_hover_background.png"
+                    action i.action
+            else:
+                textbutton i.caption action i.action
 
 
 style choice_vbox is vbox

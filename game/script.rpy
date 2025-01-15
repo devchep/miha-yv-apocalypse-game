@@ -9,5 +9,7 @@ label start:
         inventory = Inventory()
 #     show screen inventory_display_toggle
     call intro
+    scene black
+    "конец интро"
 
     return

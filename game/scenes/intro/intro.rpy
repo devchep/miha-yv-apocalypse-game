@@ -57,8 +57,10 @@ pause(1)
 maks "Ноу вей пройти"
 stop sound
 miha "Погоди, есть идея"
+python:
+    inventory.loot(ColaNoSugar("2 колы по купону 5050"))
 menu:
-    "Кинуть" if inventory.hasThrowables():
+    "Кинуть:" (action = 1) if inventory.hasThrowables():
         python:
             pickedItem = renpy.display_menu(inventory.getItems())
             inventory.useItem(pickedItem)
@@ -72,14 +74,22 @@ menu:
         play sound "audio/sobaka2.ogg"
         pause(1)
         menu:
-            "Кинуть" if inventory.hasThrowables():
+            "Кинуть:" (action = 1) if inventory.hasThrowables():
                 python:
                     pickedItem = renpy.display_menu(inventory.getItems())
                     inventory.useItem(pickedItem)
                 pass
+            "Уйти":
+                miha "Впизду"
+                miha "Боюсь собак"
+                return
+    "Уйти":
+        miha "Впизду"
+        miha "Боюсь собак"
+        return
 
 if Sobaki().approves(pickedItem):
-    play sound "audio/metanie-sosiski.mp3" fadein 1 volume 0.7
+    play sound "audio/metanie-success.mp3" fadein 1 volume 0.7
     pause(1)
     play sound "audio/sobaka_spasibo.ogg" fadeout 1 volume 0.2
     pause(1)
@@ -101,5 +111,9 @@ elif pickedItem.name == "Кола без сахара":
     play sound "audio/sobaka_miha_idi_nahui.ogg" volume 0.7
     pause(2)
     maks "Это пиздец, Мих"
+    maks "Нам больше никогда туда не пройти"
     stop sound
     miha "Бля"
+    menu:
+        "Уйти":
+            return
