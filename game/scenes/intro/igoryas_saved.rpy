@@ -31,19 +31,33 @@ play sound "audio/subway-surfers.mp3" volume 0.2
 pause 1
 stop sound
 maks "Блядь"
-play sound "audio/subway-surfers.mp3" volume 0.1
-maks "Гайзы"
+play sound "audio/subway-surfers.mp3" volume 0.1 loop
+maks "Гайс"
+maks "Кто-то из них идет"
 hide max1
 show creep at left
 creep "Че"
 creep "стоите?"
 
 show max1 at right
-maks "Ни в коем случае смотрите что он вам покажет"
+maks "Ни в коем случае не смотрите что он вам покажет"
 hide max1
+
+creep "Тут капец вообще"
+creep "Смотрите"
+stop sound
+
+python:
+    party.addMember(Miha(60, 6))
+    party.addMember(Max(60, 10))
+    party.addMember(Igoryas(80, 6))
 
 menu:
     "Атаковать":
+        "Миха начинает бой"
+        call zheka_fight
+        hide creep
+        show max1 at right
         maks "Надеюсь мы его не кокнули"
         maks "Нас же повяжут"
         maks "Мих, ты этим говном управлял"

@@ -9,3 +9,6 @@ define creep = Character('Учебный Крип', color="#E2AD59")
 define ruta = Character('Рута', color="#FF3B96")
 
 define fakeLarkin = Character('Larkin', color="#54176A")
+
+init 1 python:
+    party = Party()

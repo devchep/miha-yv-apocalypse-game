@@ -7,6 +7,7 @@ init python:
 label start:
     python:
         inventory = Inventory()
+        party = Party()
 #     show screen inventory_display_toggle
     call intro
     scene black

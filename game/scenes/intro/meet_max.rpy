@@ -102,13 +102,13 @@ if Sobaki().approves(pickedItem):
     call igoryas_saved
 
 elif pickedItem.name == "Кола без сахара":
-    play sound "audio/sobaka_fu.ogg" volume 0.7
+    play sound "audio/sobaka_fu.ogg"
     pause(2)
-    play sound "audio/sobaka_bez_sahara.ogg" volume 0.7
+    play sound "audio/sobaka_bez_sahara.ogg"
     pause(3)
     play sound "audio/sobaka_no_way.ogg"
     pause(6)
-    play sound "audio/sobaka_miha_idi_nahui.ogg" volume 0.7
+    play sound "audio/sobaka_miha_idi_nahui.ogg"
     pause(2)
     maks "Это пиздец, Мих"
     maks "Нам больше никогда туда не пройти"

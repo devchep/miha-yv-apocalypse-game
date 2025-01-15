@@ -81,7 +81,6 @@ style frame:
 ## Внутриигровые экраны
 ################################################################################
 
-
 ## Экран разговора #############################################################
 ##
 ## Экран разговора используется для показа диалога игроку. Он использует два
@@ -212,8 +211,8 @@ screen choice(items):
             $ action = i.kwargs.get("action", 0)
             if action:
                 textbutton i.caption:
-                    background "gui/button/action_idle_background.png"
-                    hover_background "gui/button/action_hover_background.png"
+                    background "gui/button/throw_idle_background.png"
+                    hover_background "gui/button/throw_hover_background.png"
                     action i.action
             else:
                 textbutton i.caption action i.action
