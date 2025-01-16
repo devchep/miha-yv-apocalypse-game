@@ -83,10 +83,6 @@ menu:
                 miha "Впизду"
                 miha "Боюсь собак"
                 return
-    "Уйти":
-        miha "Впизду"
-        miha "Боюсь собак"
-        return
 
 if Sobaki().approves(pickedItem):
     play sound "audio/metanie-success.mp3" fadein 1 volume 0.7

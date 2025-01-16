@@ -48,9 +48,12 @@ creep "Смотрите"
 stop sound
 
 python:
-    party.addMember(Miha(60, 6))
-    party.addMember(Max(60, 10))
-    party.addMember(Igoryas(80, 6))
+    miha_unit = Miha(60, 6)
+    igoryas_unit = Igoryas(80, 6)
+    maks_unit = MaxHeyman(60, 10)
+    party.addMember(miha_unit)
+    party.addMember(igoryas_unit)
+    party.addMember(maks_unit)
 
 menu:
     "Атаковать":
@@ -61,6 +64,5 @@ menu:
         maks "Надеюсь мы его не кокнули"
         maks "Нас же повяжут"
         maks "Мих, ты этим говном управлял"
-        maks ""
     "Че там у тебя":
         pass

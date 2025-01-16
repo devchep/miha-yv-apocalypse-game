@@ -10,10 +10,12 @@ while enemy.health > 0 and not party.isWiped():
 
     python:
         pickedMember = renpy.display_menu(party.getMembersForNextAttack())
-        pickedMember.attack(enemy)
+        pickedAbility = renpy.display_menu(pickedMember.getAvailableAbilities())
+        pickedAbility.useAgainst(enemy)
 
+    pause(1)
     if enemy.health > 0:
-        creep "[enemy.attack_phrase()]"
+        with vpunch
         python:
             enemy.attack(party)
 
