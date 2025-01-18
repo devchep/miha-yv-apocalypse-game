@@ -23,6 +23,10 @@ show max1 at right
 maks "Слава богу мы тебя спасли дружище"
 maks "Идем с нами скорее"
 
+python:
+    igoryas_unit = Igoryas(80, 6)
+    party.addMember(igoryas_unit)
+
 scene alexandrovskaya with Dissolve(.5)
 show max1 at right
 maks "Ладно, гайзы"
@@ -47,22 +51,24 @@ creep "Тут капец вообще"
 creep "Смотрите"
 stop sound
 
-python:
-    miha_unit = Miha(60, 6)
-    igoryas_unit = Igoryas(80, 6)
-    maks_unit = MaxHeyman(60, 10)
-    party.addMember(miha_unit)
-    party.addMember(igoryas_unit)
-    party.addMember(maks_unit)
-
 menu:
     "Атаковать":
-        "Миха начинает бой"
         call zheka_fight
         hide creep
         show max1 at right
         maks "Надеюсь мы его не кокнули"
         maks "Нас же повяжут"
         maks "Мих, ты этим говном управлял"
+        hide max1
+        show igor1 at left
+        igoryas "Забыли"
+        igoryas "Важно другое"
+        igoryas "Ты мне должен новый пиксель, Максон"
+        igoryas "Мб объяснишь че это было в туалете?"
+        hide igor1
+        show max1 at right
+        miha "Да, реально"
+        maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
+
     "Че там у тебя":
-        pass
+        "Игорь заражен"

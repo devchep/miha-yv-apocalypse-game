@@ -16,18 +16,25 @@ init 1 python:
         def offend(self):
             if self.mayBeOffended():
                 renpy.say(None, "Враг оскорбился")
+                self.offendEffectAnnounce()
                 self.isOffended = True
 
         def insultingPhrase(self):
             return random.choice(["Тупой ты дебил"])
 
+        def offendEffectAnnounce(self):
+            pass
+
         def changeVulnerableRatio(self, ratio):
             renpy.say(None, "Враг стал уязвим")
-            renpy.say(None, "Все атаки в "+str(ratio)+" раза сильнее")
+            renpy.say(None, "Все атаки против Врага стали в "+str(ratio)+" раза сильнее")
             self.vulnerableRatio = ratio
 
         def hit(self, strength):
             self.health -= strength*self.vulnerableRatio
+
+        def healMax(self):
+            self.health = self.max_health
 
     class Ability:
         def __init__(self, name, strength):
@@ -70,6 +77,9 @@ init 1 python:
 
             return aliveMembers
 
+        def healEveryone(self):
+            [member.healMax() for member in self.members.values()]
+
     class Enemy(Character):
         def __init__(self, name, health, strength):
             super().__init__(name, health, strength)
@@ -81,7 +91,7 @@ init 1 python:
             if len(party.members) > 0:
                 partyMemberToAttack = min(party.members.values(),key=attrgetter('health'))
                 partyMemberToAttack.health -= self.getAttackPower()
-                renpy.play("audio/punch.opus")
+                self.playAttackSound()
                 renpy.say(self.getRenpyChar(), what=self.attack_phrase())
 
         def attack_phrase(self):
@@ -90,12 +100,18 @@ init 1 python:
         def getRenpyChar(self):
             return None
 
+        def playAttackSound(self):
+            renpy.play("audio/punch.opus")
+
     class Tupoi:
         def mayBeOffended(self):
             return True
 
         def getAttackPower(self):
             return self.strength*2 if self.isOffended else self.strength
+
+        def offendEffectAnnounce(self):
+            renpy.say(None, "Атаки врага стали в 2 раза сильнее")
 
     class Zheka(Tupoi, Enemy):
         def __init__(self, health, strength):
@@ -106,12 +122,46 @@ init 1 python:
 
         def insultingPhrase(self):
             return random.choice([
-            "Я тебя буду называть Ев, потому что имя с 'гений' внутри тебе ну никак не подходит)",
+            "Я тебя буду называть Ев, потому что имя с содержанием 'гений' внутри тебе ну никак не подходит)",
             "Знаешь, никогда тебя за человека то и не считал"
             ])
 
         def getRenpyChar(self):
             return creep
+
+    class Tiktoker:
+        def mayBeOffended(self):
+            return True
+
+        def getAttackPower(self):
+            return self.strength*self.getAttackResult() if self.isOffended else self.strength
+
+        def getAttackResult(self):
+            return random.choice([1, 0])
+
+        def offendEffectAnnounce(self):
+            renpy.say(None, 'Враг временно имеет шанс промахнуться с вероятностью 50%%')
+
+
+    class Torop(Tiktoker, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Тороп", health = health, strength = strength)
+
+        def attack_phrase(self):
+            return random.choice(["я вам покажу", "я вам обязательно покажу", "вы у меня посмотрите"])
+
+        def insultingPhrase(self):
+            return random.choice([
+            "Твои тиктоки на таком дне, опуститься чуть ниже и просто уже дерьмом сдавит как батискаф",
+            "Че ты там мячиком)",
+            "Что ты там покажешь епта, мать в канаве?"
+            ])
+
+        def getRenpyChar(self):
+            return torop
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
 
     class Insult(Ability):
         def __init__(self):

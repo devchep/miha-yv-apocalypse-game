@@ -8,9 +8,12 @@ label start:
     python:
         inventory = Inventory()
         party = Party()
-#     show screen inventory_display_toggle
-    call intro
+        miha_unit = Miha(60, 6)
+        party.addMember(miha_unit)
+
+    call act1
+
     scene black
-    "конец интро"
+    "конец акт1"
 
     return

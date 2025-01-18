@@ -6,6 +6,10 @@ define igoryas = Character('Игорян', color="#E2AD59")
 
 define creep = Character('Учебный Крип', color="#E2AD59")
 
+define andrei = Character('Дрюс', color="#2CADD1")
+
+define torop = Character('Тороп', color="#AF0115")
+
 define ruta = Character('Рута', color="#FF3B96")
 
 define fakeLarkin = Character('Larkin', color="#54176A")
