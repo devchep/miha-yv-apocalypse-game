@@ -45,7 +45,8 @@ init 1 python:
             self.strength = strength
 
         def useAgainst(self, enemy: Character, character: Character):
-            self.useAgainst(enemy)
+            enemy.hit(self.strength)
+            self.playSound()
 
         def playSound(self):
             renpy.play("audio/punch.opus")
