@@ -45,6 +45,9 @@ init 1 python:
             self.strength = strength
 
         def useAgainst(self, enemy: Character, character: Character = None):
+            self.useAgainst(enemy)
+
+        def useAgainst(self, enemy: Character):
             enemy.hit(self.strength)
             self.playSound()
 
@@ -262,10 +265,10 @@ init 1 python:
         def __init__(self):
             super().__init__(name = "Прокричать оскорбления", strength = 0)
 
-        def useAgainst(self, character: Character):
+        def useAgainst(self, enemy: Character):
             self.playSound()
-            renpy.say(None, character.insultingPhrase())
-            character.offend()
+            renpy.say(None, enemy.insultingPhrase())
+            enemy.offend()
 
         def playSound(self):
             renpy.play("audio/characters/miha/laugh.mp3")
