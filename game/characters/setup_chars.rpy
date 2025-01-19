@@ -4,7 +4,7 @@ define maks = Character('Макс', color="#2A28C3")
 
 define stepa = Character('Степа', color="#E10B84")
 
-define gera = Character('Гера', color="#5E5F00й")
+define gera = Character('Гера', color="#5E5F00")
 
 define igoryas = Character('Игорян', color="#E2AD59")
 
