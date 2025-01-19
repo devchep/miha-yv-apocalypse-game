@@ -15,11 +15,11 @@ label show_hp:
         bar value maks_unit.health range maks_unit.max_health xalign 0.0 yalign 0.3 xmaximum 220
 
     show screen enemy_hp
-    if miha_unit.health>0:
+    if party.contains(Miha) and miha_unit.health>0:
         show screen miha_hp
-    if igoryas_unit.health>0:
+    if party.contains(Igoryas) and igoryas_unit.health>0:
         show screen igoryas_hp
-    if maks_unit.health>0:
+    if party.contains(MaxHeyman) and maks_unit.health>0:
         show screen maxHeyman_hp
     return
 

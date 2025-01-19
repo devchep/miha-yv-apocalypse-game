@@ -80,6 +80,9 @@ init 1 python:
         def healEveryone(self):
             [member.healMax() for member in self.members.values()]
 
+        def contains(self, instance):
+            return any(isinstance(member, instance) for member in self.members.values())
+
     class Enemy(Character):
         def __init__(self, name, health, strength):
             super().__init__(name, health, strength)
