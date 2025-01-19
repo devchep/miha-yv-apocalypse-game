@@ -21,6 +21,8 @@
     menu:
         "Нужно в пятерочку за сосисками":
             maks "Надеюсь это тебе РЕАЛЬНО необходимо"
+            maks "..."
+            call pyaterochka
             python:
                 inventory.loot(Sosiska("пачка сосисок из пятерки"))
             pass
