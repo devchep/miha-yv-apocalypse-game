@@ -1,36 +1,38 @@
 label korean_fight:
 python:
-    enemy = Knee(65, 25)
+    knee_unit = Knee(65, 40)
+    law_unit = Law(30, 50)
+    first_unit = First(100, 30)
+    chinese_lesh = ChineseLesh(90, 30)
     party.healEveryone()
+    enemyParty = Party()
+    enemyParty.addMember(knee_unit)
+    enemyParty.addMember(law_unit)
+    enemyParty.addMember(first_unit)
+    enemyParty.addMember(chinese_lesh)
 
-call show_hp
-play music "./audio/fight2.mp3" volume 0.1
-"Вы вступили в бой"
-show torop at right
-torop "Дрюс, да посмотри"
-hide torop
-show drei1 at left
-andrei "Не, нихуя"
-andrei "Не буду я твой кал смотреть"
-hide drei1
+call show_chinese_hp
+play music "./audio/fight_chinese.mp3" volume 0.2
+"Начался бой"
 
-show torop at right
-
-while enemy.health > 0 and not party.isWiped():
+while not enemyParty.isWiped() and not party.isWiped():
 
     python:
         pickedMember = renpy.display_menu(party.getMembersForNextAttack())
         pickedAbility = renpy.display_menu(pickedMember.getAvailableAbilities())
-        pickedAbility.useAgainst(enemy)
+        pickedEnemy = renpy.display_menu(enemyParty.getMembersForNextAttack())
+        pickedAbility.useAgainst(pickedEnemy, pickedMember)
 
     pause(1)
-    if enemy.health > 0:
+    if any(enemy[1].health > 0 for enemy in enemyParty.getMembersForNextAttack()):
         show ball_weapon with Dissolve(.1)
         with vpunch
         hide ball_weapon
         python:
-            enemy.attack(party)
+            enemy = enemyParty.popNext()
+            if enemy is not None:
+                enemy.attack(party)
+                enemyParty.putInAttackQueue(enemy)
 
-hide torop
-call hide_hp
+call hide_chinese_hp
 stop music

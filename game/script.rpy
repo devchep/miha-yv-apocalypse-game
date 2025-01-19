@@ -14,7 +14,6 @@ label start:
     call act1
 
     scene black
-    "конец акт1"
     call act2
 
     return
