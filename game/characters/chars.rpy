@@ -18,6 +18,9 @@ init 1 python:
                 renpy.say(None, "Враг оскорбился")
                 self.offendEffectAnnounce()
                 self.isOffended = True
+            else:
+                renpy.say(None, "Враг не оскорбился")
+                self.offendEffectAnnounce()
 
         def insultingPhrase(self):
             return random.choice(["Тупой ты дебил"])
@@ -41,12 +44,13 @@ init 1 python:
             self.name = name
             self.strength = strength
 
-        def useAgainst(self, character: Character):
+        def useAgainst(self, enemy: Character, character: Character = None):
             character.hit(self.strength)
             self.playSound()
 
         def playSound(self):
             renpy.play("audio/punch.opus")
+
 
     class Ally(Character):
         def __init__(self, name, health, strength, partyName):
@@ -62,9 +66,11 @@ init 1 python:
     class Party:
         def __init__(self):
             self.members = {}
+            self.attackQueue = []
 
-        def addMember(self, ally: Ally):
+        def addMember(self, ally: Character):
             self.members.update({ally.name: ally})
+            self.attackQueue.append(ally)
 
         def isWiped(self):
             return all(member.health <= 0 for member in self.members.values())
@@ -83,9 +89,21 @@ init 1 python:
         def contains(self, instance):
             return any(isinstance(member, instance) for member in self.members.values())
 
+        def popNext(self):
+            while len(self.attackQueue) > 0:
+                nextAttackMember = self.attackQueue.pop(0)
+                if nextAttackMember.health > 0:
+                    return nextAttackMember
+            return None
+
+        def putInAttackQueue(self, member: Character):
+            if member.health > 0:
+                return self.attackQueue.append(member)
+
     class Enemy(Character):
-        def __init__(self, name, health, strength):
+        def __init__(self, name, health, strength, partyName=None):
             super().__init__(name, health, strength)
+            self.partyName = partyName
 
         def getAttackPower(self):
             return self.strength
@@ -166,6 +184,80 @@ init 1 python:
         def playAttackSound(self):
             renpy.play("audio/fireball.mp3")
 
+    class Chinese:
+        def mayBeOffended(self):
+            return False
+
+        def getAttackPower(self):
+            return self.strength
+
+        def insultingPhrase(self):
+            return random.choice([
+            "Ваш вождь жестко слабый",
+            "Тупой ты китаец, слышишь меня?"
+            ])
+
+        def offendEffectAnnounce(self):
+            renpy.say(None, 'Враг нихуя не понял')
+
+    class Knee(Chinese, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Knee", health = health, strength = strength, partyName = "Knee")
+
+        def attack_phrase(self):
+            return random.choice(["tekkeno panch", "feng wey atak"])
+
+        def getRenpyChar(self):
+            return knee
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+
+    class Law(Chinese, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Law", health = health, strength = strength, partyName = "Law")
+
+        def attack_phrase(self):
+            return random.choice(["huuuuuuuyaaaaa", "ai", "kiyaaaa"])
+
+        def getRenpyChar(self):
+            return law
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+
+    class First(Chinese, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "001", health = health, strength = strength, partyName = "001")
+
+        def attack_phrase(self):
+            return random.choice([
+                "Wanna play a hero?",
+                 "I will show you the truth"
+             ])
+
+        def getRenpyChar(self):
+            return first
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+
+    class ChineseLesh(Chinese, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "ChineseLesh", health = health, strength = strength, partyName = "ChineseLesh")
+
+        def attack_phrase(self):
+            return random.choice([
+                "AHAHAH",
+                 "ahahahahahhahahaahhaahh"
+             ])
+
+        def getRenpyChar(self):
+            return chineseLesh
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+
     class Insult(Ability):
         def __init__(self):
             super().__init__(name = "Прокричать оскорбления", strength = 0)
@@ -198,6 +290,25 @@ init 1 python:
             renpy.play("audio/characters/igoryas/smoke.mp3")
             renpy.pause(4)
 
+    class Critical(Ability):
+        def __init__(self):
+            super().__init__(name = "Крит", strength = 70)
+
+        def playSound(self):
+            renpy.play("audio/characters/drei/critical.mp3")
+            renpy.pause(1)
+
+        def useAgainst(self, enemy: Character, character: Character):
+            phase = "ez"
+            if enemy.health > 50:
+                enemy.health -= enemy.max_health - 10
+                phase = "Бля, неваншот"
+            else:
+                enemy.health -= enemy.health
+
+            self.playSound()
+            renpy.say(character.getRenpyChar(), what=phase)
+
     class Miha(Ally):
         def __init__(self, health, strength):
             super().__init__("Миха", health, strength, "ход Михой")
@@ -218,3 +329,13 @@ init 1 python:
 
         def getAbilities(self):
             return [Smoke()]
+
+    class Drei(Ally):
+        def __init__(self, health, strength):
+            super().__init__("Дрюс", health, strength, "ход Дрюсом")
+
+        def getAbilities(self):
+            return [Critical()]
+
+        def getRenpyChar(self):
+            return andrei

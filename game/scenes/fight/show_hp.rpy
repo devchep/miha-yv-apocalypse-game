@@ -13,6 +13,9 @@ label show_hp:
     screen maxHeyman_hp:
         text "[maks_unit.name]: [maks_unit.health]/[maks_unit.max_health]" xalign 0.0 yalign 0.25
         bar value maks_unit.health range maks_unit.max_health xalign 0.0 yalign 0.3 xmaximum 220
+    screen drei_hp:
+        text "[drei_unit.name]: [drei_unit.health]/[drei_unit.max_health]" xalign 0.0 yalign 0.35
+        bar value drei_unit.health range drei_unit.max_health xalign 0.0 yalign 0.4 xmaximum 220
 
     show screen enemy_hp
     if party.contains(Miha) and miha_unit.health>0:
@@ -21,6 +24,8 @@ label show_hp:
         show screen igoryas_hp
     if party.contains(MaxHeyman) and maks_unit.health>0:
         show screen maxHeyman_hp
+    if party.contains(Drei) and drei_unit.health>0:
+        show screen drei_hp
     return
 
 label hide_hp:
