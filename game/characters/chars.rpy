@@ -45,7 +45,7 @@ init 1 python:
             self.strength = strength
 
         def useAgainst(self, enemy: Character, character: Character = None):
-            character.hit(self.strength)
+            enemy.hit(self.strength)
             self.playSound()
 
         def playSound(self):
