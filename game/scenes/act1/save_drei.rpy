@@ -55,9 +55,6 @@
             andrei "Я люто не хотел смотреть, полюб не смешной"
             andrei "Не хотел кринжевать"
 
-            python:
-                drei_unit = Drei(62, 5)
-                party.addMember(drei_unit)
             hide drei1
             show max1 at right
             maks "Едем спасать Диманов"

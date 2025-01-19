@@ -8,10 +8,12 @@
     miha "..."
     scene hostages with Dissolve(.5)
     miha "Слушай, знакомое место"
+    miha "Надеюсь Диман не в заложниках"
 
     scene diman_hostage with Dissolve(.5)
 
     diman "Мужики, уходите"
+    diman "Оставьте меня"
     diman "Тут дохуя китайцев"
     diman "Вам пиздец"
 

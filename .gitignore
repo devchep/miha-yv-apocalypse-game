@@ -10,3 +10,4 @@ game/*/*.rpyb
 game/saves/*
 errors.txt
 traceback.txt
+game/tests
