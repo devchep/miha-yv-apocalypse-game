@@ -33,3 +33,4 @@ while enemy.health > 0 and not party.isWiped():
 
 hide torop
 call hide_hp
+stop music
