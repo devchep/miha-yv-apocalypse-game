@@ -1,7 +1,7 @@
 ﻿label save_drei:
     scene electron
     show max2 at right
-    maks "звоним Андрею"
+    maks "Набираю Древу"
     scene electron_call
     show max2 at right
     andrei "Да"
