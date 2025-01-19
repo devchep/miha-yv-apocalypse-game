@@ -4,8 +4,8 @@
     maks "Набираю Древу"
     scene electron_call
     show max2 at right
-    andrei "Да"
-    maks "Чел, выходи через 10 мин, оч надо"
+    andrei "Алло, че такое?"
+    maks "Дядь, выходи через 10 мин, оч надо"
     andrei "Ага, окес"
     andrei "Выхожу"
     miha ")"
@@ -13,10 +13,10 @@
     pause 3
     miha "Кхм"
     pause 3
-    miha "Ну че"
+    miha "Ну че, мы удивлены?"
     show max1 at right
     maks "Да бля, дефолт"
-    maks "Звоню"
+    maks "Он заебал, звоню"
     scene kalitka_call
     show max1 at right
     andrei "Бля"
@@ -28,19 +28,19 @@
     play sound "audio/subway-surfers.mp3" volume 0.2
     pause 2
     stop sound
-    maks "Сука"
+    maks "Суууука"
     play sound "audio/subway-surfers.mp3" volume 0.2 loop
     show max1 at right
     maks "Это пиздец..."
-    maks "Слышите?"
-    maks "Андрею конец"
-    maks "Помните Жекана?"
+    maks "Слышите?"    # TODO добавить чекер количества пати, чтобы обращение соответствовало числу
+    maks "Андрею жопа"
+    maks "Помните Жекана?"   # TODO добавить чекер, пройдена ли сцена с Жеканом (если не было можно типа "хз зачем вспомнил")
     maks "Вот Дрюс тоже уже этот.."
     maks "Ебанулся"
-    maks "Это причина по которой нам нужно спасти как можно больше друзей"
-    maks "Чтобы они остались в своем уме"
-    maks "Здесь не успели"
-    maks "Срочно уходим"
+    maks "Если мы будем тупить, то все друзья возьмут с него пример"
+    maks "И их будет уже не узнать"
+    maks "Здесь походу не успели"
+    maks "Сваливаем"
     menu:
         "Разбить калитку":
             play sound "audio/minus-kalitka.mp3"
@@ -59,7 +59,7 @@
             show max1 at right
             maks "Едем спасать Диманов"
             miha "Куда?"
-            maks "В офис яндекса"
+            maks "В офис Яндекса, он же вроде в Яндексе"
 
         "Уйти":
             pass
