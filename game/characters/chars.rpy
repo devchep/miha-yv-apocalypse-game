@@ -44,12 +44,8 @@ init 1 python:
             self.name = name
             self.strength = strength
 
-        def useAgainst(self, enemy: Character, character: Character = None):
+        def useAgainst(self, enemy: Character, character: Character):
             self.useAgainst(enemy)
-
-        def useAgainst(self, enemy: Character):
-            enemy.hit(self.strength)
-            self.playSound()
 
         def playSound(self):
             renpy.play("audio/punch.opus")
@@ -265,7 +261,7 @@ init 1 python:
         def __init__(self):
             super().__init__(name = "Прокричать оскорбления", strength = 0)
 
-        def useAgainst(self, enemy: Character):
+        def useAgainst(self, enemy: Character, character: Character):
             self.playSound()
             renpy.say(None, enemy.insultingPhrase())
             enemy.offend()
@@ -285,9 +281,9 @@ init 1 python:
         def __init__(self):
             super().__init__(name = "Дымка 50 никотина", strength = 1)
 
-        def useAgainst(self, character: Character):
+        def useAgainst(self, enemy: Character, character: Character):
             self.playSound()
-            character.changeVulnerableRatio(2)
+            enemy.changeVulnerableRatio(2)
 
         def playSound(self):
             renpy.play("audio/characters/igoryas/smoke.mp3")
