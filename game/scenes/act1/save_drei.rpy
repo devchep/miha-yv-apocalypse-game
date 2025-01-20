@@ -47,6 +47,7 @@
             scene dom_dreya
             call torop_fight
 
+            #TODO 1: проебали
             show drei1 at left
             andrei "Это ахуеть"
             andrei "Спасибо, парни"

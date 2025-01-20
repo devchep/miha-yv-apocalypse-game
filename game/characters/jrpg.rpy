@@ -1,4 +1,8 @@
+image drones_attack = Movie(play = "./video/drones_attack.webm", loop=False)
 init 1 python:
+    hugepunch = Move((15, 0), (-15, 0), .10, bounce=True, repeat=True, delay=.275)
+    hugeboom = Move((100, 0), (-100, 0), .10, bounce=True, repeat=True, delay=.275)
+    bigdamagepunch = Move((15, 0), (0, 15), .10, bounce=True, repeat=True, delay=0)
     import random
     from operator import attrgetter
     class Character:
@@ -11,6 +15,7 @@ init 1 python:
             self.vulnerableRatio = 1
             self.invincible = False
             self.preparedAttack = 0
+            self.disabled_turns_count = 0
 
         def mayBeOffended(self):
             return False
@@ -35,8 +40,12 @@ init 1 python:
             renpy.say(None, "Все атаки против "+self.name+" стали в "+str(ratio)+" раза сильнее")
             self.vulnerableRatio = ratio
 
-        def hit(self, strength):
-            self.health -= strength*self.vulnerableRatio
+        def hit(self, enemy, strength):
+            if self.disabled_turns_count > 0:
+                renpy.say(None, "Атака не нанесла урона")
+                self.disabled_turns_count -= 1
+                return
+            enemy.health -= strength*enemy.vulnerableRatio
 
         def healMax(self):
             self.health = self.max_health
@@ -47,6 +56,9 @@ init 1 python:
         def setPreparedAttack(self, val):
             self.preparedAttack = val
 
+        def disabled(self, turns):
+            self.disabled_turns_count = turns
+
     class Ability:
         def __init__(self, name, strength):
             self.name = name
@@ -54,7 +66,7 @@ init 1 python:
             self.targeted = True
 
         def useAgainst(self, enemy: Character, character: Character):
-            enemy.hit(self.strength)
+            character.hit(enemy, self.strength)
             self.playSound()
 
         def playSound(self):
@@ -187,10 +199,10 @@ init 1 python:
         def offendEffectAnnounce(self):
             renpy.say(None, 'Враг временно имеет шанс промахнуться с вероятностью 50%%')
 
-
     class Torop(Tiktoker, Enemy):
         def __init__(self, health, strength):
             super().__init__(name = "Тороп", health = health, strength = strength)
+            self.drones_appearance = 0
 
         def attack_phrase(self):
             return random.choice(["я вам покажу", "я вам обязательно покажу", "вы у меня посмотрите"])
@@ -201,6 +213,36 @@ init 1 python:
             "Че ты там мячиком)",
             "Что ты там покажешь епта, мать в канаве?"
             ])
+
+        def attack(self, party: Party):
+            if self.health <= self.max_health / 2:
+                renpy.say(self.getRenpyChar(), what="Пизда Вам)")
+                if self.drones_appearance == 0:
+                    renpy.show("drones_attack", at_list=[right])
+                    renpy.say(self.getRenpyChar(), what="Готовьтесь детки")
+                    renpy.hide("drones_attack")
+                    renpy.play("audio/bigbruh.mp3")
+                    renpy.say(None, what="Все кринжанули и не смогут нанести урон в следующем ходу")
+                    [member.disabled(1) for member in party.members.values()]
+                    self.drones_appearance += 1
+
+                [self.hit(member, 34) for member in party.members.values()]
+                renpy.play("audio/bigboom.mp3")
+                renpy.show("lancet")
+                renpy.with_statement(Dissolve(.2))
+                renpy.with_statement(hugeboom)
+                renpy.hide("lancet")
+                return
+
+            if len(party.members) > 0:
+                renpy.show("ball_weapon")
+                renpy.with_statement(Dissolve(.1))
+                renpy.with_statement(vpunch)
+                renpy.hide("ball_weapon")
+                partyMemberToAttack = min(filter(lambda x: x.health > 0, party.members.values()),key=attrgetter('health'))
+                partyMemberToAttack.health -= self.getAttackPower()
+                self.playAttackSound()
+                renpy.say(self.getRenpyChar(), what=self.attack_phrase())
 
         def getRenpyChar(self):
             return torop
@@ -300,6 +342,7 @@ init 1 python:
 
         def playSound(self):
             renpy.play("audio/characters/max/shoulder.mp3")
+            renpy.with_statement(hugepunch)
             renpy.pause(1)
 
     class Smoke(Ability, NonTarget):
@@ -336,10 +379,12 @@ init 1 python:
         def useAgainst(self, enemy: Character, character: Character):
             if character.preparedAttack > 0:
                 if enemy.health > 50:
-                    enemy.health -= enemy.max_health - 10
+                    character.hit(enemy, enemy.max_health - 10)
                 else:
-                    enemy.health -= enemy.health
+                    character.hit(enemy, enemy.health)
 
+                renpy.with_statement(bigdamagepunch)
+                renpy.pause(.1)
                 self.playDeadlyBlowSound()
 
                 character.setInvincible(False)

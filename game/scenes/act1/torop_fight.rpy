@@ -29,9 +29,6 @@ while enemy.health > 0 and not party.isWiped():
 
     pause(1)
     if enemy.health > 0:
-        show ball_weapon with Dissolve(.1)
-        with vpunch
-        hide ball_weapon
         python:
             enemy.attack(party)
 
