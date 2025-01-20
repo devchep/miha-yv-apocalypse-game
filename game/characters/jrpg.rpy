@@ -9,6 +9,8 @@ init 1 python:
             self.strength = strength
             self.isOffended = False
             self.vulnerableRatio = 1
+            self.invincible = False
+            self.preparedAttack = 0
 
         def mayBeOffended(self):
             return False
@@ -29,8 +31,8 @@ init 1 python:
             pass
 
         def changeVulnerableRatio(self, ratio):
-            renpy.say(None, "Враг стал уязвим")
-            renpy.say(None, "Все атаки против Врага стали в "+str(ratio)+" раза сильнее")
+            renpy.say(None, self.name+" стал уязвим")
+            renpy.say(None, "Все атаки против "+self.name+" стали в "+str(ratio)+" раза сильнее")
             self.vulnerableRatio = ratio
 
         def hit(self, strength):
@@ -39,10 +41,17 @@ init 1 python:
         def healMax(self):
             self.health = self.max_health
 
+        def setInvincible(self, val):
+            self.invincible = val
+
+        def setPreparedAttack(self, val):
+            self.preparedAttack = val
+
     class Ability:
         def __init__(self, name, strength):
             self.name = name
             self.strength = strength
+            self.targeted = True
 
         def useAgainst(self, enemy: Character, character: Character):
             enemy.hit(self.strength)
@@ -51,6 +60,11 @@ init 1 python:
         def playSound(self):
             renpy.play("audio/punch.opus")
 
+        def getStateName(self, character: Character):
+            return ""
+
+        def setTargeted(self, val):
+            self.targeted = val
 
     class Ally(Character):
         def __init__(self, name, health, strength, partyName):
@@ -58,7 +72,7 @@ init 1 python:
             self.partyName = partyName
 
         def getAvailableAbilities(self):
-            return [(ability.name, ability) for ability in self.getAbilities()]
+            return [(ability.name + ability.getStateName(self), ability) for ability in self.getAbilities()]
 
         def getAbilities(self):
             return []
@@ -100,6 +114,16 @@ init 1 python:
             if member.health > 0:
                 return self.attackQueue.append(member)
 
+    class NonTarget:
+        def __init__(self):
+            pass
+
+        def use(self, party: Party, character: Character):
+            pass
+
+        def playSound(self):
+            renpy.play("audio/punch.opus")
+
     class Enemy(Character):
         def __init__(self, name, health, strength, partyName=None):
             super().__init__(name, health, strength)
@@ -110,7 +134,7 @@ init 1 python:
 
         def attack(self, party: Party):
             if len(party.members) > 0:
-                partyMemberToAttack = min(party.members.values(),key=attrgetter('health'))
+                partyMemberToAttack = min(filter(lambda x: x.health > 0, party.members.values()),key=attrgetter('health'))
                 partyMemberToAttack.health -= self.getAttackPower()
                 self.playAttackSound()
                 renpy.say(self.getRenpyChar(), what=self.attack_phrase())
@@ -228,7 +252,7 @@ init 1 python:
 
     class First(Chinese, Enemy):
         def __init__(self, health, strength):
-            super().__init__(name = "001", health = health, strength = strength, partyName = "001")
+            super().__init__(name = "FrontMan", health = health, strength = strength, partyName = "001")
 
         def attack_phrase(self):
             return random.choice([
@@ -244,11 +268,11 @@ init 1 python:
 
     class ChineseLesh(Chinese, Enemy):
         def __init__(self, health, strength):
-            super().__init__(name = "ChineseLesh", health = health, strength = strength, partyName = "ChineseLesh")
+            super().__init__(name = "Лещ Dage", health = health, strength = strength, partyName = "Лещ Dage")
 
         def attack_phrase(self):
             return random.choice([
-                "AHAHAH",
+                "AHAHAHAHAHAH",
                  "ahahahahahhahahaahhaahh"
              ])
 
@@ -278,36 +302,69 @@ init 1 python:
             renpy.play("audio/characters/max/shoulder.mp3")
             renpy.pause(1)
 
-    class Smoke(Ability):
+    class Smoke(Ability, NonTarget):
         def __init__(self):
             super().__init__(name = "Дымка 50 никотина", strength = 1)
+            self.setTargeted(False)
 
         def useAgainst(self, enemy: Character, character: Character):
             self.playSound()
             enemy.changeVulnerableRatio(2)
 
+        def use(self, party: Party, character: Character):
+            self.playSound()
+            [enemy.changeVulnerableRatio(2) for enemy in party.members.values()]
+
         def playSound(self):
             renpy.play("audio/characters/igoryas/smoke.mp3")
             renpy.pause(4)
 
-    class Critical(Ability):
-        def __init__(self):
-            super().__init__(name = "Крит", strength = 70)
 
-        def playSound(self):
-            renpy.play("audio/characters/drei/critical.mp3")
+    class DeadlyBlow(Ability, NonTarget):
+        def __init__(self):
+            super().__init__(name = "Смертельный удар", strength = 70)
+            self.setTargeted(False)
+
+        def playDeadlyBlowSound(self):
+            renpy.play("audio/characters/drei/deadly_blow.wav")
+            renpy.pause(1)
+
+        def playSetupSound(self):
+            renpy.play("audio/characters/drei/setup_deadly_blow.wav")
             renpy.pause(1)
 
         def useAgainst(self, enemy: Character, character: Character):
-            phase = "ez"
-            if enemy.health > 50:
-                enemy.health -= enemy.max_health - 10
-                phase = "Бля, неваншот"
-            else:
-                enemy.health -= enemy.health
+            if character.preparedAttack > 0:
+                if enemy.health > 50:
+                    enemy.health -= enemy.max_health - 10
+                else:
+                    enemy.health -= enemy.health
 
-            self.playSound()
-            renpy.say(character.getRenpyChar(), what=phase)
+                self.playDeadlyBlowSound()
+
+                character.setInvincible(False)
+                character.setPreparedAttack(0)
+                self.setTargeted(False)
+                return
+
+            self.setup(character)
+
+        def use(self, party: Party, character: Character):
+            self.setup(character)
+
+        def setup(self, character):
+            character.setPreparedAttack(1)
+            self.playSetupSound()
+            character.setInvincible(True)
+            self.setTargeted(True)
+            renpy.say(None, 'Дрей ушел в инвиз')
+
+        def getStateName(self, character: Character):
+            if character.preparedAttack > 0:
+                return ""
+            else:
+                return " (Подготовка)"
+
 
     class Miha(Ally):
         def __init__(self, health, strength):
@@ -330,12 +387,14 @@ init 1 python:
         def getAbilities(self):
             return [Smoke()]
 
+
     class Drei(Ally):
         def __init__(self, health, strength):
             super().__init__("Дрюс", health, strength, "ход Дрюсом")
+            self.abilities = [DeadlyBlow()]
 
         def getAbilities(self):
-            return [Critical()]
+            return self.abilities
 
         def getRenpyChar(self):
             return andrei
