@@ -36,8 +36,6 @@ init 1 python:
             pass
 
         def changeVulnerableRatio(self, ratio):
-            renpy.say(None, self.name+" стал уязвим")
-            renpy.say(None, "Все атаки против "+self.name+" стали в "+str(ratio)+" раза сильнее")
             self.vulnerableRatio = ratio
 
         def hit(self, enemy, strength):
@@ -50,6 +48,9 @@ init 1 python:
         def healMax(self):
             self.health = self.max_health
 
+        def heal(self, hp):
+            self.health += hp
+
         def setInvincible(self, val):
             self.invincible = val
 
@@ -58,6 +59,9 @@ init 1 python:
 
         def disabled(self, turns):
             self.disabled_turns_count = turns
+
+        def getRenpyChar(self):
+            return None
 
     class Ability:
         def __init__(self, name, strength):
@@ -103,9 +107,18 @@ init 1 python:
 
         def getMembersForNextAttack(self):
             aliveMembers = []
+            aliveMembers.append(("Применить предмет", "Предмет"))
             for member in iter(self.members.values()):
                 if member.health > 0:
                     aliveMembers.append((member.partyName, member))
+
+            return aliveMembers
+
+        def getAliveMembers(self):
+            aliveMembers = []
+            for member in iter(self.members.values()):
+                if member.health > 0:
+                    aliveMembers.append((member.name, member))
 
             return aliveMembers
 
@@ -148,14 +161,12 @@ init 1 python:
             if len(party.members) > 0:
                 partyMemberToAttack = min(filter(lambda x: x.health > 0, party.members.values()),key=attrgetter('health'))
                 partyMemberToAttack.health -= self.getAttackPower()
+                renpy.with_statement(vpunch)
                 self.playAttackSound()
                 renpy.say(self.getRenpyChar(), what=self.attack_phrase())
 
         def attack_phrase(self):
             return random.choice(["Пизда вам"])
-
-        def getRenpyChar(self):
-            return None
 
         def playAttackSound(self):
             renpy.play("audio/punch.opus")
@@ -357,6 +368,8 @@ init 1 python:
         def use(self, party: Party, character: Character):
             self.playSound()
             [enemy.changeVulnerableRatio(2) for enemy in party.members.values()]
+            renpy.say(None, "Враги ахуели с этой прикормки")
+            renpy.say(None, "Атаки против врагов стали в 2 раза сильнее")
 
         def playSound(self):
             renpy.play("audio/characters/igoryas/smoke.mp3")
@@ -418,6 +431,9 @@ init 1 python:
         def getAbilities(self):
             return [Insult()]
 
+        def getRenpyChar(self):
+            return miha
+
     class MaxHeyman(Ally):
         def __init__(self, health, strength):
             super().__init__("Макс", health, strength, "ход Максом")
@@ -425,12 +441,18 @@ init 1 python:
         def getAbilities(self):
             return [Shoulder()]
 
+        def getRenpyChar(self):
+            return maks
+
     class Igoryas(Ally):
         def __init__(self, health, strength):
             super().__init__("Игоряс", health, strength, "ход Игорясом")
 
         def getAbilities(self):
             return [Smoke()]
+
+        def getRenpyChar(self):
+            return igoryas
 
 
     class Drei(Ally):

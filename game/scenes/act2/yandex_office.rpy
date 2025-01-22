@@ -13,26 +13,26 @@
     scene diman_hostage with Dissolve(.5)
 
     diman "Мужики, уходите"
-    diman "Оставьте меня"
     diman "Тут дохуя китайцев"
     diman "Вам пиздец"
 
     scene diman_hostage_with_koreans with Dissolve(.1)
     play music "./audio/chinese_music.mp3"
 
-    law "米莎，生日快乐"
-    first "米莎，生日快乐"
-    knee "米莎，生日快乐"
+    law "йуо йуооо йоооооии"
+    first "Better get out of here"
+    knee "hoho, wona fighte?"
+    chineseLesh "yksi kaksi kolme"
     miha "Погодите"
     miha "Я немного знаю японский"
     miha "Могу c ними договориться"
 
     menu:
-        "こんにちは、Misha.":
+        "кони чи ва, ваташи ва Миша дес":
             pass
-        "今日は。":
+        "ана та ва ока са ре тей мас":
             pass
-        "どうぞよろしく。":
+        "Дорогие азиатские братья, произошло недоразумение, отпустите, пожалуйста, этого человека":
             pass
 
     stop music

@@ -1,4 +1,4 @@
-init 1 python:
+init 2 python:
     class Sobaki:
         def __init__(self):
             pass

@@ -1,6 +1,6 @@
 ﻿# Инициализация всего
 call setup_chars
-init python:
+init 3 python:
     inventory = Inventory()
 
 # Игра начинается здесь:

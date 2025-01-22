@@ -28,7 +28,7 @@ define knee = Character('Knee', color="#A1292D")
 
 define fakeLarkin = Character('Larkin', color="#54176A")
 
-init 1 python:
+init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"
     style.default.language = "eastasian"

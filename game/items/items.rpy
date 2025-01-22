@@ -1,4 +1,4 @@
-init python:
+init 2 python:
     # interfaces
     class Item:
         def __init__(self, name, count, id):
@@ -11,6 +11,10 @@ init python:
 
     class DogLikes(Item):
         pass
+
+    class FightItem(Item):
+        def useInFight(self, character: Character):
+            pass
 
     # inventory
     class Inventory:
@@ -40,15 +44,24 @@ init python:
 
 
     # actual items
-    class Sosiska(Throwable, DogLikes):
+    class Sosiska(Throwable, DogLikes, FightItem):
         def __init__(self, id):
             self.name = "Сосиска"
             self.count = 4
             self.id = id
 
-    # actual items
-    class ColaNoSugar(Throwable):
+        def useInFight(self, character: Character):
+            character.heal(10)
+            renpy.say(character.getRenpyChar(), what="ам ам ам")
+            self.count -= 1
+
+    class ColaNoSugar(Throwable, FightItem):
         def __init__(self, id):
             self.name = "Кола без сахара"
             self.count = 2
             self.id = id
+
+        def useInFight(self, character: Character):
+            character.heal(5)
+            renpy.say(character.getRenpyChar(), what="фу, еще больше пить захотелось")
+            self.count -= 1
