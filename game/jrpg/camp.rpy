@@ -1,0 +1,33 @@
+screen campButton():
+    vbox xalign 0.02 yalign 0.05:
+        imagebutton:
+            idle im.Scale("images/home_button.png", 78, 74)
+            hover im.Scale("images/camp_button.png", 261, 100.02)
+            action Function(renpy.call, label="camp_scene")
+
+init 3 python:
+    class Camp:
+        def __init__(self, party: Party, inventory: Inventory):
+            self.party = party
+            self.inventory = inventory
+
+        def isItemPick(self, pickedOption):
+            return pickedOption == "Предмет"
+
+        def isLeave(self, pickedOption):
+            return pickedOption == "Выйти"
+
+        def enter(self):
+            pickedOption = renpy.display_menu(party.getCampOptions(inventory))
+            if self.isItemPick(pickedOption):
+                self.useItem()
+            elif self.isLeave(pickedOption):
+                return False
+            else:
+                pickedOption.getDialog()
+            return True
+
+        def useItem(self):
+            pickedItem = renpy.display_menu(inventory.getItems())
+            pickedAlly = renpy.display_menu(party.getAliveMembers())
+            pickedItem.useInFight(pickedAlly)

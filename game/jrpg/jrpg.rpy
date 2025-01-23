@@ -93,6 +93,9 @@ init 1 python:
         def getAbilities(self):
             return []
 
+        def hasDialog(self, act):
+            return False
+
     class Party:
         def __init__(self):
             self.members = {}
@@ -112,6 +115,17 @@ init 1 python:
                 if member.health > 0:
                     aliveMembers.append((member.partyName, member))
 
+            return aliveMembers
+
+        def getCampOptions(self, inventory: Inventory):
+            aliveMembers = []
+            if inventory.notEmpty():
+                aliveMembers.append(("Применить предмет", "Предмет"))
+            for member in iter(self.members.values()):
+                if member.health > 0 and member.hasDialog(1):
+                    aliveMembers.append((member.partyName, member))
+
+            aliveMembers.append(("Выйти из лагеря", "Выйти"))
             return aliveMembers
 
         def getAliveMembers(self):

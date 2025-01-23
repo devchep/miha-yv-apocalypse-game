@@ -1,4 +1,4 @@
-init 2 python:
+init 1 python:
     # interfaces
     class Item:
         def __init__(self, name, count, id):
@@ -26,6 +26,9 @@ init 2 python:
 
         def useItem(self, item: Item):
             item.count -= 1
+            if item.count <= 0:
+                self.items.pop(item.id)
+                return
             return self.items.update({item.id: item})
 
         def getItems(self):
@@ -41,6 +44,9 @@ init 2 python:
                     throwables = True
 
             return throwables
+
+        def notEmpty(self):
+            return any(item.count > 0 for item in self.items.values())
 
 
     # actual items
