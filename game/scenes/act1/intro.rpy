@@ -7,11 +7,11 @@
     "Приятное, интригующее"
     "Как будто друзья любят и подарили подарок такой крутой, с душой"
 
-    play music "./audio/soundtrack1.mp3" volume 0.3
     scene kfc with Dissolve(1)
     scene black with Dissolve(1)
     scene kfc with Dissolve(1)
 
+    play music "./audio/soundtrack6.mp3" volume 0.3
     miha "Ох и сладенько я поспал"
     miha "Хорошо, что сегодня среда"
     miha "И как же хорошо, что сегодня не два твистера"

@@ -28,7 +28,8 @@ init 3 python:
                 pickedAlly = renpy.display_menu(party.getAliveMembers())
                 pickedItem.useInFight(pickedAlly)
             else:
-                pickedItem.useInFight(enemy)
+                pickedEnemy = renpy.display_menu(enemyParty.getAliveMembers())
+                pickedItem.useInFight(pickedEnemy)
 
         def enemyTurn(self):
             if len(enemyParty.getAliveMembers()) > 0:
@@ -44,8 +45,12 @@ init 3 python:
             else:
                 self.castAbility(pickedMember)
 
+        def turnEnd(self):
+            [member.disabledTurnPassed() for member in party.members.values()]
+
         def start(self):
             while not enemyParty.isWiped() and not party.isWiped():
                 self.makeTurn()
+                self.turnEnd()
                 renpy.pause(1)
                 self.enemyTurn()

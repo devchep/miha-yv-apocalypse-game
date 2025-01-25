@@ -27,13 +27,28 @@ init 3 python:
             elif self.isLeave(pickedOption):
                 return False
             elif self.isUpgrade(pickedOption):
-                party.upgrade()
-                return False
+                self.upgrade(party)
 #             else:
 #                 pickedOption.getDialog()
             return True
 
+        def camp_menu(self, options):
+            options.append(("Назад", "Назад"))
+            picked = renpy.display_menu(options)
+            if picked == "Назад":
+                renpy.jump("camp_beginning")
+            return picked
+
         def useItem(self):
-            pickedItem = renpy.display_menu(inventory.getItems())
-            pickedAlly = renpy.display_menu(party.getAliveMembers())
+            pickedItem = self.camp_menu(inventory.getItems())
+            pickedAlly = self.camp_menu(party.getAliveMembers())
             pickedItem.useInFight(pickedAlly)
+
+        def upgrade(self, party):
+            pickedMember = self.camp_menu(party.getMembersWithUpgrades())
+            skillBranch = self.camp_menu(pickedMember.getAvailableUpgrades())
+
+            newAbility = skillBranch.getNextUpgrade()
+            pickedMember.upgrade(newAbility)
+            party.useExp(1)
+            renpy.say(pickedMember.getRenpyChar(), what=newAbility.getUpgradePhrase())

@@ -59,6 +59,7 @@ menu:
     "Атаковать":
         call zheka_fight
         hide creep
+        play music "./audio/soundtrack5.mp3" volume 0.3
         show max1 at right
         maks "Надеюсь мы его не кокнули"
         maks "Нас же повяжут"
@@ -75,5 +76,6 @@ menu:
         maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
 
     "Че там у тебя":
+        play music "./audio/soundtrack5.mp3" volume 0.3
         #TODO 1: -Игоряс
         "Игорь заражен"

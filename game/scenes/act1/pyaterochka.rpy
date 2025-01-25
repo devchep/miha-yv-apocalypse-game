@@ -37,6 +37,7 @@ label pyaterochka:
     hide stepa2
     hide gera2
     show gera1
+    play music "./audio/mysterymorgan.mp3" volume 0.3
     gera "Михаил, наконец мы остались наедине"
     gera "Происходят ужасные вещи и время на исходе"
     gera "Вам следует быть предельно осторожным"
@@ -44,6 +45,7 @@ label pyaterochka:
     gera "///////"
     gera "Мы более не можем тратить время на этот разговор"
     gera "Вам пора"
+    play music "./audio/soundtrack4.mp3" volume 0.3
     #TODO: закуп
     python:
         inventory.loot(Sosiska("пачка сосисок из пятерки"))

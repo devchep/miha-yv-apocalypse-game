@@ -20,6 +20,7 @@
     igoryas "По-люб колизей"
     hide igor1
     show gera1
+    play music "./audio/mysterymorgan.mp3" volume 0.3
     gera "Михаил, друзья, мы встретились вновь"
     show screen campButton
     gera "Я присоединился чтобы поддержать Вас в эти непростые мнгмновения"
@@ -27,12 +28,20 @@
     hide gera1
     "Нажав на кнопку в верхнем углу Вы можете попасть в лагерь"
     "В лагере можно пообщаться и улучшить соратников, а также использовать предметы"
-    "Лагерь доступен в любой момент вне боя и окна выбора"
+    "Лагерь доступен в любой момент вне боя"
+    play music "./audio/soundtrack5.mp3" volume 0.3
     show max1 at right
     maks "Ну че, куда идем?"
     menu:
         "К Калитке":
             call kalitka_house
         "В Колизей":
-            #TODO файт в колизее
+            if party.hasExp():
+                play music "./audio/mysterymorgan.mp3" volume 0.3
+                show gera1
+                gera "Михаил, настойчиво рекомендую использовать весь накопленный опыт перед входом в следующую локацию"
+                hide gera1
+                play music "./audio/soundtrack5.mp3" volume 0.3
+                miha "Да все окей окей, на созвоне"
+            call colosseum_scene
             pass

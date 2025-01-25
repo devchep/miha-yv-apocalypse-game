@@ -41,7 +41,6 @@ init 1 python:
         def hit(self, enemy, strength):
             if self.disabled_turns_count > 0:
                 renpy.say(None, "Атака не нанесла урона")
-                self.disabled_turns_count -= 1
                 return
             enemy.health -= strength*enemy.vulnerableRatio
 
@@ -59,6 +58,10 @@ init 1 python:
 
         def disabled(self, turns):
             self.disabled_turns_count = turns
+
+        def disabledTurnPassed(self):
+            if self.disabled_turns_count > 0:
+                self.disabled_turns_count -= 1
 
         def getRenpyChar(self):
             return None
@@ -81,6 +84,9 @@ init 1 python:
 
         def setTargeted(self, val):
             self.targeted = val
+
+        def getUpgradePhrase(self):
+            return "Охх я чувствую силу"
 
     class SkillBranch:
         def __init__(self, name, abilities):
@@ -167,13 +173,6 @@ init 1 python:
             campOptions.append(("Выйти из лагеря", "Выйти"))
             return campOptions
 
-        def upgrade(self):
-            pickedMember = renpy.display_menu(self.getMembersWithUpgrades())
-            skillBranch = renpy.display_menu(pickedMember.getAvailableUpgrades())
-
-            pickedMember.upgrade(skillBranch.getNextUpgrade())
-            renpy.say(pickedMember.getRenpyChar(), what="Охх я чувствую силу")
-
         def getMembersWithUpgrades(self):
             upgradeCandidates = []
             for member in iter(self.members.values()):
@@ -206,6 +205,12 @@ init 1 python:
         def putInAttackQueue(self, member: Character):
             if member.health > 0:
                 return self.attackQueue.append(member)
+
+        def hasExp(self):
+            return self.experience > 0
+
+        def useExp(self, amount):
+            self.experience -= amount
 
     class NonTarget:
         def __init__(self):
@@ -519,7 +524,7 @@ init 1 python:
         def __init__(self, health, strength):
             super().__init__("Макс", health, strength, "ход Максом")
             self.abilities = [Shoulder()]
-            self.skillBranches = [SkillBranch("Трактор", [AoeShoulder()])]
+            self.skillBranches = [SkillBranch("Максон машина ппц", [AoeShoulder()])]
 
         def getRenpyChar(self):
             return maks

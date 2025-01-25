@@ -15,6 +15,7 @@
     andrei "Все"
     scene kalitka
     pause 2
+    stop music
     play sound "audio/subway-surfers.mp3" volume 0.2
     pause 2
     stop sound
@@ -38,6 +39,7 @@
             call torop_fight
 
             #TODO 1: проебали
+            play music "./audio/soundtrack5.mp3" volume 0.3
             show drei1 at left
             andrei "Это ахуеть"
             andrei "Спасибо, парни"

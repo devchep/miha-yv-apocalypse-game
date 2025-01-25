@@ -17,7 +17,7 @@
     diman "Вам пиздец"
 
     scene diman_hostage_with_koreans with Dissolve(.1)
-    play music "./audio/chinese_music.mp3"
+    play music "./audio/chinese_music.mp3" volume 0.5
 
     law "йуо йуооо йоооооии"
     first "Better get out of here"
