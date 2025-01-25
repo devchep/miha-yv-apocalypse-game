@@ -22,6 +22,9 @@ igoryas "Максооон это че было"
 show max1 at right
 maks "Слава богу мы тебя спасли дружище"
 maks "Идем с нами скорее"
+menu:
+    "Здарова Гаряс":
+        call dab_up
 
 python:
     igoryas_unit = Igoryas(80, 6)

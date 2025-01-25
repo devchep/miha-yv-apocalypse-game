@@ -135,7 +135,7 @@ init 1 python:
             if self.experience > 0 and any(member.canUpgrade() for member in iter(self.members.values())):
                 campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.experience), "Прокачка"))
             campOptions.append(("Выйти из лагеря", "Выйти"))
-            return aliveMembers
+            return campOptions
 
         def getAliveMembers(self):
             aliveMembers = []
