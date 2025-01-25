@@ -15,6 +15,7 @@ python:
     fight = Fight(party, enemyParty)
     fight.start()
 
+    party.getExp(1)
 stop music
 call hide_enemy_hp
 call hide_party_hp

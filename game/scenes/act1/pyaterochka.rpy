@@ -1,6 +1,6 @@
 label pyaterochka:
 
-    scene p-outside
+    scene p-outside with Dissolve(1.5)
 
     show stepa1
     stepa "Миша привет"
@@ -19,10 +19,11 @@ label pyaterochka:
     # gera "Привет, Ст-тепа Аф-ф-ф-тарлы"
     # gera "Монка ... гига"
     show gera2 at left
-    play audio "audio/gena_gorin_privet_stepa.mp3"
+    play sound "audio/gena_gorin_privet_stepa.mp3"
     gera ""
     stepa "Так, линейку я уже купил"
     stepa "Я пойду, да"
+    stop sound
     stepa "С Димой в доточку жестко рубать собираемся"
     menu:
         "Вокруг все странно себя ведут, ты не хочешь узнать что происходит?":
@@ -38,6 +39,11 @@ label pyaterochka:
     show gera1
     gera "Михаил, наконец мы остались наедине"
     gera "Происходят ужасные вещи и время на исходе"
+    gera "Вам следует быть предельно осторожным"
+    gera "Вы не можете себе позволить умереть в бою"
     gera "///////"
     gera "Мы более не можем тратить время на этот разговор"
-    gera "Тебе пора"
+    gera "Вам пора"
+    #TODO: закуп
+    python:
+        inventory.loot(Sosiska("пачка сосисок из пятерки"))

@@ -4,8 +4,7 @@ python:
     law_unit = Law(30, 50)
     first_unit = First(100, 30)
     chinese_lesh = ChineseLesh(90, 30)
-    #TODO 1: резет абилок
-    party.healEveryone()
+    #TODO 1: резет абилок?
     enemyParty = Party()
     enemyParty.addMember(knee_unit)
     enemyParty.addMember(law_unit)

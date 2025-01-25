@@ -11,4 +11,5 @@ python:
 
 hide camp with Dissolve(1)
 call hide_party_hp
+show screen campButton
 return

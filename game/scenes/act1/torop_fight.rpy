@@ -1,6 +1,5 @@
 label torop_fight:
 python:
-    party.healEveryone()
     enemy = Torop(65, 25)
     enemyParty = Party()
     enemyParty.addMember(enemy)

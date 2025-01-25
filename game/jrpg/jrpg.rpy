@@ -96,14 +96,21 @@ init 1 python:
         def hasDialog(self, act):
             return False
 
+        def canUpgrade(self):
+            return False
+
     class Party:
         def __init__(self):
             self.members = {}
             self.attackQueue = []
+            self.experience = 0
 
         def addMember(self, ally: Character):
             self.members.update({ally.name: ally})
             self.attackQueue.append(ally)
+
+        def getExp(self, exp):
+            self.experience += exp
 
         def isWiped(self):
             return all(member.health <= 0 for member in self.members.values())
@@ -118,14 +125,16 @@ init 1 python:
             return aliveMembers
 
         def getCampOptions(self, inventory: Inventory):
-            aliveMembers = []
+            campOptions = []
             if inventory.notEmpty():
-                aliveMembers.append(("Применить предмет", "Предмет"))
-            for member in iter(self.members.values()):
-                if member.health > 0 and member.hasDialog(1):
-                    aliveMembers.append((member.partyName, member))
+                campOptions.append(("Применить предмет", "Предмет"))
+#             for member in iter(self.members.values()):
+#                 if member.health > 0 and member.hasDialog(1):
+#                     campOptions.append((member.partyName, member))
 
-            aliveMembers.append(("Выйти из лагеря", "Выйти"))
+            if self.experience > 0 and any(member.canUpgrade() for member in iter(self.members.values())):
+                campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.experience), "Прокачка"))
+            campOptions.append(("Выйти из лагеря", "Выйти"))
             return aliveMembers
 
         def getAliveMembers(self):

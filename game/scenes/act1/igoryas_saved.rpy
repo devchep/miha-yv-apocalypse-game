@@ -31,6 +31,7 @@ scene alexandrovskaya with Dissolve(.5)
 show max1 at right
 maks "Ладно, гайзы"
 maks "Нам следуе"
+stop music
 play sound "audio/subway-surfers.mp3" volume 0.2
 pause 1
 stop sound

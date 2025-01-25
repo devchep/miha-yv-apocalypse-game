@@ -1,69 +1,38 @@
 ﻿label save_drei:
-    scene electron
+    scene electron with Dissolve(1.5)
     show max2 at right
     maks "Набираю Древу"
     scene electron_call
     show max2 at right
+    pause(.5)
     andrei "Алло, че такое?"
     maks "Дядь, выходи через 10 мин, оч надо"
     andrei "Ага, окес"
     andrei "Выхожу"
     miha ")"
-    scene kalitka with Dissolve(.5)
-    pause 3
-    miha "Кхм"
-    pause 3
-    miha "Ну че, мы удивлены?"
+
+    scene vokzal with Dissolve(.5)
     show max1 at right
-    maks "Да бля, дефолт"
-    maks "Он заебал, звоню"
-    scene kalitka_call
+    maks "Бля, а куда идти то?"
+    maks "Дрей же теперь в колизее живет вроде"
+    hide max1
+    show igor1 at left
+    igoryas "По-люб колизей"
+    hide igor1
+    show gera1
+    gera "Михаил, друзья, мы встретились вновь"
+    show screen campButton
+    gera "Я присоединился чтобы поддержать Вас в эти непростые мнгмновения"
+    gera "Увидимся в лагере"
+    hide gera1
+    "Нажав на кнопку в верхнем углу Вы можете попасть в лагерь"
+    "В лагере можно пообщаться и улучшить соратников, а также использовать предметы"
+    "Лагерь доступен в любой момент вне боя"
     show max1 at right
-    andrei "Бля"
-    andrei "5 сек"
-    andrei "Бегу"
-    andrei "Все"
-    scene kalitka
-    pause 2
-    play sound "audio/subway-surfers.mp3" volume 0.2
-    pause 2
-    stop sound
-    maks "Суууука"
-    play sound "audio/subway-surfers.mp3" volume 0.2 loop
-    show max1 at right
-    maks "Это пиздец..."
-    maks "Слышите?"    # TODO добавить чекер количества пати, чтобы обращение соответствовало числу
-    maks "Андрею жопа"
-    maks "Помните Жекана?"   # TODO добавить чекер, пройдена ли сцена с Жеканом (если не было можно типа "хз зачем вспомнил")
-    maks "Вот Дрюс тоже уже этот.."
-    maks "Ебанулся"
-    maks "Если мы будем тупить, то все друзья возьмут с него пример"
-    maks "И их будет уже не узнать"
-    maks "Здесь походу не успели"
-    maks "Сваливаем"
+    maks "Ну че, куда идем?"
     menu:
-        "Разбить калитку":
-            play sound "audio/minus-kalitka.mp3"
-            scene dom_dreya
-            call torop_fight
-
-            #TODO 1: проебали
-            show drei1 at left
-            andrei "Это ахуеть"
-            andrei "Спасибо, парни"
-            andrei "Он приехал с Дыбенко показать мне видео"
-            andrei "На этой новой платформе"
-            andrei "Я люто не хотел смотреть, полюб не смешной"
-            andrei "Не хотел кринжевать"
-
-            hide drei1
-            show max1 at right
-            maks "Едем спасать Диманов"
-            miha "Куда?"
-            maks "В офис Яндекса, он же вроде в Яндексе"
-
-        "Уйти":
+        "К Калитке":
+            call kalitka_house
+        "В Колизей":
+            #TODO файт в колизее
             pass
-    stop sound
-
-    return
