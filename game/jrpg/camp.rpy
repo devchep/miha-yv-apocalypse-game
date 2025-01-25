@@ -17,14 +17,20 @@ init 3 python:
         def isLeave(self, pickedOption):
             return pickedOption == "Выйти"
 
+        def isUpgrade(self, pickedOption):
+            return pickedOption == "Прокачка"
+
         def enter(self):
             pickedOption = renpy.display_menu(party.getCampOptions(inventory))
             if self.isItemPick(pickedOption):
                 self.useItem()
             elif self.isLeave(pickedOption):
                 return False
-            else:
-                pickedOption.getDialog()
+            elif self.isUpgrade(pickedOption):
+                party.upgrade()
+                return False
+#             else:
+#                 pickedOption.getDialog()
             return True
 
         def useItem(self):

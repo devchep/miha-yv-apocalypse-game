@@ -82,22 +82,51 @@ init 1 python:
         def setTargeted(self, val):
             self.targeted = val
 
+    class SkillBranch:
+        def __init__(self, name, abilities):
+            self.name = name
+            self.abilities = abilities
+            self.lvl = 1
+
+        def hasUpgrades(self):
+            return len(self.abilities) > 0
+
+        def getNextUpgrade(self):
+            self.lvl += 1
+            return self.abilities.pop(0)
+
+        def getName(self):
+            return self.name + " (lvl {})".format(self.lvl)
+
     class Ally(Character):
         def __init__(self, name, health, strength, partyName):
             super().__init__(name, health, strength)
             self.partyName = partyName
+            self.level = 0
+            self.abilities = []
+            self.skillBranches = []
+
+        def getAbilities(self):
+            return self.abilities
 
         def getAvailableAbilities(self):
             return [(ability.name + ability.getStateName(self), ability) for ability in self.getAbilities()]
 
-        def getAbilities(self):
-            return []
-
         def hasDialog(self, act):
             return False
 
+        def lvlup(self):
+            self.level += 1
+
+        def getAvailableUpgrades(self):
+            return [(skillBranch.getName(), skillBranch) for skillBranch in self.skillBranches]
+
         def canUpgrade(self):
-            return False
+            return any(skillBranch.hasUpgrades() for skillBranch in self.skillBranches)
+
+        def upgrade(self, ability: Ability):
+            self.lvlup()
+            self.abilities.append(ability)
 
     class Party:
         def __init__(self):
@@ -134,8 +163,24 @@ init 1 python:
 
             if self.experience > 0 and any(member.canUpgrade() for member in iter(self.members.values())):
                 campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.experience), "Прокачка"))
+
             campOptions.append(("Выйти из лагеря", "Выйти"))
             return campOptions
+
+        def upgrade(self):
+            pickedMember = renpy.display_menu(self.getMembersWithUpgrades())
+            skillBranch = renpy.display_menu(pickedMember.getAvailableUpgrades())
+
+            pickedMember.upgrade(skillBranch.getNextUpgrade())
+            renpy.say(pickedMember.getRenpyChar(), what="Охх я чувствую силу")
+
+        def getMembersWithUpgrades(self):
+            upgradeCandidates = []
+            for member in iter(self.members.values()):
+                if member.canUpgrade():
+                    upgradeCandidates.append((member.name, member))
+
+            return upgradeCandidates
 
         def getAliveMembers(self):
             aliveMembers = []
@@ -372,12 +417,26 @@ init 1 python:
 
     class Shoulder(Ability):
         def __init__(self):
-            super().__init__(name = "Трактором влететь с плеча", strength = 30)
+            super().__init__(name = "Влететь с плеча в лоха", strength = 30)
 
         def playSound(self):
             renpy.play("audio/characters/max/shoulder.mp3")
             renpy.with_statement(hugepunch)
             renpy.pause(1)
+
+    class AoeShoulder(Ability):
+        def __init__(self):
+            super().__init__(name = "Трактором с плеча прокатиться по всем", strength = 30)
+            self.setTargeted(False)
+
+        def playSound(self):
+            renpy.play("audio/characters/max/shoulder.mp3")
+            renpy.with_statement(hugepunch)
+            renpy.pause(1)
+
+        def use(self, party: Party, character: Character):
+            self.playSound()
+            [character.hit(enemy, self.strength) for enemy in party.members.values()]
 
     class Smoke(Ability, NonTarget):
         def __init__(self):
@@ -446,7 +505,6 @@ init 1 python:
             else:
                 return " (Подготовка)"
 
-
     class Miha(Ally):
         def __init__(self, health, strength):
             super().__init__("Миха", health, strength, "ход Михой")
@@ -460,9 +518,8 @@ init 1 python:
     class MaxHeyman(Ally):
         def __init__(self, health, strength):
             super().__init__("Макс", health, strength, "ход Максом")
-
-        def getAbilities(self):
-            return [Shoulder()]
+            self.abilities = [Shoulder()]
+            self.skillBranches = [SkillBranch("Трактор", [AoeShoulder()])]
 
         def getRenpyChar(self):
             return maks
