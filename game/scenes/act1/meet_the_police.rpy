@@ -37,10 +37,12 @@
             tanya 'Ооо, ну это точно в отделение'
     hide tanya1
     play audio 'audio/car_door.mp3'
-    pause 1
+    pause 1.5
     play audio 'audio/car_door.mp3'
+    pause 2
     scene police_car_inside1
-    play audio 'audio/radio_switch.mp3'
+    play audio 'audio/radio_switch.mp3' volume 8
+    pause 2
     play audio 'audio/cranberries_zombie.mp3'
     miha 'Ты всегда хотела работать в полиции?'
     if tanya_friend:
