@@ -14,6 +14,12 @@ python:
     fight = Fight(party, enemyParty, "colosseum_fight")
     fight.start()
 
+python:
+    inventory.choice(
+        1,
+        [Panoramiks("Панорамикс награда в Колизее")]
+    )
+
 call hide_enemy_hp
 call hide_party_hp
 stop music

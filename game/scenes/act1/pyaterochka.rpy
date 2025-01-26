@@ -5,7 +5,7 @@ label pyaterochka:
     show stepa1
     stepa "Миша привет"
     hide stepa1
-    
+
     scene p-inside
     show stepa2 at right
 
@@ -50,7 +50,11 @@ label pyaterochka:
     gera "///////"
     gera "Мы более не можем тратить время на этот разговор"
     gera "Вам пора"
+    hide gera2
     play music "./audio/soundtrack4.mp3" volume 0.3
-    #TODO: закуп
+    miha "Так, я хотел закупиться"
     python:
-        inventory.loot(Sosiska("пачка сосисок из пятерки"))
+        inventory.choice(
+            1,
+            [Sosiska("пачка сосисок из пятерки"), Tortik("Медовичок")]
+        )

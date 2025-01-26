@@ -65,6 +65,15 @@ init 1 python:
         def notEmpty(self):
             return any(item.count > 0 for item in self.items.values())
 
+        def choice(self, count, items):
+            if count > 1:
+                renpy.say(None, what="Выберите предметы в количестве "+str(count))
+            else:
+                renpy.say(None, what="Выберите предмет")
+            for i in range(count):
+                pickedItem = renpy.display_menu([(self.menuName(item), item) for item in items])
+                self.loot(pickedItem)
+                items = [item for item in items if item != pickedItem]
 
     # actual items
     class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
@@ -94,11 +103,20 @@ init 1 python:
             renpy.say(character.getRenpyChar(), what="фу, еще больше пить захотелось")
             self.count -= 1
 
-    class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
+    class Tortik(Throwable, FightItem):
         def __init__(self, id):
-            super().__init__(name = "Сосиска", count = 4, power = 15, id = id)
+            super().__init__(name = "Медовик", count = 1, power = 20, id = id)
 
         def useInFight(self, character: Character):
-            character.heal(10)
-            renpy.say(character.getRenpyChar(), what="ам ам ам")
+            character.heal(20)
+            renpy.say(character.getRenpyChar(), what="мммм")
+            self.count -= 1
+
+    class Panoramiks(Throwable, FightItem):
+        def __init__(self, id):
+            super().__init__(name = "Панорамикс", count = 1, power = 500, id = id)
+
+        def useInFight(self, character: Character):
+            character.strength = 500
+            renpy.say(character.getRenpyChar(), what="Силище пиздец ощущаю")
             self.count -= 1

@@ -66,6 +66,9 @@ init 1 python:
         def getRenpyChar(self):
             return None
 
+        def react(self, item: Item):
+            pass
+
     class Ability:
         def __init__(self, name, strength):
             self.name = name
@@ -237,7 +240,7 @@ init 1 python:
             renpy.play("audio/punch.opus")
 
         def react(self, item: Item):
-            pass
+            renpy.say(None, "Враг никак не отреагировал")
 
     class Tupoi:
         def mayBeOffended(self):
@@ -378,8 +381,8 @@ init 1 python:
 
         def insultingPhrase(self):
             return random.choice([
-            "Ваш вождь жестко слабый",
-            "Тупой ты китаец, слышишь меня?"
+                "Ваш вождь жестко слабый",
+                "Тупой ты китаец, слышишь меня?"
             ])
 
         def offendEffectAnnounce(self):
