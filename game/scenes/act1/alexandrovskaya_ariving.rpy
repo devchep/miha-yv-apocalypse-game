@@ -14,8 +14,6 @@
     maks "Ну они нас нахуй порвут, нужен абуз и срочно"
     stop sound
     miha "Ща"
-    python:
-        inventory.loot(ColaNoSugar("2 колы по купону 5050"))
     menu:
         "Кинуть:" (action = 1) if inventory.hasThrowables():
             python:

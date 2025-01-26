@@ -29,7 +29,7 @@ init 3 python:
                 pickedItem.useInFight(pickedAlly)
             else:
                 pickedEnemy = renpy.display_menu(enemyParty.getAliveMembers())
-                pickedItem.useInFight(pickedEnemy)
+                pickedItem.useAgainstEnemy(pickedEnemy)
 
         def enemyTurn(self):
             if len(enemyParty.getAliveMembers()) > 0:
@@ -54,3 +54,17 @@ init 3 python:
                 self.turnEnd()
                 renpy.pause(1)
                 self.enemyTurn()
+
+#             if party.isWiped() or party.mihaIsDead():
+#                 if party.isWiped():
+#                     renpy.say(None, "Ваша пати разгромлена")
+#                 elif party.mihaIsDead():
+#                     renpy.say(None, "Миха вайпнулся в бою, ничего не имеет смысла больше")
+#                 choice = renpy.display_menu([("Продолжить", "Продолжить"), ("Начать игру заново", "Заново")])
+#                 if choice == "Продолжить":
+#                     lastsave = renpy.newest_slot(r"\d+")
+#                     if lastsave is not None:
+#                         saveName, page = lastsave.split("-")
+#                         renpy.load(FileName(saveName, page))
+#                 else:
+#                     renpy.quit()

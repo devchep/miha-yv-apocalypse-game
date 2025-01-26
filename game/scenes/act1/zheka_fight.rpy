@@ -7,6 +7,8 @@ python:
 call show_enemy_hp
 call show_party_hp
 play music "./audio/fight3.mp3" volume 0.1
+
+$ renpy.force_autosave()
 "Миха начинает бой"
 "интуитивно понятно че делать"
 "тутора не будет"

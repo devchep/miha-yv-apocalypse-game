@@ -10,6 +10,8 @@ define igoryas = Character('Игорян', color="#E2AD59")
 
 define creep = Character('Учебный Крип', color="#E2AD59")
 
+define tigr = Character('Тигр', color="#F28100")
+
 define andrei = Character('Дрюс', color="#2CADD1")
 
 define torop = Character('Тороп', color="#AF0115")

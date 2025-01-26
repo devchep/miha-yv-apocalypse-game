@@ -1,10 +1,20 @@
 init 1 python:
     # interfaces
     class Item:
-        def __init__(self, name, count, id):
+        def __init__(self, name, count, power, id):
             self.name = name
             self.count = count
             self.id = id
+            self.power = power
+
+        def getFullName(self):
+            return "{} x({})".format(self.name, self.count)
+
+        def getPower(self):
+            return self.power
+
+        def consume(self, count):
+            self.count -= count
 
     class Throwable(Item):
         pass
@@ -12,9 +22,15 @@ init 1 python:
     class DogLikes(Item):
         pass
 
+    class CatLikes(Item):
+        pass
+
     class FightItem(Item):
         def useInFight(self, character: Character):
             pass
+
+        def useAgainstEnemy(self, enemy: Character):
+            enemy.react(self)
 
     # inventory
     class Inventory:
@@ -23,6 +39,7 @@ init 1 python:
 
         def loot(self, item: Item):
             self.items.update({item.id: item})
+            renpy.say(None, what="Вы получили предмет: "+item.getFullName())
 
         def useItem(self, item: Item):
             item.count -= 1
@@ -50,22 +67,27 @@ init 1 python:
 
 
     # actual items
-    class Sosiska(Throwable, DogLikes, FightItem):
+    class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
         def __init__(self, id):
-            self.name = "Сосиска"
-            self.count = 4
-            self.id = id
+            super().__init__(name = "Сосиска", count = 4, power = 15, id = id)
 
         def useInFight(self, character: Character):
             character.heal(10)
             renpy.say(character.getRenpyChar(), what="ам ам ам")
             self.count -= 1
 
+    class KolbasaDubki(Throwable, DogLikes, CatLikes, FightItem):
+        def __init__(self, id):
+            super().__init__(name = "Колбаса Дубки", count = 1, power = 50, id = id)
+
+        def useInFight(self, character: Character):
+            character.heal(50)
+            renpy.say(character.getRenpyChar(), what="ох блин Петр прости меня")
+            self.count -= 1
+
     class ColaNoSugar(Throwable, FightItem):
         def __init__(self, id):
-            self.name = "Кола без сахара"
-            self.count = 2
-            self.id = id
+            super().__init__(name = "Кола без сахара", count = 2, power = 5, id = id)
 
         def useInFight(self, character: Character):
             character.heal(5)

@@ -1,4 +1,5 @@
 ﻿# Инициализация всего
+define config.has_autosave = True
 call setup_chars
 init 3 python:
     inventory = Inventory()

@@ -195,6 +195,9 @@ init 1 python:
         def contains(self, instance):
             return any(isinstance(member, instance) for member in self.members.values())
 
+        def containsAlive(self, instance):
+            return any(isinstance(member[1], instance) for member in self.getAliveMembers())
+
         def popNext(self):
             while len(self.attackQueue) > 0:
                 nextAttackMember = self.attackQueue.pop(0)
@@ -211,6 +214,9 @@ init 1 python:
 
         def useExp(self, amount):
             self.experience -= amount
+
+        def mihaIsDead(self):
+            return not self.containsAlive(Miha)
 
     class NonTarget:
         def __init__(self):
@@ -244,6 +250,9 @@ init 1 python:
         def playAttackSound(self):
             renpy.play("audio/punch.opus")
 
+        def react(self, item: Item):
+            pass
+
     class Tupoi:
         def mayBeOffended(self):
             return True
@@ -269,6 +278,46 @@ init 1 python:
 
         def getRenpyChar(self):
             return creep
+
+    class Tigr(Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Тигр", health = health, strength = strength)
+
+        def attack_phrase(self):
+            return random.choice(["rawr", "raaawr", "raaaawr"])
+
+        def insultingPhrase(self):
+            return random.choice([
+                "Кис-кис-кис дурачок",
+                "Кыш епта отсюдова",
+            ])
+
+        def getRenpyChar(self):
+            return tigr
+
+        def playAttackSound(self):
+            renpy.play("audio/characters/drei/rawr.mp3")
+
+        def cat_sound(self):
+            renpy.play("audio/characters/drei/meow.mp3")
+
+        def cat_attack_phrase(self):
+            return random.choice(["Meow", "Meoow", "Meeeoow"])
+
+        def react(self, item: Item):
+            if isinstance(item, CatLikes):
+                self.strength -= item.getPower()
+                item.consume(1)
+                if self.strength > 15:
+                    renpy.say(None, what="Врагу очень понравилась прикормка")
+                    renpy.say(None, what="Атаки врага стали слабее")
+                else:
+                    self.playAttackSound = self.cat_sound
+                    self.attack_phrase = self.cat_attack_phrase
+                    self.cat_sound()
+                    renpy.say(self.getRenpyChar(), what="Meow")
+                    renpy.say(None, what="Враг стал ласковый")
+                    self.strength = 0
 
     class Tiktoker:
         def mayBeOffended(self):
