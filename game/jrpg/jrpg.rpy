@@ -159,20 +159,6 @@ init 1 python:
 
             return aliveMembers
 
-        def getCampOptions(self, inventory: Inventory):
-            campOptions = []
-            if inventory.notEmpty():
-                campOptions.append(("Применить предмет", "Предмет"))
-#             for member in iter(self.members.values()):
-#                 if member.health > 0 and member.hasDialog(1):
-#                     campOptions.append((member.partyName, member))
-
-            if self.experience > 0 and any(member.canUpgrade() for member in iter(self.members.values())):
-                campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.experience), "Прокачка"))
-
-            campOptions.append(("Выйти из лагеря", "Выйти"))
-            return campOptions
-
         def getMembersWithUpgrades(self):
             upgradeCandidates = []
             for member in iter(self.members.values()):

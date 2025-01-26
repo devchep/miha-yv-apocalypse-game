@@ -93,3 +93,12 @@ init 1 python:
             character.heal(5)
             renpy.say(character.getRenpyChar(), what="фу, еще больше пить захотелось")
             self.count -= 1
+
+    class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
+        def __init__(self, id):
+            super().__init__(name = "Сосиска", count = 4, power = 15, id = id)
+
+        def useInFight(self, character: Character):
+            character.heal(10)
+            renpy.say(character.getRenpyChar(), what="ам ам ам")
+            self.count -= 1

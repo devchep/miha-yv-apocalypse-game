@@ -20,16 +20,25 @@ init 3 python:
         def isUpgrade(self, pickedOption):
             return pickedOption == "Прокачка"
 
+        def getCampOptions(self):
+            campOptions = []
+            if self.inventory.notEmpty():
+                campOptions.append(("Применить предмет", "Предмет"))
+
+            if self.party.experience > 0 and any(member.canUpgrade() for member in iter(self.party.members.values())):
+                campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.party.experience), "Прокачка"))
+
+            campOptions.append(("Выйти из лагеря", "Выйти"))
+            return campOptions
+
         def enter(self):
-            pickedOption = renpy.display_menu(party.getCampOptions(inventory))
+            pickedOption = renpy.display_menu(self.getCampOptions())
             if self.isItemPick(pickedOption):
                 self.useItem()
             elif self.isLeave(pickedOption):
                 return False
             elif self.isUpgrade(pickedOption):
                 self.upgrade(party)
-#             else:
-#                 pickedOption.getDialog()
             return True
 
         def camp_menu(self, options):
