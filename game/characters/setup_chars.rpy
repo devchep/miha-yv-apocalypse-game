@@ -30,6 +30,8 @@ define knee = Character('Knee', color="#A1292D")
 
 define fakeLarkin = Character('Larkin', color="#54176A")
 
+define tanya = Character('Капитан Татьяна Линчина', color = "#9c00ac")
+
 init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"
