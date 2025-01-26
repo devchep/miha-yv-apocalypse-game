@@ -5,15 +5,17 @@
     scene police_car_parked
     miha 'Это что?! Синчина?'
     play audio "audio/car_door.mp3"
-    show tanya1
+    show spr_tanya1
     miha 'Аня, привет, не знал, что ты теперь в органах!'
     tanya 'Здравия желаю, капитан полиции Линчина Татьяна, не Аня, предъявите документы и покажите содержимое рюкзака'
     menu:
         "Наглый подкат":
-            tanya_friend = True
+            init python:
+                tanya_friend = True
             pass
         "Сыграть дурачка":
-            tanya_friend = False
+            init python:
+                tanya_friend = False
             pass
     if tanya_friend == True:
         miha 'Как же так, капитан и без напарника?) Прикрыть тебе спину?) У меня и ствол с собой есть)'
@@ -44,7 +46,8 @@
     if tanya_friend == True:
         scene police_car_inside3 
         tanya 'Да, я даже в школе была старостой, тогда я окончательно убедилась'
-    else: tanya 'Это к делу не относится. Не отвлекайте от дороги'
+    else: 
+        tanya 'Это к делу не относится. Не отвлекайте от дороги'
     play sound 'audio/avaria.mp3'
     scene jekan_accident
     pause 2.5

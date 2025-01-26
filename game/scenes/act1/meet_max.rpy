@@ -27,6 +27,7 @@
             pass
         "Да ниче, погнали":
             maks "Муваем"
+            call meet_the_police
             pass
 
     python:
