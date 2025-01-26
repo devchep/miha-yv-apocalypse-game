@@ -7,10 +7,11 @@ python:
 call show_enemy_hp
 call show_party_hp
 play music "./audio/fight2.mp3" volume 0.1
+$ renpy.save("colosseum_fight")
 "Вы вступили в бой"
 
 python:
-    fight = Fight(party, enemyParty)
+    fight = Fight(party, enemyParty, "colosseum_fight")
     fight.start()
 
 call hide_enemy_hp

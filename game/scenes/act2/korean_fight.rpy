@@ -4,7 +4,7 @@ python:
     law_unit = Law(30, 50)
     first_unit = First(100, 30)
     chinese_lesh = ChineseLesh(90, 30)
-    #TODO 1: резет абилок?
+    #TODO 1: резет абилок
     enemyParty = Party()
     enemyParty.addMember(knee_unit)
     enemyParty.addMember(law_unit)
@@ -14,10 +14,11 @@ python:
 call show_chinese_hp
 call show_party_hp
 play music "./audio/fight_chinese.mp3" volume 0.2
+$ renpy.save("korean_fight")
 "Начался бой"
 
 python:
-    fight = Fight(party, enemyParty)
+    fight = Fight(party, enemyParty, "korean_fight")
     fight.start()
 
 call hide_chinese_hp

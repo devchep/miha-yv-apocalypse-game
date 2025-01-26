@@ -9,6 +9,7 @@ python:
 call show_enemy_hp
 call show_party_hp
 play music "./audio/fight2.mp3" volume 0.1
+$ renpy.save("torop_fight")
 "Вы вступили в бой"
 show torop at right
 torop "Дрюс, да посмотри"
@@ -22,7 +23,7 @@ hide drei1
 show torop at right
 
 python:
-    fight = Fight(party, enemyParty)
+    fight = Fight(party, enemyParty, "torop_fight")
     fight.start()
 
 hide torop

@@ -1,8 +1,9 @@
 init 3 python:
     class Fight:
-        def __init__(self, party, enemyParty):
+        def __init__(self, party, enemyParty, saveName=None):
             self.party = party
             self.enemyParty = enemyParty
+            self.saveName = saveName
 
         def isItemPick(self, pickedMember):
             return pickedMember == "Предмет"
@@ -48,6 +49,18 @@ init 3 python:
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
 
+        def wannaContinue(self):
+            if party.isWiped():
+                renpy.say(None, "Ваша пати разгромлена")
+            elif party.mihaIsDead():
+                renpy.say(None, "Миха вайпнулся в бою, ничего не имеет смысла больше")
+            choice = renpy.display_menu([("Продолжить", "Продолжить"), ("Начать игру заново", "Заново")])
+            if choice == "Продолжить":
+                if self.saveName is not None:
+                    renpy.load(self.saveName)
+            else:
+                MainMenu(confirm=False)()
+
         def start(self):
             while not enemyParty.isWiped() and not party.isWiped():
                 self.makeTurn()
@@ -55,16 +68,6 @@ init 3 python:
                 renpy.pause(1)
                 self.enemyTurn()
 
-#             if party.isWiped() or party.mihaIsDead():
-#                 if party.isWiped():
-#                     renpy.say(None, "Ваша пати разгромлена")
-#                 elif party.mihaIsDead():
-#                     renpy.say(None, "Миха вайпнулся в бою, ничего не имеет смысла больше")
-#                 choice = renpy.display_menu([("Продолжить", "Продолжить"), ("Начать игру заново", "Заново")])
-#                 if choice == "Продолжить":
-#                     lastsave = renpy.newest_slot(r"\d+")
-#                     if lastsave is not None:
-#                         saveName, page = lastsave.split("-")
-#                         renpy.load(FileName(saveName, page))
-#                 else:
-#                     renpy.quit()
+            if party.isWiped() or party.mihaIsDead():
+                self.wannaContinue()
+            party.healEveryone()
