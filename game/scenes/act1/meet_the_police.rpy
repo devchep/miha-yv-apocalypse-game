@@ -44,7 +44,7 @@
     if tanya_friend == True:
         scene police_car_inside3 
         tanya 'Да, я даже в школе была старостой, тогда я окончательно убедилась'
-    else tanya 'Это к делу не относится. Не отвлекайте от дороги'
+    else: tanya 'Это к делу не относится. Не отвлекайте от дороги'
     play sound 'audio/avaria.mp3'
     scene jekan_accident
     pause 2.5
