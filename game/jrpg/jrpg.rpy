@@ -467,6 +467,19 @@ init 1 python:
             renpy.with_statement(hugepunch)
             renpy.pause(1)
 
+    class Maximus(Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Максимус", health = health, strength = strength, partyName = "Максимус")
+
+        def attack_phrase(self):
+            return random.choice([""])
+
+        def getRenpyChar(self):
+            return maximus
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+
     class AoeShoulder(Ability):
         def __init__(self):
             super().__init__(name = "Трактором с плеча прокатиться по всем", strength = 30)

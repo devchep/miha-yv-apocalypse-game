@@ -75,6 +75,12 @@ init 1 python:
                 self.loot(pickedItem)
                 items = [item for item in items if item != pickedItem]
 
+        def chooseReward(self, items):
+            renpy.say(None, what="Поздравляем")
+            renpy.say(None, what="Выберите награду")
+            pickedItem = renpy.display_menu([(self.menuName(item), item) for item in items])
+            self.loot(pickedItem)
+
     # actual items
     class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
         def __init__(self, id):
@@ -114,9 +120,9 @@ init 1 python:
 
     class Panoramiks(Throwable, FightItem):
         def __init__(self, id):
-            super().__init__(name = "Панорамикс", count = 1, power = 500, id = id)
+            super().__init__(name = "Зелье Панорамикс", count = 1, power = 300, id = id)
 
         def useInFight(self, character: Character):
-            character.strength = 500
-            renpy.say(character.getRenpyChar(), what="Силище пиздец ощущаю")
+            character.strength = 300
+            renpy.say(character.getRenpyChar(), what="ОЩУЩАЮ СИЛИЩЕ")
             self.count -= 1
