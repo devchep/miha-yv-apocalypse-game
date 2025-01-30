@@ -16,7 +16,9 @@ define andrei = Character('Дрюс', color="#2CADD1")
 
 define torop = Character('Тороп', color="#AF0115")
 
-define maximus = Character('Максимус', color="#E80000")
+define maximus = Character('{b}Максимус{/b}', color="#E80000")
+
+define zlodei_1 = Character('Прихвостень', color="#717171")
 
 define diman = Character('Диман', color="#1A1D31")
 
