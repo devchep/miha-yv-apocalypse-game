@@ -1,32 +1,31 @@
-﻿label meet_maximus:
+﻿transform end_of_hall_right:
+    xalign 0.6
+    yalign 0.59
 
-    play music "./audio/heavyrain.mp3" volume 0.5
-    scene maximus_path2 with Dissolve(.5)
-    "Всю дорогу до Максимуса мы молчали"
-    "Мы все знали, что Максимус спокойно мог нас найти сам"
-    "Но он верно хотел чтобы мы истощились"
-    "Путь был невыносим, мучителен"
-    "Проклят"
-    scene maximus_path3 with Dissolve(.2)
-    "Пробираясь сквозь мрак, ливень"
-    "Мы видели десятки тысяч зараженных вирусом людей"
-#     scene maximus_path4 with Dissolve(.2)
-    "Еще больше - впавших в Яндекс.Дзен"
-    "Мы дошли к вратам"
-    play music "./audio/maximus_theme2.mp3" volume 0.5
-    "Увидев их, мы поняли, что все преграды до них"
-    scene gates1 with Dissolve(.2)
-    "Были самой простой частью нашего пути"
-    scene gates2 with Dissolve(.2)
-    "Смотря на них, зная, что за ними"
-    "Нас разрывало от ужаса"
-    "Сильнейшего, неизбежного желания убежать"
-    miha "Мы проделали этот путь"
-    miha "Чтобы встретить его"
-    miha "Я боюсь"
-    miha "Ебать как сильно"
+label meet_maximus:
+
     menu:
-        "Войти во врата":
+        "Войти":
             pass
+    play music "./audio/meet_maximus.mp3" volume 0.5
+    scene maximus_hall with Dissolve(.5)
+    show maximus_smol at end_of_hall_right
+    maximus "{b}Ты же помнишь {color=#f00}уговор{/color}{/b}"
+    "кто-то: мы уже заразили 97\% населения, все будет сделано в срок, я Вас уверяю!"
+    show gera_cautious at right
+    gera "Товарищи"
+    gera "Тихо, прячемся"
+    hide gera_cautious
+    miha "Ну конечно, Максимус"
+    show gera_cautious at right
+    gera "Тссс"
+    hide gera_cautious
+    menu:
+        "Спрятаться":
+            pass
+        "Выйти на похуй на Максимуса":
+            "не лучший мув)"
 
-    call maximus_fight
+    maximus "{b}Эх, последний ящик на сегодня{/b}"
+    maximus "{b}Даже немного жалко на такое {color=#f00}ничтожество{/color}{/b}"
+    maximus "{b}Давай, Сайонара{/b}"

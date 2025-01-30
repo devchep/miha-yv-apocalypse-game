@@ -1,5 +1,4 @@
 ﻿# Инициализация всего
-define config.has_autosave = True
 call setup_chars
 init 3 python:
     inventory = Inventory()
@@ -18,3 +17,17 @@ label start:
     call act2
 
     return
+
+
+# Тест сцен:
+# label start:
+#     python:
+#         inventory = Inventory()
+#         party = Party()
+#         miha_unit = Miha(60, 6)
+#         party.addMember(miha_unit)
+#
+#     call meet_maximus
+#     call path_to_maximus
+#
+#     return
