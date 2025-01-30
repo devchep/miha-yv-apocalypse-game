@@ -66,6 +66,7 @@ label meet_maximus:
             maximus "Божечки"
             hide zlodei1_smol
             maximus "Я чуть ли не потратил свой последний на сегодня ящик"
+            "Бой с Максимусом без КД ящика"
             #TODO Бой с Максимусом без КД ящика
             return
 
@@ -106,4 +107,4 @@ label meet_maximus:
     gera "Но больше такого шанса не будет"
     menu:
         "В путь":
-            pass
+            call path_to_maximus

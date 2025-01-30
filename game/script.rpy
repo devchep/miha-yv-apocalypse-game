@@ -5,22 +5,6 @@ init 3 python:
     inventory = Inventory()
 
 # Игра начинается здесь:
-# label start:
-#     python:
-#         inventory = Inventory()
-#         party = Party()
-#         miha_unit = Miha(60, 6)
-#         party.addMember(miha_unit)
-#
-#     call act1
-#
-#     scene black
-#     call act2
-#
-#     return
-
-
-# Тест сцен:
 label start:
     python:
         inventory = Inventory()
@@ -28,7 +12,22 @@ label start:
         miha_unit = Miha(60, 6)
         party.addMember(miha_unit)
 
-    call meet_maximus
-    call path_to_maximus
+    call act1
+
+    scene black
+    call act2
 
     return
+
+
+# Тест сцен:
+# label start:
+#     python:
+#         inventory = Inventory()
+#         party = Party()
+#         miha_unit = Miha(60, 6)
+#         party.addMember(miha_unit)
+#
+#     call meet_maximus
+#
+#     return
