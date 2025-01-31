@@ -74,6 +74,7 @@ menu:
         show max1 at right
         miha "Да, реально"
         maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
+        # Затар жижки
 
     "Че там у тебя":
         play music "./audio/soundtrack5.mp3" volume 0.3

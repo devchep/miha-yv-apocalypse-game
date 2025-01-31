@@ -20,7 +20,7 @@ init 3 python:
                 pickedEnemy = self.pickEnemy()
                 pickedAbility.useAgainst(pickedEnemy, pickedMember)
             else:
-                pickedAbility.use(enemyParty, pickedMember)
+                pickedAbility.use(enemyParty, pickedMember, self.party)
 
         def useItem(self):
             pickedItem = renpy.display_menu(inventory.getItems())

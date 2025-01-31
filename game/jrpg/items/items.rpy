@@ -1,4 +1,4 @@
-init 1 python:
+init 0 python:
     # interfaces
     class Item:
         def __init__(self, name, count, power, id):

@@ -1,4 +1,5 @@
 ﻿label alexandrovskaya_ariving:
+    #TODO Сюда переход нужен какой-то, типа электрички с диалогом
     stop music
     play music "./audio/soundtrack2.mp3" volume 0.3
     scene alexandrovskaya with Dissolve(1.5)

@@ -32,14 +32,15 @@ init 3 python:
             return campOptions
 
         def enter(self):
+            stayAtCamp = True
             pickedOption = renpy.display_menu(self.getCampOptions())
             if self.isItemPick(pickedOption):
                 self.useItem()
             elif self.isLeave(pickedOption):
-                return False
+                stayAtCamp = False
             elif self.isUpgrade(pickedOption):
                 self.upgrade(party)
-            return True
+            return stayAtCamp
 
         def camp_menu(self, options):
             options.append(("Назад", "Назад"))
