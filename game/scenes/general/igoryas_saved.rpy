@@ -3,4 +3,4 @@ label yandex_virus_death:
     "Миха заражен Яндекс.Вирусом"
     menu:
         "В начало":
-            MainMenu(confirm=False)()
+            $MainMenu(confirm=False)()

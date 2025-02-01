@@ -7,6 +7,7 @@
     scene police_car_parked
     miha 'Это что?! Синчина?'
     play audio "audio/car_door.mp3"
+    pause 1
     show tanya1
     miha 'Аня, привет, не знал, что ты теперь в органах!'
     tanya 'Здравия желаю, капитан полиции Линчина Татьяна, не Аня, предъявите документы и покажите содержимое рюкзака'
@@ -66,10 +67,10 @@
     play audio 'audio/car_door.mp3'
     pause 1.5
     play audio 'audio/car_door.mp3'
-    play audio 'audio/street_sound.mp3'
+    play audio 'audio/street_sound.mp3' volume 0.1
     play music 'audio/saw_ambient.mp3' volume 0.06
     scene look_at_jekan
-    show tanya2
+    show tanyaback at left
     tanya "Какой кошмар"
     miha "Не спеши расстраиваться"
     miha "Мне кажется я знаю в чем причина"
