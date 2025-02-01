@@ -1,5 +1,6 @@
 ﻿label meet_max:
     scene fromkfc with Dissolve(2)
+    play music 'audio/meetmax_pesona_ost.mp3' volume 0.08
     show max1
     maks "Здарова Мих"
     menu:
@@ -31,6 +32,11 @@
             pass
         "Да ниче, погнали":
             maks "Муваем"
+            call meet_the_police
+            pass
+        'Я вспомнил, у меня заказ прямо сегодня нужно выполнить':
+            maks "Это пиздец, Мих"
+            # call home
             call meet_the_police
             pass
 
