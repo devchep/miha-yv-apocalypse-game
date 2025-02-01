@@ -35,7 +35,7 @@ label meet_maximus:
     menu:
         "Войти":
             pass
-    play music "./audio/meet_maximus.mp3" volume 0.5
+    play music "./audio/meet_maximus.mp3" volume 0.1
     scene maximus_hall with Dissolve(.5)
     show maximus_smol at hall_maximus_pos
     show zlodei1_smol at hall_zlodei_pos

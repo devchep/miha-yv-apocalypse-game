@@ -1,8 +1,9 @@
 ﻿label meet_the_police:
     stop music
-    play audio "audio/siren_coming.mp3"
+    play sound "audio/siren_coming.mp3"
     scene police_car_incoming
     miha "Черт, только этого мне сейчас не хватало, один раз в жизни вышел на улицу с пистолетом и естееественно меня застопит бобик"
+    stop sound
     scene police_car_parked
     miha 'Это что?! Синчина?'
     play audio "audio/car_door.mp3"
@@ -30,10 +31,12 @@
             tanya 'Как же нет рюкзака, а то что у вас за спиной?'
             miha 'У меня на спине глаз нет'
             tanya 'Понятно, повернитесь спиной ко мне'
-            play audio 'audio/handcuffs.mp3'
+            play sound 'audio/handcuffs.mp3'
             'На тебя надели наручники'
-            play audio 'audio/backpack_check.mp3'
+            stop sound
+            play sound 'audio/backpack_check.mp3'
             "Таня обыскивает рюкзак"
+            stop sound
             tanya 'Ооо, ну это точно в отделение'
     hide tanya1
     play audio 'audio/car_door.mp3'
@@ -41,9 +44,9 @@
     play audio 'audio/car_door.mp3'
     pause 2
     scene police_car_inside1
-    play audio 'audio/radio_switch.mp3' volume 8
+    play sound 'audio/radio_switch.mp3' volume 0.5
     pause 2
-    play audio 'audio/cranberries_zombie.mp3'
+    play music 'audio/cranberries_zombie.mp3' volume 0.2
     miha 'Ты всегда хотела работать в полиции?'
     if tanya_friend:
         scene police_car_inside3 

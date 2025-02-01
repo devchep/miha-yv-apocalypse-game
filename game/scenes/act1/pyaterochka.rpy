@@ -50,7 +50,7 @@ label pyaterochka:
     gera "///////"
     gera "Мы более не можем тратить время на этот разговор"
     gera "Вам пора"
-    hide gera2
+    hide gera1
     play music "./audio/soundtrack4.mp3" volume 0.3
     miha "Так, я хотел закупиться"
     python:

@@ -32,7 +32,7 @@ menu:
         return
     "Ебанутый? Я отказываюсь":
         label ready_to_fight_maximus:
-        maximus "{b}{color=#f00}Глупейшее решение{/color}{/b}"
+        maximus "{b}{color=#f00}Я разочарован{/color}{/b}"
         "Бой продолжен"
 
 python:

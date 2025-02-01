@@ -153,7 +153,7 @@ init 2 python:
                     [member.disabled(1) for member in party.members.values()]
                     self.drones_appearance += 1
 
-                [self.hit(member, 34) for member in party.members.values()]
+                [self.hit(member, 25) for member in party.members.values()]
                 renpy.play("audio/bigboom.mp3")
                 renpy.show("lancet")
                 renpy.with_statement(Dissolve(.2))
@@ -166,7 +166,7 @@ init 2 python:
                 renpy.with_statement(Dissolve(.1))
                 renpy.with_statement(vpunch)
                 renpy.hide("ball_weapon")
-                partyMemberToAttack = min(filter(lambda x: x.health > 0, party.members.values()),key=attrgetter('health'))
+                partyMemberToAttack = party.getTargetToAttack()
                 partyMemberToAttack.health -= self.getAttackPower()
                 self.playAttackSound()
                 renpy.say(self.getRenpyChar(), what=self.attack_phrase())

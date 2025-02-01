@@ -1,5 +1,5 @@
 log.txt
-game/cache
+./game/cache
 game/*.rpyc
 game/*.rpymc
 game/*/*.rpyc

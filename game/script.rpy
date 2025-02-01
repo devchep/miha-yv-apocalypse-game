@@ -26,8 +26,14 @@ label start:
 #         inventory = Inventory()
 #         party = Party()
 #         miha_unit = Miha(60, 6)
+#         maks_unit = MaxHeyman(65, 10)
+#         igoryas_unit = Igoryas(80, 6)
+#         drei_unit = Drei(62, 5)
 #         party.addMember(miha_unit)
+#         party.addMember(maks_unit)
+#         party.addMember(igoryas_unit)
+#         party.addMember(drei_unit)
 #
-#     call meet_maximus
+#     call igoryas_saved
 #
 #     return

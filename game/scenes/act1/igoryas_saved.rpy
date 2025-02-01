@@ -22,9 +22,13 @@ igoryas "Максооон это че было"
 show max1 at right
 maks "Слава богу мы тебя спасли дружище"
 maks "Идем с нами скорее"
+maks "Только подотрись"
 menu:
     "Здарова Гаряс":
         call dab_up
+        miha "Э"
+        miha "А руки помыл?"
+        igoryas ")"
 
 python:
     igoryas_unit = Igoryas(80, 6)
@@ -64,6 +68,13 @@ menu:
         maks "Надеюсь мы его не кокнули"
         maks "Нас же повяжут"
         maks "Мих, ты этим говном управлял"
+#       TODO rn  scene жекан в нокауте
+        miha "Слушай, по-моему с ним все нормально"
+        menu:
+            "Взять телефон Жекана":
+                call yandex_virus_death
+            "Уйти":
+                pass
         hide max1
         show igor1 at left
         igoryas "Забыли"
@@ -79,4 +90,4 @@ menu:
     "Че там у тебя":
         play music "./audio/soundtrack5.mp3" volume 0.3
         #TODO 1: -Игоряс
-        "Игорь заражен"
+        "Проебали"
