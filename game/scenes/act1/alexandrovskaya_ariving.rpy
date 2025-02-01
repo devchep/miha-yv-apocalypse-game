@@ -1,7 +1,8 @@
 ﻿label alexandrovskaya_ariving:
     #TODO Сюда переход нужен какой-то, типа электрички с диалогом
     stop music
-    play music "./audio/soundtrack2.mp3" volume 0.3
+    play music '/audio/clock_tick.mp3' volume 0.1
+    play audio "./audio/alexandrovskaya_ambient.mp3" volume 0.5
     scene alexandrovskaya with Dissolve(1.5)
     show max1
     maks "Бля, хоть бы успели, промедление может стоить ему жизни"
