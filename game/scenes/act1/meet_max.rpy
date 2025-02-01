@@ -6,9 +6,13 @@
         "Йоу Максоон":
             pass
         "Смачный здарова Макс":
+            hide max1
+            show maxdab at left
             call dab_up
             maks "..."
             maks "уфф хорошенький"
+            hide maxdab
+            show max1
             pass
     maks "Крч некогда объяснять, это пизда"
     maks "Нужно скорее к Игоряну"
