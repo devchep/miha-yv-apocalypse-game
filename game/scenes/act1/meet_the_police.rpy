@@ -9,6 +9,7 @@
     play audio "audio/car_door.mp3"
     pause 1
     show tanya1
+    play music 'audio/fuck_da_police.mp3' volume 0.05
     miha 'Аня, привет, не знал, что ты теперь в органах!'
     tanya 'Здравия желаю, капитан полиции Линчина Татьяна, не Аня, предъявите документы и покажите содержимое рюкзака'
     menu:
@@ -39,6 +40,7 @@
             "Таня обыскивает рюкзак"
             stop sound
             tanya 'Ооо, ну это точно в отделение'
+    stop music
     hide tanya1
     play audio 'audio/car_door.mp3'
     pause 1.5
