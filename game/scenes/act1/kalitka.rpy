@@ -39,16 +39,20 @@
             scene dom_dreya
             call torop_fight
 
-            #TODO 1: проебали
             play music "./audio/soundtrack5.mp3" volume 0.3
             show drei1 at left
             andrei "Это ахуеть"
             andrei "Спасибо, парни"
             andrei "Он приехал с Дыбенко показать мне видео"
-            andrei "На этой новой платформе"
-            andrei "Я люто не хотел смотреть, полюб не смешной"
+            andrei "Я люто не хотел смотреть"
             andrei "Не хотел кринжевать"
-
+            andrei "А теперь даже блин интересно стало что там"
+            miha "Слушай, по-моему с ним все нормально"
+            menu:
+                "Посмотреть телефон":
+                    call yandex_virus_death
+                "Не смотреть":
+                    pass
             hide drei1
             show max1 at right
             maks "Едем спасать Диманов"

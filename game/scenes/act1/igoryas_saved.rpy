@@ -60,33 +60,45 @@ label igoryas_saved:
 
     menu:
         "Атаковать":
-            call zheka_fight
-            hide creep
-            play music "./audio/soundtrack5.mp3" volume 0.3
-            show max1 at right
-            maks "Надеюсь мы его не кокнули"
-            maks "Нас же повяжут"
-            maks "Мих, ты этим говном управлял"
-            scene zhekan_dead with Dissolve(.5)
-            miha "Слушай, по-моему с ним все нормально"
-            menu:
-                "Взять телефон Жекана":
-                    call yandex_virus_death
-                "Уйти":
-                    pass
-            hide max1
-            show igor1 at left
-            igoryas "Забыли"
-            igoryas "Важно другое"
-            igoryas "Ты мне должен новый пиксель, Максон"
-            igoryas "Мб объяснишь че это было в туалете?"
-            hide igor1
-            show max1 at right
-            miha "Да, реально"
-            maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
-            # Затар жижки
-
+           miha "Не буду я твою херню смотреть"
         "Че там у тебя":
             play music "./audio/soundtrack5.mp3" volume 0.3
-            #TODO 1: -Игоряс
-            "Проебали"
+            python:
+                party.deleteMember(igoryas_unit)
+            hide creep
+            show igoryas_join_zheka with Dissolve(.5)
+            igoryas "ыхыхыхыхыхых"
+            igoryas "Слушайте"
+            igoryas "Здесь вообще капееец"
+            igoryas "Идите сюда скорей"
+            menu:
+                "Атаковать обоих":
+                    miha "Не будем мы вашу хероту смотреть"
+                "Ладно, че там у вас":
+                    call yandex_virus_death
+
+    call zheka_fight
+    hide creep
+    play music "./audio/soundtrack5.mp3" volume 0.3
+    show max1 at right
+    maks "Надеюсь мы его не кокнули"
+    maks "Нас же повяжут"
+    maks "Мих, ты этим говном управлял"
+    scene zhekan_dead with Dissolve(.5)
+    miha "Слушай, по-моему с ним все нормально"
+    menu:
+        "Взять телефон Жекана":
+            call yandex_virus_death
+        "Уйти":
+            pass
+    hide max1
+    show igor1 at left
+    igoryas "Забыли"
+    igoryas "Важно другое"
+    igoryas "Ты мне должен новый пиксель, Максон"
+    igoryas "Мб объяснишь че это было в туалете?"
+    hide igor1
+    show max1 at right
+    miha "Да, реально"
+    maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
+    # Затар жижки

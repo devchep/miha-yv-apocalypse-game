@@ -146,6 +146,9 @@ init 1 python:
             self.members.update({ally.name: ally})
             self.attackQueue.append(ally)
 
+        def deleteMember(self, ally: Character):
+            self.members.pop(ally.name)
+
         def getExp(self, exp):
             self.experience += exp
 

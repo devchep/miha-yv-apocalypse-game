@@ -1,4 +1,4 @@
-image yandex_virus = Movie(play = "./video/yandex_virus.webm", loop=False, zoom=0.9)
+image yandex_virus = Movie(play = "./video/yandex_virus-2.webm", loop=False, zoom=0.9)
 transform center_pos:
     xalign 0.45
     yalign 0.63
@@ -12,11 +12,15 @@ label yandex_virus_death:
         yalign 0.63
         zoom 0.6
     pause(357)
-    "Миха заражен Яндекс.Вирусом"
-    scene maximus-revive with Dissolve(.5)
+    "Ты заражен Яндекс.Вирусом"
+    scene black with Dissolve(1.5)
+    "Миха листал тиктоки пока не кончился Яндекс.Плюс"
+    "А после впал в Яндекс.Дзен {color=#000000}навсегда{/color}"
     play sound "audio/characters/respawn.mp3"
-    "Но некая сила перемещает туда, где все началось"
+    scene maximus-revive with Dissolve(.5)
+    pause(2)
+    "Некая неудержимая сила перемещает тебя туда, где все началось"
     menu:
-        "В начало":
+        "Предаться этой силе":
             stop sound
             $ MainMenu(confirm=False)()
