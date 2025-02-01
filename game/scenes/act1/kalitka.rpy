@@ -2,11 +2,12 @@
     scene kalitka with Dissolve(.5)
     pause 1
     miha "Кхм"
+    show maxwait at right
     pause 1
     miha "Ну че, мы удивлены?"
-    show max1 at right
     maks "Да бля, дефолт"
     maks "Он заебал, звоню"
+    hide maxwait
     scene kalitka_call
     show max1 at right
     andrei "Бля"

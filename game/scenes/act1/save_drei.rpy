@@ -1,4 +1,8 @@
 ﻿label save_drei:
+    stop music
+    play music '/audio/clock_tick.mp3' volume 0.25
+    play sound '/audio/chuchuh.mp3' volume 0.2
+
     scene electron with Dissolve(1.5)
     show max2 at right
     maks "Набираю Древу"
@@ -10,7 +14,8 @@
     andrei "Ага, окес"
     andrei "Выхожу"
     miha ")"
-
+    stop sound
+    stop music
     scene vokzal with Dissolve(.5)
     show max1 at right
     maks "Бля, а куда идти то?"

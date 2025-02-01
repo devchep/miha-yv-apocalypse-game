@@ -1,14 +1,19 @@
 ﻿label meet_max:
     scene fromkfc with Dissolve(2)
+    play music 'audio/meetmax_pesona_ost.mp3' volume 0.08
     show max1
     maks "Здарова Мих"
     menu:
         "Йоу Максоон":
             pass
         "Смачный здарова Макс":
+            hide max1
+            show maxdab at left
             call dab_up
             maks "..."
             maks "уфф хорошенький"
+            hide maxdab
+            show max1
             pass
     maks "Крч некогда объяснять, это пизда"
     maks "Нужно скорее к Игоряну"
@@ -27,6 +32,11 @@
             pass
         "Да ниче, погнали":
             maks "Муваем"
+            call meet_the_police
+            pass
+        'Я вспомнил, у меня заказ прямо сегодня нужно выполнить':
+            maks "Это пиздец, Мих"
+            # call home
             call meet_the_police
             pass
 
