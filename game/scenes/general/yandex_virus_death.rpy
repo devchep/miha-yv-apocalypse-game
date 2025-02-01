@@ -1,7 +1,16 @@
-image yandex_virus = Movie(play = "./video/yandex_virus_death.webm", loop=False)
+image yandex_virus = Movie(play = "./video/yandex_virus.webm", loop=False, zoom=0.9)
+transform center_pos:
+    xalign 0.45
+    yalign 0.63
 label yandex_virus_death:
     stop music
-    show yandex_virus at left
+    show smartphone:
+        xalign 0.45
+        yalign 0.63
+    show yandex_virus:
+        xalign 0.452
+        yalign 0.63
+        zoom 0.6
     pause(357)
     "Миха заражен Яндекс.Вирусом"
     scene maximus-revive with Dissolve(.5)
