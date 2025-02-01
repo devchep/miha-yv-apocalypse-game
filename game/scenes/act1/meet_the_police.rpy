@@ -56,3 +56,10 @@
     play sound 'audio/na_kapot.mp3'
     miha 'Блять!'
     tanya 'Ебать!'
+    scene police_car_inside4
+    tanya 'Да откуда он выскочил?!'
+    miha 'Справа'
+    play audio 'audio/car_door.mp3'
+    pause 1.5
+    play audio 'audio/car_door.mp3'
+    scene look_at_jekan
