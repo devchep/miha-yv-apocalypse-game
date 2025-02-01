@@ -39,4 +39,7 @@
     call korean_fight
 
     miha "разьебашили"
+
     scene hostages with Dissolve(.5)
+    ""
+    "....."

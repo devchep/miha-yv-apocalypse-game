@@ -55,7 +55,7 @@ init 3 python:
             elif party.mihaIsDead():
                 renpy.say(None, "Миха вайпнулся в бою, ничего не имеет смысла больше")
             choice = renpy.display_menu([("Продолжить", "Продолжить"), ("Начать игру заново", "Заново")])
-            if choice == "Продолжить":
+            if choice == "Сыграть бой заново":
                 if self.saveName is not None:
                     renpy.load(self.saveName)
             else:
