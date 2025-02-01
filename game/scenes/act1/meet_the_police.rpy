@@ -66,6 +66,8 @@
     play audio 'audio/car_door.mp3'
     pause 1.5
     play audio 'audio/car_door.mp3'
+    play audio 'audio/street_sound.mp3'
+    play music 'audio/saw_ambient.mp3' volume 0.06
     scene look_at_jekan
     show tanya2
     tanya "Какой кошмар"
@@ -89,14 +91,16 @@
         miha 'Если Яндекс.Вирус заменил тикток у нас...'
         miha 'Значит нам нужно туда, где тикток не уходил'
         tanya "Например?"
-        miha 'Да по сути любая страна, кроме США подойдет'
+        miha 'Да по сути любая страна, кроме США, подойдет'
         miha 'Монголия. Вдруг там вообще интернета нет'
         miha 'Попробовать стоит'
         miha "Ты со мной?"
         tanya 'Да, похоже ты знаешь явно больше меня, напарник'
+        stop music
     else:
         tanya 'Хаха и много кто в это поверил?'
         tanya 'Не еби мозга, у меня итак денек веселый намечается, даже если у этого еще пульс есть'
         tanya 'Надеюсь скорая быстро приедет'
         tanya 'Но мы с тобой все равно едем оформляться'
+        stop music
         call prison
