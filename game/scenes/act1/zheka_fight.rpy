@@ -17,7 +17,7 @@ python:
     fight = Fight(party, enemyParty, "zheka_fight")
     fight.start()
 
-    party.getExp(1)
+    party.getExp(2)
 stop music
 call hide_enemy_hp
 call hide_party_hp

@@ -1,8 +1,8 @@
 ﻿label kalitka_house:
     scene kalitka with Dissolve(.5)
-    pause 3
+    pause 1
     miha "Кхм"
-    pause 3
+    pause 1
     miha "Ну че, мы удивлены?"
     show max1 at right
     maks "Да бля, дефолт"
@@ -14,7 +14,7 @@
     andrei "Бегу"
     andrei "Все"
     scene kalitka
-    pause 2
+    pause 1
     stop music
     play sound "audio/subway-surfers.mp3" volume 0.2
     pause 2

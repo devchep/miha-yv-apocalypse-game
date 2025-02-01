@@ -1,5 +1,5 @@
 ﻿# Инициализация всего
-define config.has_autosave = True
+define flashbulb = Fade(0.2, 0.0, 0.8, color='#fff')
 call setup_chars
 init 3 python:
     inventory = Inventory()
@@ -18,3 +18,16 @@ label start:
     call act2
 
     return
+
+
+# Тест сцен:
+# label start:
+#     python:
+#         inventory = Inventory()
+#         party = Party()
+#         miha_unit = Miha(60, 6)
+#         party.addMember(miha_unit)
+#
+#     call meet_maximus
+#
+#     return
