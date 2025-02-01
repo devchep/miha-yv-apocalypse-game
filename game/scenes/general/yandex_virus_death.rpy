@@ -1,4 +1,4 @@
-image yandex_virus = Movie(play = "./video/yandex_virus-2.webm", loop=False, zoom=0.9)
+image yandex_virus = Movie(play = "./video/yandex_virus.webm", loop=False, zoom=0.9)
 transform center_pos:
     xalign 0.45
     yalign 0.63
