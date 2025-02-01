@@ -35,7 +35,7 @@ label start:
 #         party.addMember(drei_unit)
 #         party.getExp(2)
 #
-#     show screen campButton
-#     call yandex_office
+# #     show screen campButton
+#     call igoryas_saved
 #
 #     return
