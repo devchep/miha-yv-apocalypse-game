@@ -4,10 +4,10 @@
     play sound '/audio/chuchuh.mp3' volume 0.2
 
     scene electron with Dissolve(1.5)
-    show max2 at right
+    show maxsit at right
     maks "Набираю Древу"
     scene electron_call
-    show max2 at right
+    show maxsit at right
     pause(.5)
     andrei "Алло, че такое?"
     maks "Дядь, выходи через 10 мин, оч надо"
