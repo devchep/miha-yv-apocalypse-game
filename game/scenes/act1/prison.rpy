@@ -61,6 +61,9 @@ label prison:
             scene prison_ceiling with Dissolve(1)
             scene black with Dissolve(1)
             scene prison_ceiling with Dissolve(1)
+            image maximus_postsplit = Movie(play = "./video/maximus_postsplit.webm", loop=True)
+            show maximus_postsplit
+            pause 60
 
 
 
