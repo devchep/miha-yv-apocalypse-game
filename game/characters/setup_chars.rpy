@@ -6,6 +6,10 @@ define stepa = Character('Степа', color="#E10B84")
 
 define gera = Character('Гера', color="#5E5F00")
 
+define lush = Character('Люш', color="#FFFFFF")
+
+define unknown = Character('', color="#FFFFFF")
+
 define igoryas = Character('Игорян', color="#E2AD59")
 
 define creep = Character('Учебный Крип', color="#E2AD59")
