@@ -56,9 +56,98 @@ label igoryas_saved:
     lush ""
     stop sound
 
-    maks "Возможно, это наш шанс"
-    maks "Думаю, до Люша не доберется угроза и нам нужно к нему"
-    igoryas "Я не хочу в гейропу курить жирный черный член"
+    maks "Степа?! Это ты?! Ответь что-нибудь!"
+
+    show lush1 at left
+
+    # puk
+    play sound "characters/lesh/lush-puk.ogg"
+    lush ""
+    stop sound
+    # smex
+    play sound "characters/lesh/lush-smex.ogg"
+    lush ""
+    stop sound
+
+    maks "Дура ты... Нам нужна твоя помощь"
+    # не понимаю   | che za dich
+    play sound "characters/lesh/lush-che-za-dich.ogg"
+    lush ""
+    stop sound
+
+    maks "Мих, помоги, пожалуйста, я не могу"
+
+    # миха объясняет
+    miha "Появился новый вирус, распространяется очень быстро, нам бы свалить побыстрее, пока есть возможность"
+    # eбать ты мне сюжет новой планеты обезьян рассказываешь ? suzhet
+    play sound "characters/lesh/lush-suzhet-planeti-obezhan.ogg"
+    lush ""
+    stop sound
+    
+    miha "Нет"
+    miha "Люди смотрят короткие видео на платформе Яндекс.Вирус"
+    miha "И они очень странно себя ведут, почти как зондбе"
+    # чел ну ты понимаешь с какими дегенератами мы живем на одной планете это абсурд это цирк | lush-degenerati
+    play sound "characters/lesh/lush-degenerati.ogg"
+    lush ""
+    stop sound
+    # TODO: пук vk
+    # TODO: смех vk
+    
+    miha "..."
+    miha "Яндекс вообще кажется захватывает все вокруг"
+    miha "Cкоро будут Яндекс.Жена Яндекс.Срать Яндекс.Все-вообще"
+    # так и шли бы работать в яндекс доставку
+    # чето я хуйню сказал
+    play sound "characters/lesh/lush-poshel-bi-v-yandex-full.ogg"
+    lush ""
+    stop sound
+    
+    play sound "characters/lesh/lush-mb-huinyu-skazal.ogg"
+    lush ""
+    stop sound
+
+    maks "СТЕПА!! ЭТО НЕ ШУТКИ"
+    maks "Я не могу объяснять детали, но когда начнется, то, что начнется..."
+    maks "Ты уже не будешь так радоваться"
+    # страшно стало после твоих слов ( kogda nachnets)
+    play sound "characters/lesh/lush-kogda-nachnetsa.ogg" volume 6
+    lush ""
+    stop sound
+
+    # чьих это рук дело
+    play sound "characters/lesh/lush-chix-ruk-eto-delo-cut.mp3"
+    lush ""
+    stop sound
+
+    # степа мы в опасности, нам нужно сваливать
+    maks "Я рад, что мне не пришлось для вас все разжевывать"
+    maks "И рисковать своей жизнью"
+    maks "А ты наконец-то меня понял"
+    maks "Поможешь нам?"
+
+    # puk
+    # smex
+
+    maks "Только мне стоило подумать, что ты в адеквате"
+    maks "Сегодня у Михи вообще-то дэрэ"
+
+    hide lush1
+    hide igor_v_govne
+    hide max1
+    
+    show lush_s_dr at left
+    show igor_s_dr at right
+
+    maks "Можно же один день себя вести нормально"
+    maks ""
+
+    play sound "characters/lesh/lush-tyzhechka-za-tebya.ogg"
+    lush ""
+    stop sound
+
+    maks "У нас не так много времени"
+    igoryas "Я понимаю, что дела так себе, но я не хочу в гейропу курить жирный черный член"
 
     play sound "lush/snesli-dom.ogg"
     lush ""
