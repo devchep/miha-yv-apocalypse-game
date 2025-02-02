@@ -29,6 +29,39 @@ label igoryas_saved:
             miha "А руки помыл?"
             igoryas ")"
 
+    play sound "lush/plankton-augh.mp3" volume 0.5
+    unknown ""
+    stop sound
+
+    maks "Че это за звуки, парни?"
+
+    play sound "lush/imagine-v-spb.ogg" volume 0.65
+    unknown ""
+    stop sound
+
+    maks "Игорь, прижмись поплотнее к унитазу"
+
+    play sound "lush/brat-ti-zaebal-ignorit.mp3"
+    lush ""
+    stop sound
+
+    maks "Не могу поверить"
+    maks "Я о таком только читал"
+    maks "Существуют условия, в которых отрицательно заряженный фрик и положительно заряженный фрик могут установить квантово-жопную связь"
+    maks "Не могу поверить"
+
+    play sound "lush/eto-kakaya-to-huinya.ogg"
+    lush ""
+    stop sound
+
+    maks "Возможно, это наш шанс"
+    maks "Думаю, до Люша не доберется угроза и нам нужно к нему"
+    igoryas "Я не хочу в гейропу курить жирный черный член"
+
+    play sound "lush/snesli-dom.ogg"
+    lush ""
+    stop sound
+
     python:
         igoryas_unit = Igoryas(80, 6)
         party.addMember(igoryas_unit)
