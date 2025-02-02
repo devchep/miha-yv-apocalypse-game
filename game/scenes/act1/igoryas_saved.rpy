@@ -27,6 +27,8 @@ label igoryas_saved:
             call dab_up
             miha "Э"
             miha "А руки помыл?"
+            hide igor_sret1
+            show igor_v_govne
             igoryas ")"
 
     play sound "lush/plankton-augh.mp3" volume 0.5
