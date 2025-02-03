@@ -55,12 +55,24 @@ label prison:
             maximus "Чтобы оказаться среди избранных, мне нужна твоя кровь, отданная добровольно"
             miha "Сколько тебе нужно?"
             maximus 'Как комарик укусит'
+            stop sound
+            stop music
             play audio 'audio/concussion.mp3' volume 0.1
             pause 2
             play audio 'lush/plankton-augh.mp3' volume 0.1
             scene prison_ceiling with Dissolve(1)
             scene black with Dissolve(1)
             scene prison_ceiling with Dissolve(1)
+            scene black with Dissolve(1)
+            scene podval_maximus1 with Dissolve(1)
+            scene black with Dissolve(1)
+            scene podval_maximus2 with Dissolve(1)
+            stop audio
+            scene black with Dissolve(1)
+            play music 'audio/maximus_palace.mp3'
+            scene ptrg_upper with Dissolve(1)
+            show maximus_alt at left
+            maximus 'Ну вот, я же говорил'
             image maximus_postsplit = Movie(play = "./video/maximus_postsplit.webm", loop=True)
             show maximus_postsplit
             pause 60
