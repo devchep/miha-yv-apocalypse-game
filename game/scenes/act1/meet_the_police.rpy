@@ -114,3 +114,26 @@
         tanya 'Но мы с тобой все равно едем оформляться'
         stop music
         call prison
+    if tanya_friend:
+        scene black
+        miha "Погнали"
+        play music 'audio/promising_outro.mp3'
+        scene black with Dissolve(2)
+        scene tanyaend1 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend2 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend3 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend4 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend5 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend6 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend7 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaend8 with Dissolve(2)
+        scene black with Dissolve(2)
+        scene tanyaendlast with Dissolve(2)
+        scene black with Dissolve(2)
