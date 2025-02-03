@@ -3,19 +3,19 @@ label igoryas_saved:
     maks "Осталось мало времени"
     maks "Нужно спецназом залетать в туалет"
     scene srat_komnata with Dissolve(.5)
-    show igor_sret1
+    show igor_shok
     igoryas "уф"
     igoryas "поехали"
-    hide igor_sret1
-    show igor_sret_s_telefonom
+    hide igor_shok
+    show igor_shok_s_telef
     igoryas "сегодня смотрим этот самый"
     igoryas "новую хуйню"
     maks "А ну-ка нахуй"
     play audio "audio/punch.opus"
     with vpunch
     play sound "audio/phone-drop.mp3"
-    hide igor_sret_s_telefonom
-    show igor_sret1
+    hide igor_shok_s_telef
+    show igor_shok
     igoryas "йэ бляяять"
     igoryas "Максооон это че было"
     show max1 at right
@@ -27,13 +27,16 @@ label igoryas_saved:
             call dab_up
             miha "Э"
             miha "А руки помыл?"
-            hide igor_sret1
+            hide igor_shok
             show igor_v_govne
             igoryas ")"
 
     play sound "lush/plankton-augh.mp3" volume 0.5
     unknown ""
     stop sound
+
+    stop music fadeout 5.0
+    play music "audio/lush_ambient.mp3" volume 0.02 fadein 10.0 
 
     maks "Че это за звуки, парни?"
 
@@ -65,13 +68,13 @@ label igoryas_saved:
     lush ""
     stop sound
     # smex
-    play sound "characters/lesh/lush-smex.ogg"
+    play sound "characters/lesh/lush-smeh.ogg"
     lush ""
     stop sound
 
     maks "Дура ты... Нам нужна твоя помощь"
     # не понимаю   | che za dich
-    play sound "characters/lesh/lush-che-za-dich.ogg"
+    play sound "characters/lesh/lush-che-za-dich.ogg" volume 3
     lush ""
     stop sound
 
@@ -80,7 +83,7 @@ label igoryas_saved:
     # миха объясняет
     miha "Появился новый вирус, распространяется очень быстро, нам бы свалить побыстрее, пока есть возможность"
     # eбать ты мне сюжет новой планеты обезьян рассказываешь ? suzhet
-    play sound "characters/lesh/lush-suzhet-planeti-obezhan.ogg"
+    play sound "characters/lesh/lush-suzhet-planeti-obezhan.ogg" volume 2
     lush ""
     stop sound
     
@@ -93,17 +96,20 @@ label igoryas_saved:
     stop sound
     # TODO: пук vk
     # TODO: смех vk
+    play sound "characters/lesh/from-vk/1.ogg"
+    lush ""
+    stop sound
     
     miha "..."
     miha "Яндекс вообще кажется захватывает все вокруг"
     miha "Cкоро будут Яндекс.Жена Яндекс.Срать Яндекс.Все-вообще"
     # так и шли бы работать в яндекс доставку
     # чето я хуйню сказал
-    play sound "characters/lesh/lush-poshel-bi-v-yandex-full.ogg"
+    play sound "characters/lesh/lush-poshel-bi-v-yandex-full.ogg" volume 4
     lush ""
     stop sound
     
-    play sound "characters/lesh/lush-mb-huinyu-skazal.ogg"
+    play sound "characters/lesh/lush-mb-huinyu-skazal.ogg" volume 4
     lush ""
     stop sound
 
@@ -111,12 +117,12 @@ label igoryas_saved:
     maks "Я не могу объяснять детали, но когда начнется, то, что начнется..."
     maks "Ты уже не будешь так радоваться"
     # страшно стало после твоих слов ( kogda nachnets)
-    play sound "characters/lesh/lush-kogda-nachnetsa.ogg" volume 6
+    play sound "characters/lesh/lush-kogda-nachnetsa.ogg" volume 11
     lush ""
     stop sound
 
     # чьих это рук дело
-    play sound "characters/lesh/lush-chix-ruk-eto-delo-cut.mp3"
+    play sound "characters/lesh/lush-chix-ruk-eto-delo-cut.mp3" volume 3
     lush ""
     stop sound
 
@@ -126,21 +132,31 @@ label igoryas_saved:
     maks "А ты наконец-то меня понял"
     maks "Поможешь нам?"
 
-    # puk
-    # smex
+    # puk + smex
+    play sound "characters/lesh/from-vk/puk.mp3" volume 8
+    lush ""
+    stop sound
+    play sound "characters/lesh/from-vk/2.mp3" volume 2
+    lush ""
+    stop sound
+    play sound "characters/lesh/from-vk/5.ogg" volume 2
+    lush ""
+    stop sound
 
     maks "Только мне стоило подумать, что ты в адеквате"
     maks "Сегодня у Михи вообще-то дэрэ"
+    maks "Можно же один день себя вести нормаль-"
 
+    with vpunch
+    play audio "audio/punch.opus"
     hide lush1
     hide igor_v_govne
     hide max1
-    
     show lush_s_dr at left
     show igor_s_dr at right
+    unknown ""
 
-    maks "Можно же один день себя вести нормально"
-    maks ""
+    maks "..."
 
     play sound "characters/lesh/lush-tyzhechka-za-tebya.ogg"
     lush ""
@@ -153,76 +169,23 @@ label igoryas_saved:
     lush ""
     stop sound
 
+    # hide 
+
     python:
         igoryas_unit = Igoryas(80, 6)
         party.addMember(igoryas_unit)
 
-    scene alexandrovskaya with Dissolve(.5)
-    show max1 at right
-    maks "Ладно, гайзы"
-    maks "Нам следуе"
-    stop music
-    play sound "audio/subway-surfers.mp3" volume 0.2
-    pause 1
-    stop sound
-    maks "Блядь"
-    play sound "audio/subway-surfers.mp3" volume 0.1 loop
-    maks "Гайс"
-    maks "Кто-то из них идет"
-    hide max1
-    show creep at left
-    creep "Че"
-    creep "стоите?"
 
-    show max1 at right
-    maks "Ни в коем случае не смотрите что он вам покажет"
-    hide max1
 
-    creep "Тут капец вообще"
-    creep "Смотрите"
-    stop sound
-
-    menu:
-        "Атаковать":
-           miha "Не буду я твою херню смотреть"
-        "Че там у тебя":
-            play music "./audio/soundtrack5.mp3" volume 0.3
-            python:
-                party.deleteMember(igoryas_unit)
-            hide creep
-            show igoryas_join_zheka with Dissolve(.5)
-            igoryas "ыхыхыхыхыхых"
-            igoryas "Слушайте"
-            igoryas "Здесь вообще капееец"
-            igoryas "Идите сюда скорей"
-            menu:
-                "Атаковать обоих":
-                    miha "Не будем мы вашу хероту смотреть"
-                "Ладно, че там у вас":
-                    call yandex_virus_death
-
-    call zheka_fight
-    hide creep
-    play music "./audio/soundtrack5.mp3" volume 0.3
-    show max1 at right
-    maks "Надеюсь мы его не кокнули"
-    maks "Нас же повяжут"
-    maks "Мих, ты этим говном управлял"
-    scene zhekan_dead with Dissolve(.5)
-    miha "Слушай, по-моему с ним все нормально"
-    menu:
-        "Взять телефон Жекана":
-            call yandex_virus_death
-        "Уйти":
-            pass
-    hide max1
-    show igor1 at left
-    igoryas "Забыли"
-    igoryas "Важно другое"
-    igoryas "Ты мне должен новый пиксель, Максон"
-    igoryas "Мб объяснишь че это было в туалете?"
-    hide igor1
-    show max1 at right
-    miha "Да, реально"
-    maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
+# TODO: мб вернуть это
+    # hide max1
+    # show igor1 at left
+    # igoryas "Забыли"
+    # igoryas "Важно другое"
+    # igoryas "Ты мне должен новый пиксель, Максон"
+    # igoryas "Мб объяснишь че это было в туалете?"
+    # hide igor1
+    # show max1 at right
+    # miha "Да, реально"
+    # maks "Сейчас не могу вам ничего сказать, нужно бежать за Андревом"
     # Затар жижки
