@@ -6,6 +6,56 @@
     scene alexandrovskaya with Dissolve(1.5)
     show max1
     maks "Бля, хоть бы успели, промедление может стоить ему жизни"
+
+    # cюда передвинул файт с жеканом
+    stop music
+    play sound "audio/subway-surfers.mp3" volume 0.2
+    pause 1
+    stop sound
+    maks "Блядь"
+    play sound "audio/subway-surfers.mp3" volume 0.1 loop
+    maks "Кто-то из них идет"
+    hide max1
+    show creep at left
+    creep "Че"
+    creep "стоите?"
+
+    show max1 at right
+    maks "Ни в коем случае не смотри, что он нам покажет"
+    hide max1
+
+    creep "Тут капец вообще"
+    creep "Смотрите"
+    stop sound
+
+    menu:
+        "Атаковать":
+           miha "Не буду я твою херню смотреть"
+        "Че там у тебя":
+            play music "./audio/soundtrack5.mp3" volume 0.3
+            call yandex_virus_death
+
+    call zheka_fight
+    hide creep
+    play music "./audio/soundtrack5.mp3" volume 0.3
+    show max1 at right
+    maks "Надеюсь мы его не кокнули"
+    maks "Нас же повяжут"
+    miha "Да я и не против"
+    # TODO: спрайт макса
+    maks "??"
+    scene zhekan_dead with Dissolve(.5)
+    miha "По-моему с ним все нормально"
+    menu:
+        "Взять телефон Жекана":
+            call yandex_virus_death
+        "Уйти":
+            pass
+
+    scene alexandrovskaya with Dissolve(.5)
+    show max1 at right
+
+    maks "Идем за Игорем"
     miha "Есть план?"
     play sound "audio/sobaka1.ogg"
     pause(2)
