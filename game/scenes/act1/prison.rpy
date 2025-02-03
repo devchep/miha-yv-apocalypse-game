@@ -15,7 +15,7 @@ label prison:
     miha '...'
     miha 'Мдаа в тюряге в ВК оно как-то интереснее было'
     miha 'Начаааальник, когда ужин у нас?'
-    play audio 'audio/prison_maximus.mp3'
+    play music 'audio/prison_maximus.mp3'
     pause 2
     hide cage
     show maximus_alt
@@ -73,6 +73,21 @@ label prison:
             scene ptrg_upper with Dissolve(1)
             show maximus_alt at left
             maximus 'Ну вот, я же говорил'
+            maximus 'Как комарик'
+            miha 'НИхуясебе комарик'
+            miha 'Что дальше?'
+            maximus '))'
+            hide maximus_alt
+            scene ptrg_upper2
+            show maximus_alt at left
+            maximus 'Теперь моему плану ничто не помешает'
+            maximus 'Мне остается нажать одну лишь кнопку'
+            maximus 'И все, абсолютно все зараженные подвергнут себя Яндекс.Сплиту'
+            maximus 'А нам останется наблюдать за очищением мира'
+            play audio 'audio/maximus_laugh.mp3'
+            pause 1.5
+            
+
             image maximus_postsplit = Movie(play = "./video/maximus_postsplit.webm", loop=True)
             show maximus_postsplit
             pause 60
