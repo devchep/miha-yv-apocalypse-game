@@ -31,6 +31,7 @@ init 0 python:
 
         def useAgainstEnemy(self, enemy: Character):
             enemy.react(self)
+            self.count -= 1
 
     # inventory
     class Inventory:

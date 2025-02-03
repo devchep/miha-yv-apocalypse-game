@@ -8,12 +8,14 @@
             pass
         "Смачный здарова Макс":
             hide max1
-            show maxdab at left
-            call dab_up
+            # соре закомментил, too gay
+#             show maxdab at left
+#             call dab_up
+            call max_dab_up
+            show max1
             maks "..."
             maks "уфф хорошенький"
-            hide maxdab
-            show max1
+#             hide maxdab
             pass
     maks "Крч некогда объяснять, это пизда"
     maks "Нужно скорее к Игоряну"
