@@ -28,6 +28,7 @@ label start:
 # label start:
 #     python:
 #         inventory = Inventory()
+#         inventory.loot(Sosiska("fff"))
 #         party = Party()
 #         miha_unit = Miha(60, 6)
 #         maks_unit = MaxHeyman(65, 10)
@@ -39,7 +40,8 @@ label start:
 #         party.addMember(drei_unit)
 #         party.getExp(2)
 #
-# #     show screen campButton
-#     call igoryas_saved
+#     show screen campButton
+#     call zheka_fight
+#     call torop_fight
 #
 #     return

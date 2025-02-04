@@ -48,11 +48,13 @@ init 3 python:
                 if not executeTurn:
                     return False
                 pickedItem.useInFight(pickedAlly)
+                inventory.useItem(pickedItem)
             else:
                 pickedEnemy, executeTurn = self.fight_menu(enemyParty.getAliveMembers())
                 if not executeTurn:
                     return False
                 pickedItem.useAgainstEnemy(pickedEnemy)
+                inventory.useItem(pickedItem)
             return True
 
         def enemyTurn(self):
@@ -68,9 +70,14 @@ init 3 python:
 
             if self.isItemPick(pickedOption):
                 turnExecuted = self.useItem()
+                self.makeTurnNoItems() if turnExecuted else _
             else:
                 turnExecuted = self.castAbility(pickedOption)
             return turnExecuted
+
+        def makeTurnNoItems(self):
+            pickedOption = renpy.display_menu(party.getMembersForNextAttack())
+            return self.castAbility(pickedOption)
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]

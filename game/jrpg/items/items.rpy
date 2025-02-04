@@ -31,7 +31,6 @@ init 0 python:
 
         def useAgainstEnemy(self, enemy: Character):
             enemy.react(self)
-            self.count -= 1
 
     # inventory
     class Inventory:
@@ -91,7 +90,6 @@ init 0 python:
         def useInFight(self, character: Character):
             character.heal(10)
             renpy.say(character.getRenpyChar(), what="ам ам ам")
-            self.count -= 1
 
     class KolbasaDubki(Throwable, DogLikes, CatLikes, FightItem):
         def __init__(self, id):
@@ -100,7 +98,6 @@ init 0 python:
         def useInFight(self, character: Character):
             character.heal(50)
             renpy.say(character.getRenpyChar(), what="ох блин Петр прости меня")
-            self.count -= 1
 
     class ColaNoSugar(Throwable, FightItem):
         def __init__(self, id):
@@ -109,7 +106,6 @@ init 0 python:
         def useInFight(self, character: Character):
             character.heal(5)
             renpy.say(character.getRenpyChar(), what="фу, еще больше пить захотелось")
-            self.count -= 1
 
     class Tortik(Throwable, FightItem):
         def __init__(self, id):
@@ -118,7 +114,6 @@ init 0 python:
         def useInFight(self, character: Character):
             character.heal(20)
             renpy.say(character.getRenpyChar(), what="мммм")
-            self.count -= 1
 
     class Panoramiks(Throwable, FightItem):
         def __init__(self, id):
@@ -127,4 +122,3 @@ init 0 python:
         def useInFight(self, character: Character):
             character.strength = 300
             renpy.say(character.getRenpyChar(), what="ОЩУЩАЮ СИЛИЩЕ")
-            self.count -= 1
