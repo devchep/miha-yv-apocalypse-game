@@ -7,7 +7,6 @@ python:
 call show_maximus_hp
 call show_party_hp
 play music "./audio/maximus_theme_fight.mp3" volume 0.7
-$ renpy.save("maximus_fight")
 "Вы вступили в бой"
 show maximus
 maximus "{b}Немного даже удивительно это{/b}"
@@ -35,6 +34,7 @@ menu:
         maximus "{b}{color=#f00}Я разочарован{/color}{/b}"
         "Бой продолжен"
 
+$ renpy.save("maximus_fight")
 python:
     [member.disabled(4) for member in party.members.values()]
 

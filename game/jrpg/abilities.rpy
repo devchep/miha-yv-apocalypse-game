@@ -4,7 +4,7 @@ init 2 python:
 
     class Insult(Ability):
         def __init__(self):
-            super().__init__(name = "Прокричать оскорбления", strength = 0)
+            super().__init__(name = "Прокричать оскорбления (эффект зависит от особенностей врага)", strength = 0)
 
         def useAgainst(self, enemy: Character, character: Character):
             self.playSound()
@@ -16,7 +16,7 @@ init 2 python:
 
     class Shoulder(Ability):
         def __init__(self):
-            super().__init__(name = "Влететь с плеча в лоха", strength = 30)
+            super().__init__(name = "Влететь с плеча в лоха (-30)", strength = 30)
 
         def playSound(self):
             renpy.play("audio/characters/max/shoulder.mp3")

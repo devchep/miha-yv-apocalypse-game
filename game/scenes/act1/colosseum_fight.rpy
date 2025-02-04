@@ -16,9 +16,6 @@ python:
     fight.start()
 
 hide tigr
-python:
-    inventory.chooseReward([Panoramiks("Панорамикс награда в Колизее")])
-
 call hide_enemy_hp
 call hide_party_hp
 stop music

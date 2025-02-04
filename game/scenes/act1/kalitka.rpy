@@ -1,4 +1,5 @@
 ﻿label kalitka_house:
+    play music "./audio/soundtrack4.mp3" volume 0.3
     scene kalitka with Dissolve(.5)
     pause 1
     miha "Кхм"
@@ -17,11 +18,11 @@
     scene kalitka
     pause 1
     stop music
-    play sound "audio/subway-surfers.mp3" volume 0.2
+    play music "audio/subway-surfers.mp3" volume 0.2
     pause 2
     stop sound
     maks "Суууука"
-    play sound "audio/subway-surfers.mp3" volume 0.2 loop
+    play music "audio/subway-surfers.mp3" volume 0.2 loop
     show max1 at right
     maks "Это пиздец..."
     maks "Слышите?"    # TODO добавить чекер количества пати, чтобы обращение соответствовало числу

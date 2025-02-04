@@ -4,6 +4,10 @@ call setup_chars
 init 3 python:
     inventory = Inventory()
 
+label splashscreen:
+    $ renpy.movie_cutscene("video/boot_intro.webm", loops=0, stop_music=False)
+    return
+
 # Игра начинается здесь:
 label start:
     python:

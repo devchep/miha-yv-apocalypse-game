@@ -5,8 +5,16 @@ init 3 python:
             self.enemyParty = enemyParty
             self.saveName = saveName
 
-        def isItemPick(self, pickedMember):
-            return pickedMember == "Предмет"
+        def isItemPick(self, pick):
+            return pick == "Предмет"
+
+        def fight_menu(self, options):
+            executeTurn = True
+            options.append(("Назад", "Назад"))
+            picked = renpy.display_menu(options)
+            if picked == "Назад":
+                executeTurn = False
+            return picked, executeTurn
 
         def pickEnemy(self):
             pickedEnemy = enemyParty.getAliveMembers()[0][1]
@@ -15,22 +23,37 @@ init 3 python:
             return pickedEnemy
 
         def castAbility(self, pickedMember):
-            pickedAbility = renpy.display_menu(pickedMember.getAvailableAbilities())
+            pickedAbility, executeTurn = self.fight_menu(pickedMember.getAvailableAbilities())
+            if not executeTurn:
+                return False
+
             if (pickedAbility.targeted):
                 pickedEnemy = self.pickEnemy()
                 pickedAbility.useAgainst(pickedEnemy, pickedMember)
             else:
                 pickedAbility.use(enemyParty, pickedMember, self.party)
+            return True
 
         def useItem(self):
-            pickedItem = renpy.display_menu(inventory.getItems())
-            side = renpy.display_menu([("Применить на союзника", "союзник"), ("Применить против врага", "враг")])
-            if side == "союзник":
-                pickedAlly = renpy.display_menu(party.getAliveMembers())
+            pickedItem, executeTurn = self.fight_menu(inventory.getItems())
+            if not executeTurn:
+                return False
+
+            sidePick, executeTurn = self.fight_menu([("Применить на союзника", "союзник"), ("Применить против врага", "враг")])
+            if not executeTurn:
+                return False
+
+            if sidePick == "союзник":
+                pickedAlly, executeTurn = self.fight_menu(party.getAliveMembers())
+                if not executeTurn:
+                    return False
                 pickedItem.useInFight(pickedAlly)
             else:
-                pickedEnemy = renpy.display_menu(enemyParty.getAliveMembers())
+                pickedEnemy, executeTurn = self.fight_menu(enemyParty.getAliveMembers())
+                if not executeTurn:
+                    return False
                 pickedItem.useAgainstEnemy(pickedEnemy)
+            return True
 
         def enemyTurn(self):
             if len(enemyParty.getAliveMembers()) > 0:
@@ -40,11 +63,14 @@ init 3 python:
                     enemyParty.putInAttackQueue(enemy)
 
         def makeTurn(self):
-            pickedMember = renpy.display_menu(party.getMembersForNextAttack())
-            if self.isItemPick(pickedMember):
-                self.useItem()
+            turnExecuted = True
+            pickedOption = renpy.display_menu([("Применить предмет", "Предмет")] + party.getMembersForNextAttack())
+
+            if self.isItemPick(pickedOption):
+                turnExecuted = self.useItem()
             else:
-                self.castAbility(pickedMember)
+                turnExecuted = self.castAbility(pickedOption)
+            return turnExecuted
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
@@ -63,7 +89,9 @@ init 3 python:
 
         def start(self):
             while not enemyParty.isWiped() and not party.isWiped():
-                self.makeTurn()
+                turnExecuted = False
+                while not turnExecuted:
+                    turnExecuted = self.makeTurn()
                 self.turnEnd()
                 renpy.pause(1)
                 self.enemyTurn()

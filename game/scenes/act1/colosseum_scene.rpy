@@ -24,5 +24,8 @@
             "Нет, нет, бежать тут некуда"
 
     call colosseum_fight
+    play music "./audio/soundtrack_colo.mp3" volume 0.4
+    python:
+        inventory.chooseReward([Panoramiks("Панорамикс награда в Колизее")])
 
-    #TODO Почему не пошли к калитке?
+    call kalitka_house

@@ -157,7 +157,6 @@ init 1 python:
 
         def getMembersForNextAttack(self):
             aliveMembers = []
-            aliveMembers.append(("Применить предмет", "Предмет"))
             for member in iter(self.members.values()):
                 if member.health > 0:
                     aliveMembers.append((member.partyName, member))

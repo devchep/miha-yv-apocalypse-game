@@ -101,10 +101,9 @@ init 2 python:
         def react(self, item: Item):
             if isinstance(item, CatLikes):
                 self.strength -= item.getPower()
-                item.consume(1)
                 if self.strength > 15:
-                    renpy.say(None, what="Врагу очень понравилась прикормка")
                     renpy.say(None, what="Атаки врага стали слабее")
+                    renpy.say(None, what="Враг просит еще")
                 else:
                     self.playAttackSound = self.cat_sound
                     self.attack_phrase = self.cat_attack_phrase

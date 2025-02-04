@@ -77,8 +77,9 @@ init 0 python:
                 items = [item for item in items if item != pickedItem]
 
         def chooseReward(self, items):
-            renpy.say(None, what="Поздравляем")
-            renpy.say(None, what="Выберите награду")
+            renpy.say(None, what="Вы получили награду")
+            if len(items) > 1:
+                renpy.say(None, what="Выберете предмет x({})".format(len(items)))
             pickedItem = renpy.display_menu([(self.menuName(item), item) for item in items])
             self.loot(pickedItem)
 
@@ -121,7 +122,7 @@ init 0 python:
 
     class Panoramiks(Throwable, FightItem):
         def __init__(self, id):
-            super().__init__(name = "Зелье Панорамикс", count = 1, power = 300, id = id)
+            super().__init__(name = "Волшебное зелье", count = 1, power = 300, id = id)
 
         def useInFight(self, character: Character):
             character.strength = 300
