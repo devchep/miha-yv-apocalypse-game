@@ -48,6 +48,9 @@ label prison:
             miha 'А в принятии'
             miha 'Уходи, не надейся, что я попрошу подробностей твоих безумных хобби'
             maximus 'Пустая трата времени, чтож, тогда по плохому'
+            play music 'audio/skyfall.mp3' volume 0.3
+            scene black with Dissolve(2)
+            call maximus_palace_split
         "Допустим ты меня заинтересовал":
             python:
                 maximus_friend = True
@@ -86,11 +89,9 @@ label prison:
             maximus 'А нам останется наблюдать за очищением мира'
             play audio 'audio/maximus_laugh.mp3'
             pause 1.5
-            
-
-            image maximus_postsplit = Movie(play = "./video/maximus_postsplit.webm", loop=True)
-            show maximus_postsplit
-            pause 60
+            maximus 'Готов?'
+            miha 'Да'
+            call maximus_palace_split
 
 
 
