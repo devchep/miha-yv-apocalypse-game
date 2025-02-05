@@ -2,6 +2,16 @@ init 2 python:
     hugepunch = Move((15, 0), (-15, 0), .10, bounce=True, repeat=True, delay=.275)
     bigdamagepunch = Move((15, 0), (0, 15), .10, bounce=True, repeat=True, delay=0)
 
+    class NonTarget:
+        def __init__(self):
+            pass
+
+        def use(self, fight: Fight, character: Character):
+            pass
+
+        def playSound(self):
+            renpy.play("audio/punch.opus")
+
     class Insult(Ability):
         def __init__(self):
             super().__init__(name = "Прокричать оскорбления (эффект зависит от особенностей врага)", strength = 0)
@@ -33,8 +43,8 @@ init 2 python:
             renpy.with_statement(hugepunch)
             renpy.pause(1)
 
-        def use(self, enemyParty: Party, character: Character, myParty: Party):
-            [character.hit(enemy, self.strength) for enemy in enemyParty.members.values()]
+        def use(self, fight: Fight, character: Character):
+            [character.hit(enemy, self.strength) for enemy in fight.enemyParty.members.values()]
             self.playSound()
 
     class Smoke(Ability, NonTarget):
@@ -46,9 +56,9 @@ init 2 python:
             self.playSound()
             enemy.changeVulnerableRatio(2)
 
-        def use(self, enemyParty: Party, character: Character, myParty: Party):
+        def use(self, fight: Fight, character: Character):
             self.playSound()
-            [enemy.changeVulnerableRatio(2) for enemy in enemyParty.members.values()]
+            [enemy.changeVulnerableRatio(2) for enemy in fight.enemyParty.members.values()]
             renpy.say(None, "Враги ахуели с этой прикормки")
             renpy.say(None, "Атаки против врагов стали в 2 раза сильнее")
 
@@ -61,8 +71,8 @@ init 2 python:
             super().__init__(name = "Встать стеной", strength = 1)
             self.setTargeted(False)
 
-        def use(self, enemyParty: Party, character: Character, myParty: Party):
-            party.setTarget(character)
+        def use(self, fight: Fight, character: Character):
+            fight.party.setTarget(character)
             character.health = 140
             self.playSound()
             renpy.say(character.getRenpyChar(), "Я щит Ваааргуса")
@@ -71,6 +81,20 @@ init 2 python:
             renpy.play("audio/characters/igoryas/taunt.mp3")
             renpy.pause(1)
 
+    class StackTurns(Ability, NonTarget):
+        def __init__(self):
+            super().__init__(name = "Встать стеной", strength = 1)
+            self.setTargeted(False)
+
+        def use(self, fight: Fight, character: Character):
+            party.setTarget(character)
+            character.health = 140
+            self.playSound()
+            renpy.say(character.getRenpyChar(), "Я щит Ваааргуса")
+
+        def playSound(self):
+            renpy.play("audio/characters/igoryas/taunt.mp3")
+            renpy.pause(1)
 
     class DeadlyBlow(Ability, NonTarget):
         def __init__(self):
@@ -88,9 +112,9 @@ init 2 python:
         def useAgainst(self, enemy: Character, character: Character):
             if character.preparedAttack > 0:
                 if enemy.health > 50:
-                    character.hit(enemy, enemy.max_health - 10)
+                    character.hitPureDamage(enemy, enemy.max_health - 10)
                 else:
-                    character.hit(enemy, enemy.health)
+                    character.hitPureDamage(enemy, enemy.health)
 
                 renpy.with_statement(bigdamagepunch)
                 renpy.pause(.1)
@@ -103,7 +127,7 @@ init 2 python:
 
             self.setup(character)
 
-        def use(self, enemyParty: Party, character: Character, myParty: Party):
+        def use(self, fight: Fight, character: Character):
             self.setup(character)
 
         def setup(self, character):
@@ -118,6 +142,11 @@ init 2 python:
                 return ""
             else:
                 return " (Подготовка)"
+
+        def reset(self, character: Character):
+            character.setInvincible(False)
+            character.setPreparedAttack(0)
+            self.setTargeted(False)
 
 #         class (Ability, NonTarget):
 #         def __init__(self):

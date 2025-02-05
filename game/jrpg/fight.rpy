@@ -1,4 +1,4 @@
-init 3 python:
+init 1 python:
     class Fight:
         def __init__(self, party, enemyParty, saveName=None):
             self.party = party
@@ -31,11 +31,11 @@ init 3 python:
                 pickedEnemy = self.pickEnemy()
                 pickedAbility.useAgainst(pickedEnemy, pickedMember)
             else:
-                pickedAbility.use(enemyParty, pickedMember, self.party)
+                pickedAbility.use(self, pickedMember)
             return True
 
         def useItem(self):
-            pickedItem, executeTurn = self.fight_menu(inventory.getItems())
+            pickedItem, executeTurn = self.fight_menu(inventory.getFightItems())
             if not executeTurn:
                 return False
 
@@ -47,7 +47,7 @@ init 3 python:
                 pickedAlly, executeTurn = self.fight_menu(party.getAliveMembers())
                 if not executeTurn:
                     return False
-                pickedItem.useInFight(pickedAlly)
+                pickedItem.useInFight(pickedAlly, self)
                 inventory.useItem(pickedItem)
             else:
                 pickedEnemy, executeTurn = self.fight_menu(enemyParty.getAliveMembers())
@@ -105,4 +105,4 @@ init 3 python:
 
             if party.isWiped() or party.mihaIsDead():
                 self.wannaContinue()
-            party.healEveryone()
+            party.resetEverything()

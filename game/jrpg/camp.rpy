@@ -5,7 +5,7 @@ screen campButton():
             hover im.Scale("images/camp_button.png", 261, 100.02)
             action Function(renpy.call_in_new_context, label="camp_scene")
 
-init 3 python:
+init 4 python:
     class Camp:
         def __init__(self, party: Party, inventory: Inventory):
             self.party = party

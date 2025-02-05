@@ -1,38 +1,24 @@
-init 0 python:
+init 2 python:
     # interfaces
-    class Item:
-        def __init__(self, name, count, power, id):
-            self.name = name
-            self.count = count
-            self.id = id
-            self.power = power
-
-        def getFullName(self):
-            return "{} x({})".format(self.name, self.count)
-
-        def getPower(self):
-            return self.power
-
-        def consume(self, count):
-            self.count -= count
-
-    class Throwable(Item):
-        pass
-
     class DogLikes(Item):
         pass
 
     class CatLikes(Item):
         pass
 
+    class LeshCounter(Item):
+        pass
+
     class FightItem(Item):
-        def useInFight(self, character: Character):
+        def useInFight(self, character: Ally, fight: Fight):
             pass
 
         def useAgainstEnemy(self, enemy: Character):
             enemy.react(self)
 
-    # inventory
+    class Throwable(Item):
+        pass
+
     class Inventory:
         def __init__(self):
             self.items = dict()
@@ -51,6 +37,13 @@ init 0 python:
         def getItems(self):
             return [(self.menuName(item), item) for item in iter(self.items.values())]
 
+        def getFightItems(self):
+            fightItems = []
+            for item in iter(self.items.values()):
+                if isinstance(item, FightItem):
+                    fightItems.append(("{} {}".format(self.menuName(item), item.effectDesc()), item))
+            return fightItems
+
         def menuName(self, item: Item):
             return item.name + "(x"+str(item.count)+")" if item.count > 0 else ""
 
@@ -67,7 +60,7 @@ init 0 python:
 
         def choice(self, count, items):
             if count > 1:
-                renpy.say(None, what="Выберите предметы в количестве "+str(count))
+                renpy.say(None, what="Выберите предметы в количестве: "+str(count))
             else:
                 renpy.say(None, what="Выберите предмет")
             for i in range(count):
@@ -82,12 +75,11 @@ init 0 python:
             pickedItem = renpy.display_menu([(self.menuName(item), item) for item in items])
             self.loot(pickedItem)
 
-    # actual items
     class Sosiska(Throwable, DogLikes, CatLikes, FightItem):
         def __init__(self, id):
             super().__init__(name = "Сосиска", count = 4, power = 15, id = id)
 
-        def useInFight(self, character: Character):
+        def useInFight(self, character: Ally, fight: Fight):
             character.heal(10)
             renpy.say(character.getRenpyChar(), what="ам ам ам")
 
@@ -95,7 +87,7 @@ init 0 python:
         def __init__(self, id):
             super().__init__(name = "Колбаса Дубки", count = 1, power = 50, id = id)
 
-        def useInFight(self, character: Character):
+        def useInFight(self, character: Ally, fight: Fight):
             character.heal(50)
             renpy.say(character.getRenpyChar(), what="ох блин Петр прости меня")
 
@@ -103,22 +95,38 @@ init 0 python:
         def __init__(self, id):
             super().__init__(name = "Кола без сахара", count = 2, power = 5, id = id)
 
-        def useInFight(self, character: Character):
+        def useInFight(self, character: Ally, fight: Fight):
             character.heal(5)
             renpy.say(character.getRenpyChar(), what="фу, еще больше пить захотелось")
 
-    class Tortik(Throwable, FightItem):
+    class Tortik(LeshCounter, FightItem):
         def __init__(self, id):
-            super().__init__(name = "Медовик", count = 1, power = 20, id = id)
+            super().__init__(name = "Медовик", count = 1, power = 25, id = id)
 
-        def useInFight(self, character: Character):
-            character.heal(20)
+        def useInFight(self, character: Ally, fight: Fight):
+            character.heal(25)
             renpy.say(character.getRenpyChar(), what="мммм")
+
+
+    class Energizer(FightItem):
+        def __init__(self, id):
+            super().__init__(name = "Энергетик", count = 1, power = 50, id = id)
+
+        def useInFight(self, character: Ally, fight: Fight):
+            renpy.say(character.getRenpyChar(), what="ебашит меня")
+            renpy.say(None, what="{} ходит вне очереди".format(character.name))
+            fight.castAbility(character)
+
+        def effectDesc(self):
+            return "(Дает союзнику ход без очереди)"
 
     class Panoramiks(Throwable, FightItem):
         def __init__(self, id):
             super().__init__(name = "Волшебное зелье", count = 1, power = 300, id = id)
 
-        def useInFight(self, character: Character):
+        def useInFight(self, character: Character, fight: Fight):
             character.strength = 300
             renpy.say(character.getRenpyChar(), what="ОЩУЩАЮ СИЛИЩЕ")
+
+        def effectDesc(self):
+            return "(+300 к силе атаки)"

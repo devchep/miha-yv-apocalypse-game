@@ -1,5 +1,5 @@
 image drones_attack = Movie(play = "./video/drones_attack.webm", loop=False)
-init 2 python:
+init 3 python:
     hugeboom = Move((100, 0), (-100, 0), .10, bounce=True, repeat=True, delay=.275)
     import random
     from operator import attrgetter
@@ -249,6 +249,12 @@ init 2 python:
 
         def playAttackSound(self):
             renpy.play("audio/fireball.mp3")
+
+        def react(self, item: Item):
+            if isinstance(item, LeshCounter):
+                self.health = -100
+                renpy.play("lush/plankton-augh.mp3")
+                renpy.say(self.getRenpyChar(), what="")
 
     class Maximus(Enemy):
         def __init__(self, health, strength):

@@ -56,6 +56,10 @@ label pyaterochka:
     miha "Так, я хотел закупиться"
     python:
         inventory.choice(
-            1,
-            [Sosiska("пачка сосисок из пятерки"), Tortik("Медовичок")]
+            2,
+            [
+                Sosiska("Пачка сосисок из пятерки"),
+                Tortik("Медовичок"),
+                Energizer("Адреналин черный")
+            ]
         )

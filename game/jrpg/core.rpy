@@ -1,8 +1,28 @@
 image drones_attack = Movie(play = "./video/drones_attack.webm", loop=False)
-init 1 python:
+init 0 python:
     hugeboom = Move((100, 0), (-100, 0), .10, bounce=True, repeat=True, delay=.275)
     import random
     from operator import attrgetter
+
+    class Item:
+        def __init__(self, name, count, power, id):
+            self.name = name
+            self.count = count
+            self.id = id
+            self.power = power
+
+        def getFullName(self):
+            return "{} x({})".format(self.name, self.count)
+
+        def getPower(self):
+            return self.power
+
+        def consume(self, count):
+            self.count -= count
+
+        def effectDesc(self):
+            return ""
+
     class Character:
         def __init__(self, name, health, strength):
             self.name = name
@@ -41,6 +61,12 @@ init 1 python:
                 renpy.say(None, "Атака не нанесла урона")
                 return
             enemy.health -= strength*enemy.vulnerableRatio
+
+        def hitPureDamage(self, enemy, strength):
+            if self.disabled_turns_count > 0:
+                renpy.say(None, "Атака не нанесла урона")
+                return
+            enemy.health -= strength
 
         def healMax(self):
             self.health = self.max_health
@@ -89,6 +115,9 @@ init 1 python:
         def getUpgradePhrase(self):
             return "Охх я чувствую силу"
 
+        def reset(self, character: Character):
+            return
+
     class SkillBranch:
         def __init__(self, name, abilities):
             self.name = name
@@ -135,6 +164,9 @@ init 1 python:
             self.lvlup()
             self.abilities.append(ability)
 
+        def resetAbilities(self, ability: Ability):
+            [ability.reset(self) for ability in self.getAbilities()]
+
     class Party:
         def __init__(self):
             self.members = {}
@@ -179,8 +211,16 @@ init 1 python:
 
             return aliveMembers
 
-        def healEveryone(self):
+        def resetHp(self):
             [member.healMax() for member in self.members.values()]
+
+        def resetAbilities(self):
+            [member.resetAbilities() for member in self.members.values()]
+
+        def resetEverything(self):
+            self.resetAbilities()
+            self.resetHp()
+            self.target = None
 
         def contains(self, instance):
             return any(isinstance(member, instance) for member in self.members.values())
@@ -219,16 +259,6 @@ init 1 python:
                 return self.target
 
             return self.getCharacterWithMinHp()
-
-    class NonTarget:
-        def __init__(self):
-            pass
-
-        def use(self, enemyParty: Party, character: Character, myParty: Party):
-            pass
-
-        def playSound(self):
-            renpy.play("audio/punch.opus")
 
     class Enemy(Character):
         def __init__(self, name, health, strength, partyName=None):
