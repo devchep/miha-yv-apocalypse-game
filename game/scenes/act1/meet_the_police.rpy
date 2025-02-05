@@ -137,3 +137,4 @@
         scene black with Dissolve(2)
         scene tanyaendlast with Dissolve(2)
         scene black with Dissolve(2)
+        $ MainMenu(confirm=False)()
