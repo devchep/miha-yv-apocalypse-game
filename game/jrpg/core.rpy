@@ -131,6 +131,9 @@ init 0 python:
             self.lvl += 1
             return self.abilities.pop(0)
 
+        def getNextUpgradePreview(self):
+            return [(self.abilities[0].name, "")]
+
         def getName(self):
             return self.name + " (lvl {})".format(self.lvl)
 

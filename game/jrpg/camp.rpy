@@ -26,7 +26,7 @@ init 4 python:
                 campOptions.append(("Применить предмет", "Предмет"))
 
             if self.party.experience > 0 and any(member.canUpgrade() for member in iter(self.party.members.values())):
-                campOptions.append(("Прокачать братанчика: х{} очков опыта доступно".format(self.party.experience), "Прокачка"))
+                campOptions.append(("Прокачка: х{} очков опыта доступно".format(self.party.experience), "Прокачка"))
 
             campOptions.append(("Выйти из лагеря", "Выйти"))
             return campOptions
@@ -57,6 +57,7 @@ init 4 python:
         def upgrade(self, party):
             pickedMember = self.camp_menu(party.getMembersWithUpgrades())
             skillBranch = self.camp_menu(pickedMember.getAvailableUpgrades())
+            self.camp_menu(skillBranch.getNextUpgradePreview())
 
             newAbility = skillBranch.getNextUpgrade()
             pickedMember.upgrade(newAbility)

@@ -14,7 +14,7 @@ init 2 python:
 
     class Insult(Ability):
         def __init__(self):
-            super().__init__(name = "Прокричать оскорбления (эффект зависит от особенностей врага)", strength = 0)
+            super().__init__(name = "Прокричать оскорбления (Эффект зависит от особенностей врага)", strength = 0)
 
         def useAgainst(self, enemy: Character, character: Character):
             self.playSound()
@@ -35,7 +35,7 @@ init 2 python:
 
     class AoeShoulder(Ability):
         def __init__(self):
-            super().__init__(name = "Трактором с плеча прокатиться по всем", strength = 30)
+            super().__init__(name = "Трактором с плеча прокатиться по всем (-30 всем противникам)", strength = 30)
             self.setTargeted(False)
 
         def playSound(self):
@@ -49,7 +49,7 @@ init 2 python:
 
     class Smoke(Ability, NonTarget):
         def __init__(self):
-            super().__init__(name = "Дымка 50 никотина", strength = 1)
+            super().__init__(name = "Дымка 50 никотина (Ослабляет противников)", strength = 1)
             self.setTargeted(False)
 
         def useAgainst(self, enemy: Character, character: Character):
@@ -68,33 +68,58 @@ init 2 python:
 
     class TheWall(Ability, NonTarget):
         def __init__(self):
-            super().__init__(name = "Встать стеной", strength = 1)
+            super().__init__(name = "Встать стеной (+60HP, Провокация)", strength = 1)
             self.setTargeted(False)
 
         def use(self, fight: Fight, character: Character):
             fight.party.setTarget(character)
-            character.health = 140
+            character.health += 60
             self.playSound()
             renpy.say(character.getRenpyChar(), "Я щит Ваааргуса")
 
         def playSound(self):
             renpy.play("audio/characters/igoryas/taunt.mp3")
+            renpy.pause(1)
+
+    class ReleaseTurns(Ability, NonTarget):
+        def __init__(self, turns):
+            super().__init__(name = "Совершить ходы х({})".format(turns), strength = 1)
+            self.turns = turns
+            self.setTargeted(False)
+
+        def use(self, fight: Fight, character: Character):
+            self.playSound()
+            renpy.say(character.getRenpyChar(), "Поехали")
+            character.abilities = [ability for ability in character.abilities if not isinstance(ability, ReleaseTurns) and not isinstance(ability, StackTurns)]
+            for i in range(self.turns):
+                turnExecuted = True
+                if not fight.isOver():
+                    turnExecuted = False
+                    while not turnExecuted:
+                        turnExecuted = fight.makeTurnNoItems()
+            character.abilities.append(StackTurns())
+            renpy.say(character.getRenpyChar(), "Все")
+
+        def playSound(self):
+            renpy.play("audio/characters/miha/theworldo.mp3")
             renpy.pause(1)
 
     class StackTurns(Ability, NonTarget):
         def __init__(self):
-            super().__init__(name = "Встать стеной", strength = 1)
+            super().__init__(name = "Настакать ходы (Текущее значение: х1)", strength = 1)
+            self.stack = 1
             self.setTargeted(False)
 
-        def use(self, fight: Fight, character: Character):
-            party.setTarget(character)
-            character.health = 140
-            self.playSound()
-            renpy.say(character.getRenpyChar(), "Я щит Ваааргуса")
-
         def playSound(self):
-            renpy.play("audio/characters/igoryas/taunt.mp3")
+            renpy.play("audio/characters/miha/sonic_ring.mp3")
             renpy.pause(1)
+
+        def use(self, fight: Fight, character: Character):
+            self.stack += 1
+            self.name = "Настакать ходы (Текущее значение: х{})".format(self.stack)
+            self.playSound()
+            character.abilities = [ability for ability in character.abilities if not isinstance(ability, ReleaseTurns)]
+            character.abilities.append(ReleaseTurns(self.stack))
 
     class DeadlyBlow(Ability, NonTarget):
         def __init__(self):

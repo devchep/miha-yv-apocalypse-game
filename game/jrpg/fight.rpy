@@ -94,8 +94,11 @@ init 1 python:
             else:
                 MainMenu(confirm=False)()
 
+        def isOver(self):
+            return enemyParty.isWiped() or party.isWiped()
+
         def start(self):
-            while not enemyParty.isWiped() and not party.isWiped():
+            while not self.isOver():
                 turnExecuted = False
                 while not turnExecuted:
                     turnExecuted = self.makeTurn()

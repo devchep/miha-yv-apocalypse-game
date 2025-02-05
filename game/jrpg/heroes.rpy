@@ -7,9 +7,8 @@ init 3 python:
     class Miha(Ally):
         def __init__(self, health, strength):
             super().__init__("Миха", health, strength, "ход Михой")
-
-        def getAbilities(self):
-            return [Insult()]
+            self.abilities = [Insult()]
+            self.skillBranches = [SkillBranch("Миха - Тактик", [StackTurns()])]
 
         def getRenpyChar(self):
             return miha
@@ -29,9 +28,6 @@ init 3 python:
             self.abilities = [Smoke()]
             self.skillBranches = [SkillBranch("Игорь - Стена", [TheWall()])]
 
-        def getAbilities(self):
-            return self.abilities
-
         def getRenpyChar(self):
             return igoryas
 
@@ -40,9 +36,6 @@ init 3 python:
         def __init__(self, health, strength):
             super().__init__("Дрюс", health, strength, "ход Дрюсом")
             self.abilities = [DeadlyBlow()]
-
-        def getAbilities(self):
-            return self.abilities
 
         def getRenpyChar(self):
             return andrei
