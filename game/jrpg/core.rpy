@@ -164,7 +164,7 @@ init 0 python:
             self.lvlup()
             self.abilities.append(ability)
 
-        def resetAbilities(self, ability: Ability):
+        def resetAbilities(self):
             [ability.reset(self) for ability in self.getAbilities()]
 
     class Party:
