@@ -45,5 +45,10 @@ label maximus_palace_split:
     show maximus_postsplit
     pause 38.5
     scene black
+    pause 2
+    scene home with Dissolve(2)
+    miha 'Вот как-то так'
+    miha 'Бля, ну и денёк'
+    scene black with Dissolve(2)
     centered 'THE END'
     

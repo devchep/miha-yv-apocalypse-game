@@ -40,6 +40,8 @@ define fakeLarkin = Character('Larkin', color="#54176A")
 
 define tanya = Character('Капитан Татьяна Линчина', color = "#9c00ac")
 
+define boy = Character('Крейзи школьник', color = '#810050')
+
 init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"

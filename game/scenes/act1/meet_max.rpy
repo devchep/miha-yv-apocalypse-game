@@ -34,12 +34,11 @@
             pass
         "Да ниче, погнали":
             maks "Муваем"
-            call meet_the_police
+            call igoryas_saved
             pass
         'Я вспомнил, у меня заказ прямо сегодня нужно выполнить':
             maks "Это пиздец, Мих"
-            # call home
-            call meet_the_police
+            call home_wasps
             pass
 
     python:
