@@ -6,6 +6,9 @@ init 2 python:
     class CatLikes(Item):
         pass
 
+    class CampItem(Item):
+        pass
+
     class LeshCounter(Item):
         pass
 
@@ -43,6 +46,13 @@ init 2 python:
                 if isinstance(item, FightItem):
                     fightItems.append(("{} {}".format(self.menuName(item), item.effectDesc()), item))
             return fightItems
+
+        def getCampItems(self):
+            campItems = []
+            for item in iter(self.items.values()):
+                if isinstance(item, CampItem):
+                    campItems.append(("{} {}".format(self.menuName(item), item.effectDesc()), item))
+            return campItems
 
         def menuName(self, item: Item):
             return item.name + "(x"+str(item.count)+")" if item.count > 0 else ""
@@ -132,7 +142,7 @@ init 2 python:
         def __init__(self, id):
             super().__init__(name = "Волшебное зелье", count = 1, power = 300, id = id)
 
-        def useInFight(self, character: Character, fight: Fight):
+        def useInFight(self, character: Ally, fight: Fight):
             character.strength = 300
             renpy.say(character.getRenpyChar(), what="ОЩУЩАЮ СИЛИЩЕ")
 

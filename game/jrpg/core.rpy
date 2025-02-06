@@ -98,6 +98,7 @@ init 0 python:
             self.name = name
             self.strength = strength
             self.targeted = True
+            self.active = True
 
         def useAgainst(self, enemy: Character, character: Character):
             character.hit(enemy, self.strength)
@@ -112,11 +113,32 @@ init 0 python:
         def setTargeted(self, val):
             self.targeted = val
 
+        def setInactive(self):
+            self.active = False
+
         def getUpgradePhrase(self):
             return "Охх я чувствую силу"
 
         def reset(self, character: Character):
-            return
+            self.active = True
+
+        def showCharacter(self, image):
+            renpy.show(image, at_list=[left])
+            renpy.with_statement(moveinleft)
+
+        def hideCharacter(self, image):
+            renpy.hide(image)
+            renpy.with_statement(moveoutleft)
+
+        def showCharacterWithSpeed(self, image, timing):
+            renpy.show(image, at_list=[left])
+            moveinleftcustom = MoveTransition(timing, enter=offscreenleft, enter_time_warp=_warper.easein)
+            renpy.with_statement(moveinleftcustom)
+
+        def hideCharacterWithSpeed(self, image, timing):
+            renpy.hide(image)
+            moveoutleftcustom = MoveTransition(timing, leave=offscreenleft, leave_time_warp=_warper.easeout)
+            renpy.with_statement(moveoutleftcustom)
 
     class SkillBranch:
         def __init__(self, name, abilities):
@@ -149,7 +171,7 @@ init 0 python:
             return self.abilities
 
         def getAvailableAbilities(self):
-            return [(ability.name + ability.getStateName(self), ability) for ability in self.getAbilities()]
+            return [(ability.name + ability.getStateName(self), ability) for ability in self.getAbilities() if ability.active]
 
         def hasDialog(self, act):
             return False
@@ -287,3 +309,11 @@ init 0 python:
 
         def react(self, item: Item):
             renpy.say(None, "Враг никак не отреагировал")
+
+        def showCharacter(self, image):
+            renpy.show(image, at_list=[right])
+            renpy.with_statement(moveinright)
+
+        def hideCharacter(self, image):
+            renpy.hide(image)
+            renpy.with_statement(moveoutright)

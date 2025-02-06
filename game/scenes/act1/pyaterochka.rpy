@@ -21,14 +21,14 @@ label pyaterochka:
         inventory.loot(KolbasaDubki("Подарок с Севера от Степы"))
     # gera "Привет, Ст-тепа Аф-ф-ф-тарлы"
     # gera "Монка ... гига"
-    show gera2 at left
+    show gera_magaz at left
     play sound "audio/gena_gorin_privet_stepa.mp3"
     gera ""
     stepa "Так, линейку я уже купил"
     stepa "Я пойду, да"
     stop sound
     stepa "С Димой в доточку жестко рубать собираемся"
-    hide gera2
+    hide gera_magaz
     menu:
         "Вокруг все странно себя ведут, ты не хочешь узнать что происходит?":
             python:
@@ -36,11 +36,12 @@ label pyaterochka:
         "Играть-то можете, но выиграть без меня это вряд ли":
             python:
                 is_dima_infected = True
-    show gera2 at left
+    show gera_magaz at left
     gera "Монка ... гига"
     stepa "Миша, пока"
+    stepa "Тут Гера снова бушует"
     hide stepa2
-    hide gera2
+    hide gera_magaz
     show gera1
     play music "./audio/mysterymorgan.mp3" volume 0.3
     gera "Михаил, наконец мы остались наедине"

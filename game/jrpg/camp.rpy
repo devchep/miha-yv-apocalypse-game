@@ -50,9 +50,9 @@ init 4 python:
             return picked
 
         def useItem(self):
-            pickedItem = self.camp_menu(inventory.getItems())
+            pickedItem = self.camp_menu(inventory.getCampItems())
             pickedAlly = self.camp_menu(party.getAliveMembers())
-            pickedItem.useInFight(pickedAlly)
+            pickedItem.use(pickedAlly)
 
         def upgrade(self, party):
             pickedMember = self.camp_menu(party.getMembersWithUpgrades())

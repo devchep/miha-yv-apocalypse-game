@@ -1,11 +1,23 @@
 ﻿label alexandrovskaya_ariving:
-    #TODO Сюда переход нужен какой-то, типа электрички с диалогом
+    play music '/audio/clock_tick.mp3' volume 0.25
+    play sound '/audio/chuchuh.mp3' volume 0.2
+
+    scene electron with Dissolve(1.5)
+    show maxsit at right
+    pause(1)
+    miha "К чему такая спешка?"
+    maks "Я сам до конца не понимаю что происходит"
+    maks "Но все вокруг меняются очень быстро"
+    maks "Нельзя никому доверять"
+    maks "Поэтому я спешу собрать всех наших"
+
     stop music
+    stop sound
     play music '/audio/clock_tick.mp3' volume 0.1
     play audio "./audio/alexandrovskaya_ambient.mp3" volume 0.5
     scene alexandrovskaya with Dissolve(1.5)
     show max1
-    maks "Бля, хоть бы успели, промедление может стоить ему жизни"
+    maks "Наше промедление может стоить ему жизни"
 
     # cюда передвинул файт с жеканом
     stop music

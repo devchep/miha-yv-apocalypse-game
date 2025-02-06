@@ -4,6 +4,10 @@ python:
     enemyParty = Party()
     enemyParty.addMember(enemy)
 
+hide creep
+with moveoutright
+show creep at right
+with moveinright
 call show_enemy_hp
 call show_party_hp
 play music "./audio/fight3.mp3" volume 0.1
