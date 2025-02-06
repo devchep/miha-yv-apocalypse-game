@@ -27,7 +27,14 @@ menu:
 menu:
     "Я в деле":
         #TODO Бой с Герой
-        "Бой с Герой"
+        # max1heyman: впишу заглушку, если не успеваем файт
+        # "Бой с Герой"
+        maximus "{b}Отлично, а сейчас отойди в сторонку, я с твоими напердышами разберусь{/b}"
+        python:
+            maximus_friend = True
+        pause 2
+        scene black with Dissolve(3)
+        call maximus_palace_split
         return
     "Ебанутый? Я отказываюсь":
         label ready_to_fight_maximus:

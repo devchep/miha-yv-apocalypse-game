@@ -137,4 +137,16 @@
         scene black with Dissolve(2)
         scene tanyaendlast with Dissolve(2)
         scene black with Dissolve(2)
+        scene tanyaendlast with Dissolve(2)
+        miha 'Блять, а как же там парни? Их наверное всех давно позаражали'
+        miha 'Теперь понятно почему Максон так суетил'
+        miha 'Не понятно только, чего он прямо не сказал, он офигел что-ли?'
+        tanya 'Скажи как парней зовут, я попробую в базе пробить, если она еще работает конечно'
+        miha 'Вот список: devchep, max1heyman, naumovdk...'
+        tanya 'Вижу их, они только вчера пересекли границу'
+        miha 'Хах, нихера красавчики, успели свалить все-таки'
+        miha 'Куда это они?'
+        tanya 'В Сербию'
+        miha 'Хм, так может и мы туда?'
+        play audio 'audio/route_change.mp3'
         $ MainMenu(confirm=False)()
