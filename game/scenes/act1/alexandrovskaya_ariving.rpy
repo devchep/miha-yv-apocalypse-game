@@ -69,7 +69,7 @@
     menu:
         "Кинуть:" (action = 1) if inventory.hasThrowables():
             python:
-                pickedItem = renpy.display_menu(inventory.getItems())
+                pickedItem = renpy.display_menu(inventory.getThrowables())
                 inventory.useItem(pickedItem)
             pass
         "Ниче не делать":
@@ -83,7 +83,7 @@
             menu:
                 "Кинуть:" (action = 1) if inventory.hasThrowables():
                     python:
-                        pickedItem = renpy.display_menu(inventory.getItems())
+                        pickedItem = renpy.display_menu(inventory.getThrowables())
                         inventory.useItem(pickedItem)
                     pass
                 "Уйти":

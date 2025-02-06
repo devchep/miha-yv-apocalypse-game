@@ -55,6 +55,14 @@ init 2 python:
 
             return throwables
 
+        def getThrowables(self):
+            throwables = []
+            for item in iter(self.items.values()):
+                if isinstance(item, Throwable):
+                    throwables.append((self.menuName(item), item))
+
+            return throwables
+
         def notEmpty(self):
             return any(item.count > 0 for item in self.items.values())
 
