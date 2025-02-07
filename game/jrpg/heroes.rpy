@@ -104,6 +104,11 @@ init 3 python:
                     renpy.say(self.getRenpyChar(), what="Meow")
                     renpy.say(None, what="Враг стал ласковый")
                     self.strength = 0
+            if isinstance(item, ColaNoSugar):
+                renpy.show('tigr_mem')
+                renpy.pause()
+                renpy.hide('tigr_mem')
+
 
     class Tiktoker:
         def mayBeOffended(self):
