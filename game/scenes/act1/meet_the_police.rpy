@@ -148,5 +148,24 @@
         miha 'Куда это они?'
         tanya 'В Сербию'
         miha 'Хм, так может и мы туда?'
-        play audio 'audio/route_change.mp3'
-        $ MainMenu(confirm=False)()
+        pause 1
+        play audio 'audio/route_changed.mp3' volume 1
+        show welcomeserbia
+        pause
+        scene gayrope
+        play music 'audio/ymca.mp3'
+        lush '{i}Привет, Миш, мы тааааак соскучились{/i}' (what_color="#ff00ec")
+        maks '{i}Мы тебя всему научим{/i}' (what_color="#ff00ec")
+        scene serbia1
+        pause
+        scene serbia2
+        pause
+        scene serbia3
+        pause
+        scene fuck_the_police
+        lush 'ХАХА Тань, смотри, fuck the police типа ахахахаах'
+        scene lush_tits
+        pause
+        scene black with Dissolve(8)
+        centered 'THE END'
+        $ MainMenu(confirm=True)()

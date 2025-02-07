@@ -51,5 +51,5 @@ label maximus_palace_split:
     miha 'Бля, ну и денёк'
     scene black with Dissolve(2)
     centered 'THE END'
-    $ MainMenu(confirm=False)()
+    $ MainMenu(confirm=True)()
     
