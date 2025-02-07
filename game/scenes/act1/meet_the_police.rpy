@@ -67,6 +67,7 @@
     scene jekan_accident
     pause 2
     play sound 'audio/na_kapot.mp3'
+    with vpunch
     miha 'Блять!'
     tanya 'Ебать!'
     scene police_car_inside4

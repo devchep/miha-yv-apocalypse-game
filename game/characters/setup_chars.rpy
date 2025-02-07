@@ -42,6 +42,8 @@ define tanya = Character('Капитан Татьяна Линчина', color =
 
 define boy = Character('Крейзи школьник', color = '#810050')
 
+define grisha = Character('Гриша', color = '#ff1f00')
+
 init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"
