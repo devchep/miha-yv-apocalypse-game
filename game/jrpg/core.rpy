@@ -156,6 +156,9 @@ init 0 python:
             moveoutleftcustom = MoveTransition(timing, leave=offscreenleft, leave_time_warp=_warper.easeout)
             renpy.with_statement(moveoutleftcustom)
 
+        def turnPassed(self):
+            pass
+
     class SkillBranch:
         def __init__(self, name, abilities):
             self.name = name
@@ -207,6 +210,9 @@ init 0 python:
 
         def resetAbilities(self):
             [ability.reset(self) for ability in self.getAbilities()]
+
+        def abilitiesTurnPassed(self):
+            [ability.turnPassed() for ability in self.getAbilities()]
 
     class Party:
         def __init__(self):
@@ -309,6 +315,9 @@ init 0 python:
                 return self.target
 
             return self.getCharacterWithMinHp()
+
+        def abilitiesTurnPassed(self):
+            [member.abilitiesTurnPassed() for member in self.members.values()]
 
     class Enemy(Character):
         def __init__(self, name, health, strength, partyName=None):

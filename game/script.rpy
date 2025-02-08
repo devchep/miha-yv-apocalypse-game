@@ -15,9 +15,6 @@ label start:
         party = Party()
         miha_unit = Miha(60, 6)
         party.addMember(miha_unit)
-        isZakl = True
-
-    jump serbia
 
     call act1
 
@@ -57,6 +54,7 @@ label start:
 #
 #     show screen campButton
 #     ""
-#     call maximus_fight
+#     call korean_fight
+#     call zheka_fight
 #
 #     return

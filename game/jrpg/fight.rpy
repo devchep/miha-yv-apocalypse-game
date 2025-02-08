@@ -85,6 +85,7 @@ init 1 python:
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
+            party.abilitiesTurnPassed()
 
         def wannaContinue(self):
             if party.isWiped():

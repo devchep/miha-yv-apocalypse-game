@@ -114,7 +114,35 @@ init 2 python:
             self.hideCharacterWithSpeed("diman_scream", 1.2)
             renpy.sound.stop()
             renpy.say(None, 'Противник ахуел')
+            self.setInactive()
             fight.makeTurnNoItems()
+
+    class MihaUlt(Ability):
+        def __init__(self):
+            super().__init__(name = "Нанести 20 урона (Каждый ход урон удваивается) (Доступно 1 раз за бой)", strength = 30)
+            self.currentDamageStack = 20
+            self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
+
+        def useAgainst(self, enemy: Character, character: Character):
+            renpy.sound.play("audio/characters/miha/miha_bell.mp3", loop = False)
+            self.showCharacterWithSpeed("miha_god_fist", 0.1)
+            renpy.with_statement(hugepunch)
+            renpy.with_statement(hugepunch)
+            character.hit(enemy, self.currentDamageStack)
+            renpy.with_statement(hugepunch)
+            renpy.with_statement(hugepunch)
+            renpy.pause(.5)
+            self.hideCharacterWithSpeed("miha_god_fist", 1.2)
+            renpy.sound.stop()
+            self.setInactive()
+
+        def turnPassed(self):
+            self.currentDamageStack *= 2
+            self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
+
+        def reset(self, character: Character):
+            self.currentDamageStack = 20
+            self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
     class Smoke(Ability, NonTarget):
         def __init__(self):
@@ -218,6 +246,61 @@ init 2 python:
             self.stack = 1
             self.name = "Настакать ходы (Текущее значение: х{})".format(self.stack)
             character.abilities = [ability for ability in character.abilities if not isinstance(ability, ReleaseTurns)]
+
+    class DeadlyBlow(Ability, NonTarget):
+        def __init__(self):
+            super().__init__(name = "Смертельный удар", strength = 70)
+            self.setTargeted(False)
+
+        def playDeadlyBlowSound(self):
+            renpy.play("audio/characters/drei/deadly_blow.wav")
+
+        def playSetupSound(self):
+            renpy.play("audio/characters/drei/setup_deadly_blow.wav")
+            renpy.pause(0.2)
+
+        def useAgainst(self, enemy: Character, character: Character):
+            if character.preparedAttack > 0:
+                if enemy.health > 50:
+                    character.hitPureDamage(enemy, enemy.max_health - 10)
+                else:
+                    character.hitPureDamage(enemy, enemy.health)
+
+                renpy.with_statement(bigdamagepunch)
+                self.showCharacterWithSpeed("drei-deadly-blow", 0.1)
+                self.playDeadlyBlowSound()
+                self.hideCharacterWithSpeed("drei-deadly-blow", 0.1)
+
+                character.setInvincible(False)
+                character.setPreparedAttack(0)
+                self.setTargeted(False)
+                renpy.pause(0.2)
+                return
+
+            self.setup(character)
+
+        def use(self, fight: Fight, character: Character):
+            self.setup(character)
+
+        def setup(self, character):
+            character.setPreparedAttack(1)
+            self.playSetupSound()
+            character.setInvincible(True)
+            self.setTargeted(True)
+            self.showCharacter("drei-invise")
+            renpy.say(None, 'Дрей ушел в инвиз')
+            self.hideCharacter("drei-invise")
+
+        def getStateName(self, character: Character):
+            if character.preparedAttack > 0:
+                return ""
+            else:
+                return " (Подготовка)"
+
+        def reset(self, character: Character):
+            character.setInvincible(False)
+            character.setPreparedAttack(0)
+            self.setTargeted(False)
 
     class DeadlyBlow(Ability, NonTarget):
         def __init__(self):

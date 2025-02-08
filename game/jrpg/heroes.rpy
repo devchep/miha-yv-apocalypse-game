@@ -8,7 +8,10 @@ init 3 python:
         def __init__(self, health, strength):
             super().__init__("Миха", health, strength, "ход Михой")
             self.abilities = [Insult()]
-            self.skillBranches = [SkillBranch("Миха - Тактик", [StackTurns()])]
+            self.skillBranches = [
+                SkillBranch("Стаки ходов", [StackTurns()]),
+                SkillBranch("Ульта Михи", [MihaUlt()])
+            ]
 
         def getRenpyChar(self):
             return miha
@@ -17,7 +20,7 @@ init 3 python:
         def __init__(self, health, strength):
             super().__init__("Макс", health, strength, "ход Максом")
             self.abilities = [Shoulder()]
-            self.skillBranches = [SkillBranch("Максон - Машина ппц", [AoeShoulder()])]
+            self.skillBranches = [SkillBranch("Машиной проехаться по всем врагам", [AoeShoulder()])]
 
         def getRenpyChar(self):
             return maks
