@@ -90,3 +90,7 @@ init 2 python:
         renpy.hide("lush6")
         renpy.hide("lush7")
         renpy.hide("lush_ananas")
+
+    def hide_all_drei():
+        renpy.hide("drei1")
+        renpy.hide("tigr")

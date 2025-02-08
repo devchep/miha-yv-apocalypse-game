@@ -53,12 +53,6 @@
                     call yandex_virus_death
                 "Забей, Андрюх, погнали":
                     pass
-            hide drei1
-            show max1 at right
-            maks "Едем спасать Диманов"
-            miha "Куда?"
-            maks "В офис Яндекса, он же вроде в Яндексе"
-
         "Уйти":
             pass
     stop sound

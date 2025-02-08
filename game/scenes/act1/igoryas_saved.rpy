@@ -285,7 +285,7 @@ label igoryas_saved:
     python:
         hide_all_max()
     show max4 at right
-    maks "Степа, я правильно понимаю, что нас в гейропу просто так не путсят?"
+    maks "Степа, я правильно понимаю, что нас в гейропу просто так не пуcтят?"
     maks "Из-за, так сказать, запрета на импорт российского газа"
 
     python:
@@ -369,7 +369,7 @@ label igoryas_saved:
 
             scene black with Dissolve(1)
             menu:
-                "Совершить непристойнейшее мероприятие":
+                "Предать огню российский газ":
                     pass
             scene srat_komnata with Dissolve(1)
 
