@@ -407,12 +407,14 @@ style navigation_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
 screen main_menu():
-
+    add Movie(size=(1920, 1080))
+    on "show" action Play("movie", "./video/main_menu.webm", loop=True)
+    on "hide" action Stop("movie")
+    on "replace" action Play("movie", "./video/main_menu.webm", loop=True)
+    on "replaced" action Stop("movie")
     ## Этот тег гарантирует, что любой другой экран с тем же тегом будет
     ## заменять этот.
     tag menu
-
-    add gui.main_menu_background
 
     ## Эта пустая рамка затеняет главное меню.
     frame:
@@ -476,10 +478,7 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     style_prefix "game_menu"
 
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
+    add gui.game_menu_background
 
     frame:
         style "game_menu_outer_frame"

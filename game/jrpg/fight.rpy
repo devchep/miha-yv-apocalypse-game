@@ -80,6 +80,7 @@ init 1 python:
             while not turnExecuted:
                 pickedOption = renpy.display_menu(party.getMembersForNextAttack())
                 turnExecuted = self.castAbility(pickedOption)
+            return turnExecuted
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
