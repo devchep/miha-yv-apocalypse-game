@@ -162,6 +162,9 @@ label igoryas_saved:
     stop sound
 
     # степа мы в опасности, нам нужно сваливать
+    python:
+        hide_all_max()
+    show max_happy at right
     maks "Я рад, что мне не пришлось для вас все разжевывать"
     maks "И рисковать своей жизнью"
     maks "А ты наконец-то меня понял"
@@ -184,6 +187,9 @@ label igoryas_saved:
     lush ""
     stop sound
 
+    python:
+        hide_all_max()
+    show max_angry at right
     maks "Только мне стоило подумать, что ты в адеквате"
     maks "Сегодня у Михи вообще-то дэрэ"
     maks "Можно же один день себя вести нормаль-"
@@ -224,7 +230,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush_wc_1 at left
-    play sound "lush/snesli-dom.ogg" volume 3
+    play sound "lush/snesli-dom.ogg" volume 5
     lush ""
     stop sound
 
@@ -240,7 +246,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush1 at left
-    play sound "characters/lesh/lush-ya-v-serbii.ogg"
+    play sound "characters/lesh/lush-ya-v-serbii.ogg" volume 4
     lush ""
     stop sound
     
@@ -257,7 +263,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush3 at left
-    play sound "characters/lesh/lush-tam-eto-gde.ogg"
+    play sound "characters/lesh/lush-tam-eto-gde.ogg" volume 4
     lush ""
     stop sound
 
@@ -269,7 +275,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush4 at left
-    play sound "characters/lesh/from-vk/8.mp3"
+    play sound "characters/lesh/from-vk/8.mp3" volume 3
     lush ""
     stop sound
 
@@ -278,7 +284,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush7 at left
-    play sound "characters/lesh/lush-plan-est.ogg"
+    play sound "characters/lesh/lush-plan-est.ogg" volume 3
     lush ""
     stop sound
 
@@ -291,7 +297,7 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush1 at left
-    play sound "characters/lesh/lush-super-ochevidno.ogg" volume 5
+    play sound "characters/lesh/lush-super-ochevidno.ogg" volume 6
     lush ""
     stop sound
 
@@ -304,14 +310,14 @@ label igoryas_saved:
     python:
         hide_all_lush()
     show lush3 at left
-    play sound "characters/lesh/lush-sha-content.ogg" volume 2
+    play sound "characters/lesh/lush-sha-content.ogg" volume 4
     lush ""
     stop sound
 
     python:
         hide_all_lush()
     show lush3 at left
-    play sound "characters/lesh/lush-viglyadit-uzhasno.ogg" volume 2
+    play sound "characters/lesh/lush-viglyadit-uzhasno.ogg" volume 4
     lush ""
     stop sound
 
@@ -351,7 +357,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush1 at left
-            play sound "characters/lesh/lush-nado-delat-full-VEED.mp3" volume 1.3
+            play sound "characters/lesh/lush-nado-delat-full-VEED.mp3" volume 3
             lush ""
             stop sound
 
@@ -376,7 +382,7 @@ label igoryas_saved:
             miha "Фух"
 
             show lush7 at left
-            play sound "characters/lesh/lush-brat-perdish.ogg" volume 1.5
+            play sound "characters/lesh/lush-brat-perdish.ogg" volume 4
             lush ""
             stop sound
 
@@ -388,18 +394,18 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush_wc_2 at left
-            play sound "characters/lesh/lush-v-golos1.ogg" volume 1.5
+            play sound "characters/lesh/lush-v-golos1.ogg" volume 4
             lush ""
             stop sound
 
             python:
                 hide_all_lush()
             show lush7 at left
-            play sound "characters/lesh/lush-v-golos-s-klounov.ogg" volume 1.5
+            play sound "characters/lesh/lush-v-golos-s-klounov.ogg" volume 3 
             lush ""
             stop sound
 
-            play sound "characters/lesh/lush-legendarniy-moment.ogg" volume 1.5
+            play sound "characters/lesh/lush-legendarniy-moment.ogg" volume 2 
             lush ""
             stop sound
 
@@ -411,7 +417,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush1 at left
-            play sound "characters/lesh/lush-prohodit-VEED.mp3" volume 2
+            play sound "characters/lesh/lush-prohodit-VEED.mp3" volume 5
             lush ""
             stop sound
 
@@ -426,7 +432,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush_wc_2 at left
-            play sound "characters/lesh/lush-bilet-tuda-obratno.ogg" volume 1.5
+            play sound "characters/lesh/lush-bilet-tuda-obratno.ogg" volume 3
             lush ""
             stop sound
 
@@ -438,7 +444,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush3 at left
-            play sound "characters/lesh/from-vk/5.ogg" volume 1.5
+            play sound "characters/lesh/from-vk/5.ogg" volume 4
             lush ""
             stop sound
 
@@ -452,14 +458,14 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush4 at left
-            play sound "characters/lesh/lush-nixuya-ti-pridumal.ogg" volume 1.5
+            play sound "characters/lesh/lush-nixuya-ti-pridumal.ogg" volume 4
             lush ""
             stop sound
 
             python:
                 hide_all_lush()
             show lush7 at left
-            play sound "characters/lesh/lush-anti-diman.ogg" volume 1.5
+            play sound "characters/lesh/lush-anti-diman.ogg" volume 3 
             lush ""
             stop sound
 
@@ -472,7 +478,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush3 at left
-            play sound "characters/lesh/lush-zachem.ogg" volume 1.5
+            play sound "characters/lesh/lush-zachem.ogg" volume 3
             lush ""
             stop sound
 
@@ -487,7 +493,7 @@ label igoryas_saved:
             python:
                 hide_all_lush()
             show lush7 at left
-            play sound "characters/lesh/from-vk/10.ogg" volume 1.5
+            play sound "characters/lesh/from-vk/10.ogg" volume 3
             lush ""
             stop sound
 

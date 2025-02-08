@@ -52,7 +52,7 @@ label beaten:
     scene black with Dissolve(.5)
     maks "Вау"
     maks "Действительно получилось"
-    scene lush_house with Dissolve(.5)
+    scene lushwelcome with Dissolve(.5)
     return
 
 label serbia:
@@ -88,7 +88,7 @@ label serbia:
                 andrei "Степа, сними штаны, закинь их себе на шею"
                 andrei "И повернись к ним голенькой попкой!"
 
-                play sound "characters/lesh/lush-poteryalsa-posle-tvoih-slov.ogg" volume 2
+                play sound "characters/lesh/lush-poteryalsya-posle-tvoih-slov.ogg" volume 2
                 lush ""
                 stop sound
 
@@ -105,6 +105,7 @@ label serbia:
                     hide_all_lush()
                 hide double_gay
 
+                scene black with Dissolve(.5)
                 show podnoshenie with Dissolve(.5)
 
                 play sound "characters/drei/ugoshenia.mp3" volume 2
