@@ -215,9 +215,10 @@ label save_drei:
     maks "Бля, а куда идти то?"
     maks "Дрей же теперь в колизее живет вроде"
     hide max1
-    show igor1 at left
-    igoryas "По-люб колизей"
-    hide igor1
+    if party.contains(Igoryas):
+        show igor1 at left
+        igoryas "По-люб колизей"
+        hide igor1
     show gera1
     play music "./audio/mysterymorgan.mp3" volume 0.3
     gera "Михаил, друзья, мы встретились вновь"

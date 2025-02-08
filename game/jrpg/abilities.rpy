@@ -227,7 +227,7 @@ init 2 python:
     class StackTurns(Ability, NonTarget):
         def __init__(self):
             super().__init__(name = "Настакать ходы (Текущее значение: х2)", strength = 1)
-            self.stack = 2
+            self.stack = 1
             self.setTargeted(False)
 
         def playSound(self):
@@ -245,9 +245,7 @@ init 2 python:
             character.abilities.append(ReleaseTurns(self.stack))
 
         def reset(self, character: Character):
-            self.active = True
-            self.targeted = True
-            self.stack = 2
+            self.stack = 1
             self.name = "Настакать ходы (Текущее значение: х{})".format(self.stack)
             character.abilities = [ability for ability in character.abilities if not isinstance(ability, ReleaseTurns)]
 
@@ -303,7 +301,6 @@ init 2 python:
 
         def reset(self, character: Character):
             self.active = True
-            self.targeted = True
             character.setInvincible(False)
             character.setPreparedAttack(0)
             self.setTargeted(False)
@@ -360,7 +357,6 @@ init 2 python:
 
         def reset(self, character: Character):
             self.active = True
-            self.targeted = True
             character.setInvincible(False)
             character.setPreparedAttack(0)
             self.setTargeted(False)
