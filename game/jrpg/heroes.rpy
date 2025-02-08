@@ -9,8 +9,7 @@ init 3 python:
             super().__init__("Миха", health, strength, "ход Михой")
             self.abilities = [Insult()]
             self.skillBranches = [
-                SkillBranch("Стаки ходов", [StackTurns()]),
-                SkillBranch("Ульта Михи", [MihaUlt()])
+                SkillBranch("Миха стакает нереально", [StackTurns(), MihaUlt()]),
             ]
 
         def getRenpyChar(self):

@@ -1,6 +1,6 @@
 label torop_fight:
 python:
-    enemy = Torop(65, 25)
+    enemy = Torop(65, 29)
     enemyParty = Party()
     enemyParty.addMember(enemy)
     drei_unit = Drei(62, 5)

@@ -119,8 +119,8 @@ init 2 python:
 
     class MihaUlt(Ability):
         def __init__(self):
-            super().__init__(name = "Нанести 20 урона (Каждый ход урон удваивается) (Доступно 1 раз за бой)", strength = 30)
-            self.currentDamageStack = 20
+            super().__init__(name = "Нанести 10 урона (Каждый ход урон удваивается) (Доступно 1 раз за бой)", strength = 30)
+            self.currentDamageStack = 10
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
         def useAgainst(self, enemy: Character, character: Character):
@@ -141,7 +141,7 @@ init 2 python:
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
         def reset(self, character: Character):
-            self.currentDamageStack = 20
+            self.currentDamageStack = 10
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
     class Smoke(Ability, NonTarget):

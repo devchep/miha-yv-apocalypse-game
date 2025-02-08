@@ -276,6 +276,7 @@ init 0 python:
         def resetEverything(self):
             self.resetAbilities()
             self.resetHp()
+            self.resetCharacters()
             self.target = None
 
         def contains(self, instance):
