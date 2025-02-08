@@ -1,4 +1,4 @@
-﻿transform hall_maximus_pos:
+transform hall_maximus_pos:
     xalign 0.55
     yalign 0.62
 transform hall_zlodei_pos:
@@ -65,8 +65,20 @@ label meet_maximus:
             maximus "Божечки"
             hide zlodei1_smol
             maximus "Я чуть ли не потратил свой последний на сегодня ящик"
-            "Бой с Максимусом без КД ящика"
+            maximus '{b}ББ ДАуничи{/b}'
             #TODO Бой с Максимусом без КД ящика
+            "Бой с Максимусом без КД ящика"
+            scene black 
+            show maximus with Dissolve(.1)
+            maximus '{b}Какие же вы ничтожные{/b}'
+            maximus '{b}САМИ{/b} пришли ко мне...'
+            maximus 'На {b}что{/b} вы вообще рассчитывали?'
+            maximus 'Но за {b}Яндекс.Доставку{/b} крови благодарю'
+            maximus 'А сейчас прошу меня извинить, у меня планы'
+            get_achievement("blya_derzhi_yashik", trans=achievement_transform)
+            call maximus_palace_split
+
+            
             return
 
     scene maximus_hall_hide

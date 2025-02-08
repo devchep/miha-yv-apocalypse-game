@@ -74,6 +74,12 @@ init python:
                                             "text": "Ты думай чем тигра кормишь",
                                             "icon": "images/icons/tigr-govno.png",
                                         },
+                                    "blya_derzhi_yashik": {
+                                            "type": 0,
+                                            "title": "Офигеть, да?",
+                                            "text": "Нет, блять, не офигеть",
+                                            "icon": "images/icons/yashik_achiev.png",
+                                        },
                                     }
 
 
