@@ -82,6 +82,9 @@ label beaten:
 
 label serbia:
     scene electron with Dissolve(.5)
+    show babka:
+        xalign 0.8
+        yalign 0.4
     show max_happy at right
     maks "Я рад, парни"
     maks "Чувствую, что это правильный выбор"

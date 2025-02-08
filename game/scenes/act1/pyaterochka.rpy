@@ -38,8 +38,8 @@ label pyaterochka:
                 is_dima_infected = True
     show gera_magaz at left
     gera "Монка ... гига"
+    stepa "Гера снова бушует"
     stepa "Миша, пока"
-    stepa "Тут Гера снова бушует"
     hide stepa2
     hide gera_magaz
     show gera1
@@ -47,7 +47,6 @@ label pyaterochka:
     gera "Михаил, наконец мы остались наедине"
     gera "Происходят ужасные вещи и время на исходе"
     gera "Вам следует быть предельно осторожным"
-    gera "///////"
     gera "Мы более не можем тратить время на этот разговор"
     gera "Вам пора"
     hide gera1
