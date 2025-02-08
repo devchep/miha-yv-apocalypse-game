@@ -137,7 +137,6 @@ init 0 python:
 
         def reset(self, character: Character):
             self.active = True
-            self.targeted = True
 
         def showCharacter(self, image):
             renpy.show(image, at_list=[left])
