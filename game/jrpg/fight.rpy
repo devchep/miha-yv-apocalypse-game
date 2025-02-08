@@ -76,8 +76,10 @@ init 1 python:
             return turnExecuted
 
         def makeTurnNoItems(self):
-            pickedOption = renpy.display_menu(party.getMembersForNextAttack())
-            return self.castAbility(pickedOption)
+            turnExecuted = False
+            while not turnExecuted:
+                pickedOption = renpy.display_menu(party.getMembersForNextAttack())
+                turnExecuted = self.castAbility(pickedOption)
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
@@ -105,6 +107,20 @@ init 1 python:
                 self.turnEnd()
                 renpy.pause(1)
                 self.enemyTurn()
+
+            if party.isWiped() or party.mihaIsDead():
+                self.wannaContinue()
+            party.resetEverything()
+
+        def startReverse(self):
+            while not self.isOver():
+                self.enemyTurn()
+                renpy.pause(1)
+                if not self.isOver():
+                    turnExecuted = False
+                    while not turnExecuted:
+                        turnExecuted = self.makeTurn()
+                    self.turnEnd()
 
             if party.isWiped() or party.mihaIsDead():
                 self.wannaContinue()

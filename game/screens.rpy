@@ -290,6 +290,57 @@ style quick_button_text:
 ## Этот экран включает в себя главное и игровое меню, и обеспечивает навигацию к
 ## другим меню и к началу игры.
 
+## Achievements screen #######################################################
+##
+screen achGallery():
+    tag menu
+    $ notUnlocked = "#000"
+    use game_menu(_("Достижения")):
+        vbox:
+            frame:
+                background None
+                xmaximum 960 ymaximum 960
+                viewport:
+                    yinitial 0
+                    scrollbars "vertical"
+                    mousewheel True
+                    draggable True
+                    frame:
+                        background "#FE6161"
+                        vbox:
+                            for key, ach in persistent.achievements_unlocked.items():
+                                $ title = ach.get('title')
+                                $ text = ach.get('text')
+                                $ icon = ach.get('icon')
+                                button:
+                                    xfill True
+                                    hbox:
+                                        add icon
+                                        yalign .5
+                                        spacing 16
+                                        vbox:
+                                            spacing 16
+                                            text "[title]"
+                                            text "[text]"
+                                            text ""
+
+                            for key, ach in persistent.achievements_dict.items():
+                                if not persistent.achievements_unlocked.has_key(key):
+                                    $ title = ach.get('title')
+                                    button:
+                                        background "#F5F5F5"
+                                        xfill True
+                                        hbox:
+                                            add "images/icons/lockedAch.png"
+                                            yalign .5
+                                            spacing 16
+                                            vbox:
+                                                spacing 16
+                                                text "[title]"
+                                                text ""
+                                                text ""
+
+
 screen navigation():
 
     vbox:
@@ -311,6 +362,8 @@ screen navigation():
             textbutton _("Сохранить") action ShowMenu("save")
 
         textbutton _("Загрузить") action ShowMenu("load")
+
+        textbutton _("Достижения") action ShowMenu("achGallery")
 
         textbutton _("Настройки") action ShowMenu("preferences")
 

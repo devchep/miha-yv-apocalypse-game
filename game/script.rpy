@@ -40,6 +40,7 @@ label start:
 #         party.getExp(2)
 #
 #     python:
+#         inventory.loot(ColaNoSugar("2 колы по купону 5050"))
 #         inventory.choice(
 #             2,
 #             [
@@ -51,8 +52,5 @@ label start:
 #
 #
 #     show screen campButton
-#     ""
-#     call zheka_fight
-#     call torop_fight
 #
 #     return
