@@ -120,7 +120,7 @@ if party.contains(Drei):
     hide andreiflower
 if party.contains(Igoryas):
     show igor_dovolen
-    drei "Мы такие молодцы"
+    igoryas "Мы такие молодцы"
     hide igor_dovolen
 
 scene black
