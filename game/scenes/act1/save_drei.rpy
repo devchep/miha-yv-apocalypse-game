@@ -27,7 +27,7 @@ label gay_fight:
     show gay_scene with Dissolve(.5)
     python:
         anal_unit = Anal(65, 40)
-        hunt_unit = Hunt(30, 50)
+        hunt_unit = Hunt(50, 30)
         enemyParty = Party()
         enemyParty.addMember(anal_unit)
         enemyParty.addMember(hunt_unit)

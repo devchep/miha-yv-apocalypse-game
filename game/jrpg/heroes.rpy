@@ -342,6 +342,15 @@ init 3 python:
         def getAttackPower(self):
             return self.strength
 
+        def attack(self, party: Party):
+            for i in range(2):
+                x = random.choice(list(party.members.values()))
+                x.disabled(1)
+                x.health -= self.getAttackPower()
+                self.playAttackSound()
+                renpy.say(self.getRenpyChar(), what=self.attack_phrase())
+                renpy.say(None, f'{x.name} не может наносить урон')
+
         def insultingPhrase(self):
             return random.choice([
                 "Тебе бы даже Игорь не присунул",
@@ -357,23 +366,23 @@ init 3 python:
             super().__init__(name = "Анальный говносос", health = health, strength = strength)
 
         def attack_phrase(self):
-            return random.choice(["Получай"])
+            return random.choice(["*Пукнул спермой*"])
 
         def getRenpyChar(self):
             return anal
 
         def playAttackSound(self):
-            renpy.play("audio/fireball.mp3")
+            renpy.play("audio/cum-fart.mp3")
     
     class Hunt(Gay, Enemy):
         def __init__(self, health, strength):
             super().__init__(name = "Hunter", health = health, strength = strength)
 
         def attack_phrase(self):
-            return random.choice(["Получай"])
+            return random.choice(["*Пукнул спермой*"])
 
         def getRenpyChar(self):
             return hunter
 
         def playAttackSound(self):
-            renpy.play("audio/fireball.mp3")
+            renpy.play("audio/cum-fart.mp3")
