@@ -1,4 +1,89 @@
-﻿label maybe_serbia:
+﻿label gay_fight:
+    
+    pass
+
+label beaten:
+    scene black with Dissolve(.5)
+    maks "Вау"
+    maks "Действительно получилось"
+    scene lush_house with Dissolve(.5)
+    return
+
+label serbia:
+    scene electron with Dissolve(.5)
+    show max_happy at right
+    maks "Я рад, парни"
+    maks "Чувствую, что это правильный выбор"
+
+
+    # TODO : ambient gachi
+    scene gay_parad with Dissolve(.5)
+
+    show lush_jetpack at right
+
+    play sound "characters/lesh/lush-anal-govnosos.ogg" volume 1
+    unknown ""
+    stop sound
+
+    show double_gay at left
+    anal '{i}Дечко где бежиш, још нисмо готови' (what_color="#ff00ec")
+    
+    maks "Здесь что, гей парад проходит?"
+
+    play sound "characters/lesh/lush-prohodit.ogg" volume 2
+    unknown ""
+    stop sound
+
+    menu:
+        "Вписываем за Люша, парни":
+            if True: #party.contains(Drei): и колбаса
+                show drei1
+                andrei "Миха, стой"
+                andrei "У меня есть идея"
+                andrei "Степа, сними штаны, закинь их себе на шею"
+                andrei "И повернись к ним голенькой попкой!"
+
+                play sound "characters/lesh/lush-poteryalsa-posle-tvoih-slov.ogg" volume 2
+                unknown ""
+                stop sound
+
+                python:
+                    hide_all_lush()
+                show lush5 at right
+
+                play sound "characters/lesh/lush-mne-pizda.ogg" volume 2
+                unknown ""
+                stop sound
+
+                python:
+                    hide_all_drei()
+                    hide_all_lush()
+                hide double_gay
+
+                show podnoshenie with Dissolve(.5)
+
+                play sound "characters/drei/ugoshenia.mp3" volume 2
+                andrei ""
+                stop sound
+
+                jump beaten
+                return
+            else:
+                # call_fight
+                pass
+                return
+        "Я разберусь сам":
+            show ya_mikhail
+            unknown ""
+
+            # call_fight
+            pass
+
+    jump beaten
+
+    return
+
+label maybe_serbia:
     scene vokzal with Dissolve(.5)
     show igor_pretty at left
     igoryas "Элка до Сербии через 15 минут"
@@ -31,6 +116,8 @@
         "Ты прав, Диман, бы нас не бросил":
             jump act2
             pass
+
+    return
 
 label save_drei:
     stop music

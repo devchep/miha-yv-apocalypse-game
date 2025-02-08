@@ -17,6 +17,8 @@ label start:
         party.addMember(miha_unit)
         isZakl = True
 
+    jump serbia
+
     call act1
 
     scene black
