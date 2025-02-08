@@ -76,11 +76,12 @@ init 1 python:
             return turnExecuted
 
         def makeTurnNoItems(self):
-            turnExecuted = False
-            while not turnExecuted:
-                pickedOption = renpy.display_menu(party.getMembersForNextAttack())
-                turnExecuted = self.castAbility(pickedOption)
-            return turnExecuted
+            if len(enemyParty.getAliveMembers()) > 0:
+                turnExecuted = False
+                while not turnExecuted:
+                    pickedOption = renpy.display_menu(party.getMembersForNextAttack())
+                    turnExecuted = self.castAbility(pickedOption)
+                return turnExecuted
 
         def turnEnd(self):
             [member.disabledTurnPassed() for member in party.members.values()]
