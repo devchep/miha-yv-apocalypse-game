@@ -57,5 +57,5 @@ label maximus_palace_split:
     nvle "Это конец"
     nvle "Максимус реализовал все, что планировал"
     nvle "Такое себе чето)"
-    $ MainMenu(confirm=True)()
+    $ MainMenu(confirm=False)()
     

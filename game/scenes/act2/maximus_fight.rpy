@@ -154,4 +154,4 @@ nvle "Правда ведь?"
 python:
     get_achievement("victory", trans=achievement_transform)
 nvle "Все молодцы"
-
+$ MainMenu(confirm=False)()
