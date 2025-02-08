@@ -15,6 +15,7 @@ label start:
         party = Party()
         miha_unit = Miha(60, 6)
         party.addMember(miha_unit)
+        isZakl = False
 
     call act1
 
