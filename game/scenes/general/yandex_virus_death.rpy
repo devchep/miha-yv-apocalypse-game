@@ -14,7 +14,7 @@ label yandex_virus_death:
     pause(357)
     "Ты заражен Яндекс.Вирусом"
     scene black with Dissolve(1.5)
-    "Миха листал тиктоки пока не кончился Яндекс.Плюс"
+    "И листал тиктоки пока не кончился Яндекс.Плюс"
     scene yandex_zen with Dissolve(1.5)
     "А после впал в Яндекс.Дзен {color=#000000}навсегда{/color}"
     play sound "audio/characters/respawn.mp3"
