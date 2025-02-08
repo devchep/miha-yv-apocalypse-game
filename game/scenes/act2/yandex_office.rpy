@@ -41,5 +41,6 @@
     miha "разьебашили"
 
     scene hostages with Dissolve(.5)
+    call pre_maximus_dialogue
     ""
     "....."

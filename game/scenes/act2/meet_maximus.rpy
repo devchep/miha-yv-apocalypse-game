@@ -30,7 +30,6 @@ label meet_maximus:
     scene petergof with Dissolve(.5)
     miha "Мы тут"
     miha "Петергофский дворец"
-    miha "Все зацепки ведут сюда"
     scene entrance1 with Dissolve(.5)
     menu:
         "Войти":
