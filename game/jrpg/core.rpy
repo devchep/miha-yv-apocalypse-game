@@ -34,6 +34,7 @@ init 0 python:
             self.invincible = False
             self.preparedAttack = 0
             self.disabled_turns_count = 0
+            self.vampirism = False
 
         def mayBeOffended(self):
             return False
@@ -61,12 +62,16 @@ init 0 python:
                 renpy.say(None, "Атака не нанесла урона")
                 return
             enemy.health -= strength*enemy.vulnerableRatio
+            if self.vampirism:
+                self.health += strength*enemy.vulnerableRatio
 
         def hitPureDamage(self, enemy, strength):
             if self.disabled_turns_count > 0:
                 renpy.say(None, "Атака не нанесла урона")
                 return
             enemy.health -= strength
+            if self.vampirism:
+                self.health += strength
 
         def healMax(self):
             self.health = self.max_health
@@ -89,6 +94,9 @@ init 0 python:
 
         def getRenpyChar(self):
             return None
+
+        def addVampirism(self):
+            self.vampirism = True
 
         def react(self, item: Item):
             pass
@@ -241,6 +249,15 @@ init 0 python:
 
         def resetAbilities(self):
             [member.resetAbilities() for member in self.members.values()]
+
+        def resetCharacters(self):
+            for member in self.members.values():
+                member.isOffended = False
+                member.vulnerableRatio = 1
+                member.invincible = False
+                member.preparedAttack = 0
+                member.disabled_turns_count = 0
+                member.vampirism = False
 
         def resetEverything(self):
             self.resetAbilities()

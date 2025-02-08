@@ -55,6 +55,22 @@ init 2 python:
             [character.hit(enemy, self.strength) for enemy in fight.enemyParty.members.values()]
             self.playSound()
 
+    class Vampirism(Ability):
+        def __init__(self):
+            super().__init__(name = "Высадка вампиров (Дает вампиризм всем союзникам)", strength = 30)
+            self.setTargeted(False)
+
+        def use(self, fight: Fight, character: Character):
+            renpy.sound.play("audio/characters/igoryas/vampire.mp3", loop = False)
+            self.showCharacterWithSpeed("vampire", 1.5)
+            renpy.show("vampirism")
+            renpy.pause(.2)
+            [member.addVampirism() for member in fight.party.members.values()]
+            self.hideCharacterWithSpeed("vampire", 1.5)
+            renpy.hide("vampirism")
+            renpy.say(None, what="Все парни получили вампиризм")
+            renpy.sound.stop()
+
     class Smoke(Ability, NonTarget):
         def __init__(self):
             super().__init__(name = "Дымка 50 никотина (Ослабляет противников)", strength = 1)

@@ -26,7 +26,10 @@ init 3 python:
         def __init__(self, health, strength):
             super().__init__("Игоряс", health, strength, "ход Игорясом")
             self.abilities = [Smoke()]
-            self.skillBranches = [SkillBranch("Игорь - Стена", [TheWall()])]
+            self.skillBranches = [
+                SkillBranch("Провокация", [TheWall()]),
+                SkillBranch("Вампиризм", [Vampirism()]),
+            ]
 
         def getRenpyChar(self):
             return igoryas
