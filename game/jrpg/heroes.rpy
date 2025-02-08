@@ -333,3 +333,47 @@ init 3 python:
 
         def playAttackSound(self):
             renpy.play("audio/fireball.mp3")
+
+
+    class Gay:
+        def mayBeOffended(self):
+            return True
+
+        def getAttackPower(self):
+            return self.strength
+
+        def insultingPhrase(self):
+            return random.choice([
+                "Тебе бы даже Игорь не присунул",
+                "Ты кончил или пукнул?",
+                "Мне больше трапы нравятся",
+            ])
+
+        def offendEffectAnnounce(self):
+            renpy.say(None, f'Ой ну прям')
+
+    class Anal(Gay, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Анальный говносос", health = health, strength = strength)
+
+        def attack_phrase(self):
+            return random.choice(["Получай"])
+
+        def getRenpyChar(self):
+            return anal
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")
+    
+    class Hunt(Gay, Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Hunter", health = health, strength = strength)
+
+        def attack_phrase(self):
+            return random.choice(["Получай"])
+
+        def getRenpyChar(self):
+            return hunter
+
+        def playAttackSound(self):
+            renpy.play("audio/fireball.mp3")

@@ -1,5 +1,51 @@
-﻿label gay_fight:
-    
+﻿label gay_hp:
+    screen anal_hp:
+        vbox:
+            xalign 1.0
+            yalign 0.05
+            frame:
+                padding 10, 10, 10, 10
+                background "#EBEBEB"
+                text "[anal_unit.name]: [anal_unit.health]/[anal_unit.max_health]"
+        bar value anal_unit.health range anal_unit.max_health xalign 1.0 yalign 0.1 xmaximum 230
+    screen hunt_hp:
+        vbox:
+            xalign 1.0
+            yalign 0.15
+            frame:
+                padding 10, 10, 10, 10
+                background "#EBEBEB"
+                text "[hunt_unit.name]: [hunt_unit.health]/[hunt_unit.max_health]"
+        bar value hunt_unit.health range hunt_unit.max_health xalign 1.0 yalign 0.20 xmaximum 210
+
+    show screen anal_hp
+    show screen hunt_hp
+    return
+
+label gay_fight:
+    play music "./audio/gachi.mp3" volume 0.2 fadein 5
+    show gay_scene with Dissolve(.5)
+    python:
+        anal_unit = Anal(65, 40)
+        hunt_unit = Hunt(30, 50)
+        enemyParty = Party()
+        enemyParty.addMember(anal_unit)
+        enemyParty.addMember(hunt_unit)
+
+    unknown ""
+
+    call gay_hp
+    call show_party_hp
+
+    unknown ""
+
+    python:
+        fight = Fight(party, enemyParty, "gay")
+        fight.start()
+
+    hide screen anal_hp
+    hide screen hunt_hp
+    call hide_party_hp
     pass
 
 label beaten:
@@ -15,14 +61,13 @@ label serbia:
     maks "Я рад, парни"
     maks "Чувствую, что это правильный выбор"
 
-
-    # TODO : ambient gachi
+    play music "./audio/village-people-ymca.mp3" volume 0.2 fadein 5
     scene gay_parad with Dissolve(.5)
 
     show lush_jetpack at right
 
     play sound "characters/lesh/lush-anal-govnosos.ogg" volume 1
-    unknown ""
+    lush ""
     stop sound
 
     show double_gay at left
@@ -31,12 +76,12 @@ label serbia:
     maks "Здесь что, гей парад проходит?"
 
     play sound "characters/lesh/lush-prohodit.ogg" volume 2
-    unknown ""
+    lush ""
     stop sound
 
     menu:
         "Вписываем за Люша, парни":
-            if True: #party.contains(Drei): и колбаса
+            if party.contains(Drei) and inventory.hasDubki():
                 show drei1
                 andrei "Миха, стой"
                 andrei "У меня есть идея"
@@ -44,7 +89,7 @@ label serbia:
                 andrei "И повернись к ним голенькой попкой!"
 
                 play sound "characters/lesh/lush-poteryalsa-posle-tvoih-slov.ogg" volume 2
-                unknown ""
+                lush ""
                 stop sound
 
                 python:
@@ -52,7 +97,7 @@ label serbia:
                 show lush5 at right
 
                 play sound "characters/lesh/lush-mne-pizda.ogg" volume 2
-                unknown ""
+                lush ""
                 stop sound
 
                 python:
@@ -69,14 +114,15 @@ label serbia:
                 jump beaten
                 return
             else:
-                # call_fight
+                call gay_fight
                 pass
                 return
         "Я разберусь сам":
             show ya_mikhail
-            unknown ""
+            maks "Не получилось походу"
+            maks "Парни, помогаем"
 
-            # call_fight
+            call gay_fight
             pass
 
     jump beaten

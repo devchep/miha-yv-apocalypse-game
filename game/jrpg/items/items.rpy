@@ -65,6 +65,12 @@ init 2 python:
 
             return throwables
 
+        def hasDubki(self):
+            for i in self.items.values():
+                if isinstance(i, KolbasaDubki):
+                    return True
+            return False
+
         def getThrowables(self):
             throwables = []
             for item in iter(self.items.values()):
