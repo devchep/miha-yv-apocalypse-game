@@ -52,7 +52,5 @@ label start:
 #
 #
 #     show screen campButton
-#     ""
-#     call colosseum_fight
 #
 #     return
