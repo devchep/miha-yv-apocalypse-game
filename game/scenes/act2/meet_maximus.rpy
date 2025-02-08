@@ -62,13 +62,33 @@ label meet_maximus:
             hide gera_scared with Dissolve(1.65)
             stop sound
             show maximus with Dissolve(.1)
-            maximus "Божечки"
+            maximus '{b}Божечки{/b}'
             hide zlodei1_smol
-            maximus "Я чуть ли не потратил свой последний на сегодня ящик"
+            maximus '{b}Я чуть ли не потратил свой последний на сегодня ящик{/b}'
             maximus '{b}ББ ДАуничи{/b}'
-            #TODO Бой с Максимусом без КД ящика
-            "Бой с Максимусом без КД ящика"
-            scene black 
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            play sound "audio/characters/maximus/yashik.mp3"
+            play sound "audio/bigboom.mp3"
+            scene yashik_death with flashbulb
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            with bigdamagepunch
+            pause 1
+            scene black
             show maximus with Dissolve(.1)
             maximus '{b}Какие же вы ничтожные{/b}'
             maximus '{b}САМИ{/b} пришли ко мне...'
@@ -77,9 +97,9 @@ label meet_maximus:
             maximus 'А сейчас прошу меня извинить, у меня планы'
             python:
                 get_achievement("blya_derzhi_yashik", trans=achievement_transform)
+            python:
+                maximus_friend = False
             call maximus_palace_split
-
-            
             return
 
     scene maximus_hall_hide

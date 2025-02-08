@@ -6,8 +6,8 @@ label show_maximus_hp:
             frame:
                 padding 10, 10, 10, 10
                 background "#EBEBEB"
-                text "{b}[enemy.name]: [enemy.health]/[enemy.max_health]{/b}"
-        bar value enemy.health range enemy.max_health xalign 1.0 yalign 0.05 xmaximum 2000 ymaximum 45
+                text "{b}[enemy.name]: [enemy.max_health]/[enemy.max_health]{/b}"
+        bar value enemy.max_health range enemy.max_health xalign 1.0 yalign 0.05 xmaximum 2000 ymaximum 45
 
     show screen maximus_hp
     return

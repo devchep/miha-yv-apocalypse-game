@@ -15,8 +15,8 @@ python:
     fight = Fight(party, enemyParty, "colosseum_fight")
     fight.start()
 
+python:
     party.getExp(1)
-
 hide tigr
 call hide_enemy_hp
 call hide_party_hp

@@ -21,6 +21,8 @@ python:
     fight = Fight(party, enemyParty, "korean_fight")
     fight.start()
 
+python:
+    party.getExp(2)
 call hide_chinese_hp
 call hide_party_hp
 stop music

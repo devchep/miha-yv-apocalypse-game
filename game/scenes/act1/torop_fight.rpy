@@ -26,6 +26,8 @@ python:
     fight = Fight(party, enemyParty, "torop_fight")
     fight.start()
 
+python:
+    party.getExp(2)
 hide torop
 call hide_enemy_hp
 call hide_party_hp

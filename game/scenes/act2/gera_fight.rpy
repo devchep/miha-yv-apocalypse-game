@@ -15,6 +15,6 @@ python:
     fight = Fight(party, enemyParty, "gera_fight")
     fight.startReverse()
 
-call hide_chinese_hp
+call hide_enemy_hp
 call hide_party_hp
 stop music

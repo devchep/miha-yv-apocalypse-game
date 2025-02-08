@@ -230,6 +230,13 @@ label save_drei:
     maks "Ну че, куда идем?"
     menu:
         "К Калитке":
+            if party.hasExp():
+                play music "./audio/mysterymorgan.mp3" volume 0.3
+                show gera1
+                gera "Михаил, настойчиво рекомендую перейти в лагерь и использовать весь накопленный опыт перед входом в следующую локацию"
+                hide gera1
+                play music "./audio/soundtrack5.mp3" volume 0.3
+                miha "Да все окей окей, на созвоне"
             call kalitka_house
         "В Колизей":
             if party.hasExp():

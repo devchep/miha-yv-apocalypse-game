@@ -1,3 +1,5 @@
+python:
+    bigdamagepunch = Move((15, 0), (0, 15), .10, bounce=True, repeat=True, delay=0)
 label maximus_fight:
 python:
     enemy = Maximus(100000000000, 100)
@@ -51,12 +53,32 @@ menu:
         hide gera_mad
         call gera_fight
         hide gera_axe
-        maximus "{b}Отлично, а сейчас отойди в сторонку, я с твоими напердышами разберусь{/b}"
+
+        maximus "{b}Миха, отлично, а сейчас отойди в сторонку{/b}"
+        maximus "{b}Я разберусь с нечистой кровью{/b}"
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
+        with bigdamagepunch
         python:
             maximus_friend = True
         pause 2
         scene black with Dissolve(3)
-        call maximus_palace_split
+        scene black
+        nvle "Миха присоединился к Максимусу"
+        nvle "Предашись идее чистой крови"
+        nvle "Очищенной от потребления ненужного, мусорного, ничтожного, быстро-допаминового контента"
+        call vsem_pizda
         return
     "Ебанутый? Я отказываюсь":
         label ready_to_fight_maximus:
@@ -65,15 +87,71 @@ menu:
         call show_party_hp
         "Бой продолжен"
 
+python:
+    enemy.health = 150
 $ renpy.save("maximus_fight")
 python:
-    [member.disabled(4) for member in party.members.values()]
+    [member.disabled(2) for member in party.members.values()]
 
 python:
     fight = Fight(party, enemyParty, "maximus_fight")
     fight.start()
 
+python:
+    enemy.max_health = 999999999999
+maximus "{b}Хм{/b}"
 hide maximus
 call hide_maximus_hp
 call hide_party_hp
 stop music
+scene gates_chill with Dissolve(.2)
+play music "./audio/who_are_you.mp3" volume 0.8
+"Максимус исчез"
+show max1
+maks "Это невероятно"
+miha "Да"
+maks "Максимус побежден?"
+hide max1
+miha "Ахахах"
+miha "Мы победили?"
+if party.contains(Drei):
+    show drei1
+    andrei "Парни я так рад"
+    hide drei1
+if party.contains(Igoryas):
+    show igor_dovolen
+    drei "Мы такие молодцы"
+    hide igor_dovolen
+
+scene black
+"После боя Максимус больше не появлялся"
+scene server_down with Dissolve(.2)
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+with bigdamagepunch
+scene server_down_boom
+"Мы разьебашили Яндекс.Сервера"
+scene all_fine with Dissolve(.2)
+"И все пришло в норму"
+nvle "Это просто потрясающе"
+nvle "Миха с друзьями остановили Яндекс.Вирус"
+nvle "А Максимус после получения 1 демеджа исчез навсегда"
+nvle "Может он обидился?"
+nvle "В любом случае это потрясающая концовка"
+nvle "Как хорошо что все вернулось в норму"
+nvle "Правда ведь?"
+python:
+    get_achievement("victory", trans=achievement_transform)
+nvle "Все молодцы"
+

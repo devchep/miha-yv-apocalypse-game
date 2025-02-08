@@ -80,6 +80,12 @@ init python:
                                             "text": "Нет, блять, не офигеть",
                                             "icon": "images/icons/yashik_achiev.png",
                                         },
+                                    "victory": {
+                                            "type": 0,
+                                            "title": "Все пришло в норму",
+                                            "text": "Вы победили Максимуса и остановили Яндекс Вирус",
+                                            "icon": "images/icons/victory.png",
+                                        },
                                     }
 
 

@@ -54,7 +54,6 @@ label start:
 #
 #     show screen campButton
 #     ""
-#     call korean_fight
-#     call zheka_fight
+#     call meet_maximus
 #
 #     return
