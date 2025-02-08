@@ -22,6 +22,10 @@ python:
     fight.start()
 
 python:
+    diman_unit = Diman(63, 5)
+    party.addMember(diman_unit)
+
+python:
     party.getExp(2)
 call hide_chinese_hp
 call hide_party_hp

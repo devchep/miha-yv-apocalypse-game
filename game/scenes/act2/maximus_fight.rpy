@@ -91,7 +91,7 @@ python:
     enemy.health = 150
 $ renpy.save("maximus_fight")
 python:
-    [member.disabled(2) for member in party.members.values()]
+    [member.disabled(1) for member in party.members.values()]
 
 python:
     fight = Fight(party, enemyParty, "maximus_fight")
