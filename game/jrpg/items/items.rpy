@@ -104,7 +104,7 @@ init 2 python:
             super().__init__(name = "Сосиска", count = 4, power = 15, id = id)
 
         def useInFight(self, character: Ally, fight: Fight):
-            character.heal(10)
+            character.heal(15)
             renpy.say(character.getRenpyChar(), what="ам ам ам")
 
     class KolbasaDubki(Throwable, DogLikes, CatLikes, FightItem):
