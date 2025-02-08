@@ -10,4 +10,5 @@ label vsem_pizda:
     centered '{b}Минус вайб{/b}' (what_color='#f8f9ff')
     centered '{b}Минус парни{/b}' (what_color='#f8f9ff')
     centered '{b}Минус вайб{/b}' (what_color='#f8f9ff')
-    pause
+    scene black with Dissolve(7)
+    $ MainMenu(confirm=False)()
