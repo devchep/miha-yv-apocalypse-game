@@ -53,6 +53,31 @@ label beaten:
     maks "Вау"
     maks "Действительно получилось"
     scene lushwelcome with Dissolve(.5)
+
+    play sound "characters/lesh/lush-guide-po-belgrade.ogg" volume 2
+    lush ""
+    stop sound
+
+    show max4 at right
+    maks "Как-то у тебя тут не богато"
+    maks "В холодильнике попка от колбасы да кусочек масла"
+
+    play sound "characters/lesh/lush-tvorog.ogg" volume 2
+    lush ""
+    stop sound
+
+    show igor_pretty at left
+    igoryas "Вот это приключение вышло"
+    igoryas "Даже не верится"
+
+    play sound "characters/lesh/lush-razrabi-genii.ogg" volume 2
+    lush ""
+    stop sound
+
+    scene black with Dissolve(8)
+
+    $ MainMenu(confirm=False)()
+
     return
 
 label serbia:
@@ -124,10 +149,8 @@ label serbia:
             maks "Парни, помогаем"
 
             call gay_fight
+            jump beaten
             pass
-
-    jump beaten
-
     return
 
 label maybe_serbia:
