@@ -50,3 +50,43 @@ init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"
     style.default.language = "eastasian"
+
+
+    def hide_all_max():
+        renpy.hide("max_angry")
+        renpy.hide("max_happy")
+        renpy.hide("max_pipe")
+        renpy.hide("max1")
+        renpy.hide("max2")
+        renpy.hide("maxsit")
+        renpy.hide("maxwait")
+        renpy.hide("max_angry")
+        renpy.hide("max3")
+        renpy.hide("max4")
+
+    def hide_all_igoryas():
+        renpy.hide("igor_dovolen")
+        renpy.hide("igor_ne_hochet")
+        renpy.hide("igor_pretty")
+        renpy.hide("igor_s_dr")
+        renpy.hide("igor_shok_s_telef")
+        renpy.hide("igor_shok")
+        renpy.hide("igor_sret1")
+        renpy.hide("igor_v_govne")
+        renpy.hide("igor_wc_1")
+        renpy.hide("igor_wc_2")
+        renpy.hide("igor1")
+        renpy.hide("igor_govno")
+
+    def hide_all_lush():
+        renpy.hide("lush_s_dr")
+        renpy.hide("lush_wc_1")
+        renpy.hide("lush_wc_2")
+        renpy.hide("lush1")
+        renpy.hide("lush2")
+        renpy.hide("lush3")
+        renpy.hide("lush4")
+        renpy.hide("lush5")
+        renpy.hide("lush6")
+        renpy.hide("lush7")
+        renpy.hide("lush_ananas")

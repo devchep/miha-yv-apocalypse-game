@@ -50,7 +50,8 @@ label start:
 #             ]
 #         )
 #
-#
 #     show screen campButton
+#     ""
+#     call torop_fight
 #
 #     return
