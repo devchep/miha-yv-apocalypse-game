@@ -115,9 +115,9 @@ hide max1
 miha "Ахахах"
 miha "Мы победили?"
 if party.contains(Drei):
-    show drei1
+    show andreiflower
     andrei "Парни я так рад"
-    hide drei1
+    hide andreiflower
 if party.contains(Igoryas):
     show igor_dovolen
     drei "Мы такие молодцы"
