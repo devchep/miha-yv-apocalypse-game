@@ -43,16 +43,19 @@ init 2 python:
 
     class AoeShoulder(Ability):
         def __init__(self):
-            super().__init__(name = "Трактором с плеча прокатиться по всем (-30 всем противникам)", strength = 30)
+            super().__init__(name = "Трактором с плеча прокатиться по всем (-30 выбранному, -15 всем противникам рядом)", strength = 30)
             self.setTargeted(False)
 
         def playSound(self):
             renpy.play("audio/characters/max/shoulder.mp3")
             renpy.with_statement(hugepunch)
+            renpy.with_statement(hugepunch)
             renpy.pause(1)
 
         def use(self, fight: Fight, character: Character):
-            [character.hit(enemy, self.strength) for enemy in fight.enemyParty.members.values()]
+            pickedEnemy = renpy.display_menu(fight.enemyParty.getAliveMembers())
+            character.hit(pickedEnemy, 30)
+            [character.hit(enemy, 15) for enemy in fight.enemyParty.members.values() if enemy != pickedEnemy]
             self.playSound()
 
     class Vampirism(Ability):
@@ -73,7 +76,7 @@ init 2 python:
 
     class CatHeal(Ability):
         def __init__(self):
-            super().__init__(name = "Спасение котят (+20HP Всем союзникам) (Шанс на успех 50%)", strength = 30)
+            super().__init__(name = "Спасение котят (+20HP Всем союзникам) (Шанс на успех 50%) (Может сработать не больше 1 раза за бой)", strength = 30)
             self.setTargeted(False)
 
         def use(self, fight: Fight, character: Character):
@@ -89,6 +92,7 @@ init 2 python:
                 renpy.pause(.1)
                 self.hideCharacterWithSpeed("diman_kittens", 1.2)
                 renpy.sound.stop()
+                self.setInactive()
             else:
                 renpy.sound.play("audio/hell_no_man.mp3", loop = False)
                 self.showCharacterWithSpeed("diman_nasral", 0.2)
@@ -226,7 +230,7 @@ init 2 python:
 
     class StackTurns(Ability, NonTarget):
         def __init__(self):
-            super().__init__(name = "Настакать ходы (Текущее значение: х2)", strength = 1)
+            super().__init__(name = "Настакать ходы (Текущее значение: х1)", strength = 1)
             self.stack = 1
             self.setTargeted(False)
 

@@ -149,8 +149,8 @@ init 2 python:
             super().__init__(name = "Волшебное зелье", count = 1, power = 300, id = id)
 
         def useInFight(self, character: Ally, fight: Fight):
-            character.heal(150)
+            character.heal(100)
             renpy.say(character.getRenpyChar(), what="ОЩУЩАЮ ПРИЛИВ СИЛ")
 
         def effectDesc(self):
-            return "(+150 HP)"
+            return "(+100 HP)"

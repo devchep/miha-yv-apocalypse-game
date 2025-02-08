@@ -169,4 +169,4 @@
         pause
         scene black with Dissolve(8)
         centered 'THE END'
-        $ MainMenu(confirm=True)()
+        $ MainMenu(confirm=False)()
