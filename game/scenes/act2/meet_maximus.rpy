@@ -1,4 +1,4 @@
-transform hall_maximus_pos:
+﻿transform hall_maximus_pos:
     xalign 0.55
     yalign 0.62
 transform hall_zlodei_pos:
@@ -75,7 +75,8 @@ label meet_maximus:
             maximus 'На {b}что{/b} вы вообще рассчитывали?'
             maximus 'Но за {b}Яндекс.Доставку{/b} крови благодарю'
             maximus 'А сейчас прошу меня извинить, у меня планы'
-            get_achievement("blya_derzhi_yashik", trans=achievement_transform)
+            python:
+                get_achievement("blya_derzhi_yashik", trans=achievement_transform)
             call maximus_palace_split
 
             
