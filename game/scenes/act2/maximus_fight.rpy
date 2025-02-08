@@ -54,6 +54,7 @@ menu:
         call gera_fight
         hide gera_axe
 
+        show maximus
         maximus "{b}Миха, отлично, а сейчас отойди в сторонку{/b}"
         maximus "{b}Я разберусь с нечистой кровью{/b}"
         with bigdamagepunch

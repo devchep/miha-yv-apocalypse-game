@@ -119,8 +119,8 @@ init 2 python:
 
     class MihaUlt(Ability):
         def __init__(self):
-            super().__init__(name = "Нанести 10 урона (Каждый ход урон удваивается) (Доступно 1 раз за бой)", strength = 30)
-            self.currentDamageStack = 10
+            super().__init__(name = "Нанести 15 урона (Каждый ход урон удваивается) (Доступно 1 раз за бой)", strength = 30)
+            self.currentDamageStack = 15
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
         def useAgainst(self, enemy: Character, character: Character):
@@ -141,7 +141,9 @@ init 2 python:
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
         def reset(self, character: Character):
-            self.currentDamageStack = 10
+            self.active = True
+            self.targeted = True
+            self.currentDamageStack = 15
             self.name = "Нанести {} урона (Каждый ход урон удваивается)".format(self.currentDamageStack)
 
     class Smoke(Ability, NonTarget):
@@ -243,6 +245,8 @@ init 2 python:
             character.abilities.append(ReleaseTurns(self.stack))
 
         def reset(self, character: Character):
+            self.active = True
+            self.targeted = True
             self.stack = 2
             self.name = "Настакать ходы (Текущее значение: х{})".format(self.stack)
             character.abilities = [ability for ability in character.abilities if not isinstance(ability, ReleaseTurns)]
@@ -298,6 +302,8 @@ init 2 python:
                 return " (Подготовка)"
 
         def reset(self, character: Character):
+            self.active = True
+            self.targeted = True
             character.setInvincible(False)
             character.setPreparedAttack(0)
             self.setTargeted(False)
@@ -353,6 +359,8 @@ init 2 python:
                 return " (Подготовка)"
 
         def reset(self, character: Character):
+            self.active = True
+            self.targeted = True
             character.setInvincible(False)
             character.setPreparedAttack(0)
             self.setTargeted(False)
