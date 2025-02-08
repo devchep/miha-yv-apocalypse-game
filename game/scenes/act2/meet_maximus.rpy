@@ -1,4 +1,4 @@
-transform hall_maximus_pos:
+﻿transform hall_maximus_pos:
     xalign 0.55
     yalign 0.62
 transform hall_zlodei_pos:

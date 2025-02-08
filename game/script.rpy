@@ -17,6 +17,8 @@ label start:
         party.addMember(miha_unit)
         isZakl = True
 
+    jump serbia
+
     call act1
 
     scene black
@@ -34,11 +36,13 @@ label start:
 #         maks_unit = MaxHeyman(65, 10)
 #         igoryas_unit = Igoryas(80, 6)
 #         drei_unit = Drei(62, 5)
+#         diman_unit = Diman(63, 5)
 #         party.addMember(miha_unit)
 #         party.addMember(maks_unit)
 #         party.addMember(igoryas_unit)
 #         party.addMember(drei_unit)
-#         party.getExp(2)
+#         party.addMember(diman_unit)
+#         party.getExp(4)
 #
 #     python:
 #         inventory.loot(ColaNoSugar("2 колы по купону 5050"))
@@ -53,6 +57,6 @@ label start:
 #
 #     show screen campButton
 #     ""
-#     call torop_fight
+#     call maximus_fight
 #
 #     return

@@ -43,6 +43,17 @@ init 3 python:
         def getRenpyChar(self):
             return andrei
 
+    class Diman(Ally):
+        def __init__(self, health, strength):
+            super().__init__("Диман", health, strength, "ход Диманом")
+            self.abilities = [CatHeal()]
+            self.skillBranches = [
+                SkillBranch("Ульта", [DimanUlt()])
+            ]
+
+        def getRenpyChar(self):
+            return diman
+
     class Tupoi:
         def mayBeOffended(self):
             return True

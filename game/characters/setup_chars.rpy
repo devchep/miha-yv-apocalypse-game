@@ -46,6 +46,10 @@ define grisha = Character('Гриша', color = '#ff1f00')
 
 define nvle = Character(_("&"), color="#c8ffc8", kind=nvl)
 
+define anal = Character('Анальный говносос', color="#E10B84")
+
+define hunter = Character('Hunter', color="#E10B84")
+
 init 2 python:
     party = Party()
     style.default.font = "fonts/chinese.ttf"
@@ -87,6 +91,7 @@ init 2 python:
         renpy.hide("lush3")
         renpy.hide("lush4")
         renpy.hide("lush5")
+        renpy.hide("lush_jetpack")
         renpy.hide("lush6")
         renpy.hide("lush7")
         renpy.hide("lush_ananas")

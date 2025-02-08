@@ -37,6 +37,15 @@ label show_party_hp:
                 background "#E4E4E4"
                 text "[drei_unit.name]: [drei_unit.health]/[drei_unit.max_health]"
         bar value drei_unit.health range drei_unit.max_health xalign 0.0 yalign 0.4 xmaximum 230 left_bar "#2CADD1"  right_bar "#4B8692"
+    screen diman_hp:
+        vbox:
+            xalign 0.0
+            yalign 0.45
+            frame:
+                padding 10, 10, 10, 10
+                background "#E4E4E4"
+                text "[diman_unit.name]: [diman_unit.health]/[diman_unit.max_health]"
+        bar value diman_unit.health range diman_unit.max_health xalign 0.0 yalign 0.5 xmaximum 230 left_bar "#7E0DFF"  right_bar "#4B8692"
 
     if party.contains(Miha) and miha_unit.health>0:
         show screen miha_hp
@@ -46,6 +55,8 @@ label show_party_hp:
         show screen maxHeyman_hp
     if party.contains(Drei) and drei_unit.health>0:
         show screen drei_hp
+    if party.contains(Diman) and diman_unit.health>0:
+        show screen diman_hp
     return
 
 label hide_party_hp:
@@ -53,4 +64,5 @@ label hide_party_hp:
     hide screen igoryas_hp
     hide screen maxHeyman_hp
     hide screen drei_hp
+    hide screen diman_hp
     return

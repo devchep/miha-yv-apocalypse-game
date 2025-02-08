@@ -71,6 +71,51 @@ init 2 python:
             renpy.say(None, what="Все парни получили вампиризм")
             renpy.sound.stop()
 
+    class CatHeal(Ability):
+        def __init__(self):
+            super().__init__(name = "Спасение котят (+20HP Всем союзникам) (Шанс на успех 50%)", strength = 30)
+            self.setTargeted(False)
+
+        def use(self, fight: Fight, character: Character):
+            choice = random.choice([1, 2])
+            if choice == 1:
+                self.showCharacterWithSpeed("diman_kittens", 0.5)
+                renpy.sound.play("audio/charactedrs/diman/diman_heal.mp3", loop = False)
+                renpy.show("heal_screen")
+                renpy.sound.play("audio/characters/drei/meow.mp3", loop = False)
+                renpy.pause(.2)
+                [member.healWithLimit(30) for member in fight.party.members.values()]
+                renpy.hide("heal_screen")
+                renpy.pause(.1)
+                self.hideCharacterWithSpeed("diman_kittens", 1.2)
+                renpy.sound.stop()
+            else:
+                renpy.sound.play("audio/hell_no_man.mp3", loop = False)
+                self.showCharacterWithSpeed("diman_nasral", 0.2)
+                renpy.pause(3)
+                self.hideCharacterWithSpeed("diman_nasral", 0.1)
+                renpy.sound.stop()
+
+    class DimanUlt(Ability):
+        def __init__(self):
+            super().__init__(name = "Ультануть (Урон по противникам -50, Урон по союзникам -15) (Противники обездвижены) (Доступно 1 раз за бой)", strength = 30)
+            self.setTargeted(False)
+
+        def use(self, fight: Fight, character: Character):
+            renpy.sound.play("audio/characters/diman/diman_scream.mp3", loop = False)
+            self.showCharacterWithSpeed("diman_scream", 0.1)
+            renpy.pause(.2)
+            renpy.with_statement(hugepunch)
+            renpy.with_statement(hugepunch)
+            renpy.with_statement(hugepunch)
+            [member.dealDamage(15) for member in fight.party.members.values()]
+            [enemy.dealDamage(50) for enemy in fight.enemyParty.members.values()]
+            renpy.pause(.5)
+            self.hideCharacterWithSpeed("diman_scream", 1.2)
+            renpy.sound.stop()
+            renpy.say(None, 'Противник ахуел')
+            fight.makeTurnNoItems()
+
     class Smoke(Ability, NonTarget):
         def __init__(self):
             super().__init__(name = "Дымка 50 никотина (Ослабляет противников)", strength = 1)
@@ -95,7 +140,7 @@ init 2 python:
 
     class TheWall(Ability, NonTarget):
         def __init__(self):
-            super().__init__(name = "Встать стеной (+60HP, Провокация)", strength = 1)
+            super().__init__(name = "Встать стеной (+60HP, Провокация) (Доступно 1 раз за бой)", strength = 1)
             self.setTargeted(False)
 
         def use(self, fight: Fight, character: Character):

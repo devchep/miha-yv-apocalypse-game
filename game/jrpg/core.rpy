@@ -73,11 +73,19 @@ init 0 python:
             if self.vampirism:
                 self.health += strength
 
+        def dealDamage(self, amount):
+            self.health -= amount*self.vulnerableRatio
+
         def healMax(self):
             self.health = self.max_health
 
         def heal(self, hp):
             self.health += hp
+
+        def healWithLimit(self, hp):
+            self.health += hp
+            if self.health > self.max_health:
+                self.health = self.max_health
 
         def setInvincible(self, val):
             self.invincible = val
@@ -188,7 +196,7 @@ init 0 python:
             self.level += 1
 
         def getAvailableUpgrades(self):
-            return [(skillBranch.getName(), skillBranch) for skillBranch in self.skillBranches]
+            return [(skillBranch.getName(), skillBranch) for skillBranch in self.skillBranches if skillBranch.hasUpgrades()]
 
         def canUpgrade(self):
             return any(skillBranch.hasUpgrades() for skillBranch in self.skillBranches)
