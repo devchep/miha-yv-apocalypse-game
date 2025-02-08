@@ -105,6 +105,7 @@ init 3 python:
                     renpy.say(None, what="Враг стал ласковый")
                     self.strength = 0
             if isinstance(item, ColaNoSugar):
+                get_achievement("tigr-ne-govno", trans=achievement_transform)
                 renpy.show('tigr_mem')
                 renpy.pause()
                 renpy.hide('tigr_mem')
@@ -173,6 +174,55 @@ init 3 python:
 
         def playAttackSound(self):
             renpy.play("audio/fireball.mp3")
+
+    class Gera(Enemy):
+        def __init__(self, health, strength):
+            super().__init__(name = "Гера", health = health, strength = strength)
+            self.round = 1
+
+        def attack_phrase(self):
+            return ""
+
+        def playAxeSound(self, choice):
+            if choice == 1:
+                 renpy.play("audio/bigboom.mp3")
+            elif choice == 2:
+                renpy.play("audio/characters/gera/axe2.mp3")
+            elif choice == 3:
+                renpy.play("audio/bigboom.mp3")
+
+        def attack(self, party: Party):
+            renpy.sound.play("audio/characters/gera/kakoi_topor.mp3", loop = False)
+            choice = renpy.display_menu([("Топор1", 1), ("Топор2", 2), ("Топор3", 3)])
+            topor = random.choice([1, 2, 3])
+
+            if (self.round > 4):
+                renpy.show("maximus")
+                renpy.say(maximus, "{b}Довольно{/b}")
+                renpy.with_statement(hugeboom)
+                renpy.play("audio/bigboom.mp3")
+                renpy.play("audio/bigboom.mp3")
+                renpy.with_statement(hugeboom)
+                self.health = -100
+                renpy.say(maximus, "")
+                return
+
+            self.round += 1
+            if topor == choice:
+                renpy.say(self.getRenpyChar(), what="Молодец")
+                return
+
+            [self.hit(member, 25) for member in party.members.values()]
+            renpy.sound.stop()
+            self.playAxeSound(choice)
+            renpy.show("gera_attack"+str(choice % 2 + 1))
+            renpy.with_statement(Dissolve(.2))
+            renpy.with_statement(hugeboom)
+            renpy.hide("gera_attack"+str(choice % 2 + 1))
+            return
+
+        def getRenpyChar(self):
+            return gera
 
     class Chinese:
         def mayBeOffended(self):
